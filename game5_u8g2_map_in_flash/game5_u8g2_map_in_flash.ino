@@ -27,19 +27,6 @@ byte playerX;
 byte playerY;
 int playerXnew;
 int playerYnew;
-byte playerScore;
-
-//coins
-byte playerCoins;
-byte defaultCoins[][2] = {
-  {3,3},
-  {3,6},
- // {10,3},
-  //{14, 10},
-  //{22, 12},
-  //{8,13}
-};
-byte defaultCoinsQuantity = sizeof(defaultCoins) / 2;
 
 /**
  * 0 menu
@@ -66,10 +53,10 @@ const byte maps[MAP_SIZE][MAP_SIZE][SCREEN_ROWS][SCREEN_COLS] PROGMEM =
       {2,2,2,2,2,2,2,2,2,2,2,2},
       {2,1,1,2,2,1,2,2,2,1,1,2},
       {2,1,1,1,2,1,1,1,1,1,1,2},
-      {2,2,1,2,1,3,1,1,1,1,1,2},
+      {2,2,1,2,1,1,1,1,1,1,1,2},
       {2,2,1,1,1,1,1,1,1,1,1,2},
       {2,2,1,1,1,1,2,2,1,2,1,1},
-      {2,2,3,1,1,1,1,1,1,1,1,2},
+      {2,2,1,1,1,1,1,1,1,1,1,2},
       {2,2,2,2,2,2,2,2,2,1,2,2}
     },
     {
@@ -77,7 +64,7 @@ const byte maps[MAP_SIZE][MAP_SIZE][SCREEN_ROWS][SCREEN_COLS] PROGMEM =
       {2,1,2,2,2,2,2,2,2,1,1,2},
       {2,1,1,1,1,1,1,1,1,1,1,2},
       {2,1,1,1,1,1,1,1,1,1,1,2},
-      {2,2,1,3,1,1,1,1,3,1,1,2},
+      {2,2,1,1,1,1,1,1,1,1,1,2},
       {1,1,1,1,1,1,2,2,1,2,2,2},
       {2,2,2,1,1,1,1,1,1,1,1,2},
       {2,2,2,2,2,2,2,2,2,1,2,2}
@@ -88,10 +75,10 @@ const byte maps[MAP_SIZE][MAP_SIZE][SCREEN_ROWS][SCREEN_COLS] PROGMEM =
       {2,2,2,2,2,2,2,2,2,1,2,2},
       {2,1,1,2,2,1,2,2,2,1,1,2},
       {2,1,1,1,2,1,1,1,1,1,1,1},
-      {2,2,1,2,1,3,1,1,1,1,1,1},
+      {2,2,1,2,1,1,1,1,1,1,1,1},
       {2,2,1,1,1,1,1,1,1,1,1,2},
       {2,2,1,1,1,1,2,2,1,2,2,2},
-      {2,2,3,1,1,1,1,1,1,1,1,2},
+      {2,2,1,1,1,1,1,1,1,1,1,2},
       {2,2,2,2,2,2,2,2,2,2,2,2}
     },
     {
@@ -99,7 +86,7 @@ const byte maps[MAP_SIZE][MAP_SIZE][SCREEN_ROWS][SCREEN_COLS] PROGMEM =
       {2,1,2,2,2,2,2,2,2,1,1,2},
       {1,1,1,1,1,1,1,1,1,1,1,2},
       {1,1,1,1,1,1,1,1,1,1,1,2},
-      {2,2,1,3,1,1,1,1,3,1,1,2},
+      {2,2,1,1,1,1,1,1,1,1,1,2},
       {2,2,1,1,1,1,2,2,1,2,2,2},
       {2,2,2,1,1,1,1,1,1,1,1,2},
       {2,2,2,2,2,2,2,2,2,2,2,2}
@@ -108,24 +95,43 @@ const byte maps[MAP_SIZE][MAP_SIZE][SCREEN_ROWS][SCREEN_COLS] PROGMEM =
 };
 byte currentMap[SCREEN_ROWS][SCREEN_COLS];
 
+//coins - mapy, mapx, y, x
+byte defaultCoins[][4] =
+{
+  {0,0,3,3},
+  {0,0,3,6},
+  {1,0,4,3},
+  {0,1,2,6},
+};
+
 void setDefaultValues()
 {
   playerX = 4;
   playerY = 4;
   playerXnew = playerX;
   playerYnew = playerY;
-  playerScore = 0;
 
   mapX = 0;
   mapY = 0;
   loadMap(mapY, mapX);
   
   stage = 0;
+}
 
-  playerCoins = 0;
-  for (int i = 0; i < defaultCoinsQuantity; i++) 
-  {
-    //world_map[defaultCoins[i][1]][defaultCoins[i][0]] = 3;
+void loadMap(byte mapY, byte mapX)
+{
+  // load map from flash memory to ram
+  for (int y = 0; y < SCREEN_ROWS; y++) {
+    for (int x = 0; x < SCREEN_COLS; x++) {
+      currentMap[y][x] = pgm_read_byte(&(maps[mapY][mapX][y][x]));
+    }
+  }
+
+  // add coins
+  for (int coinIndex = 0; coinIndex < sizeof(defaultCoins) / sizeof (defaultCoins[0]); coinIndex++) {
+    if (defaultCoins[coinIndex][0] == mapY && defaultCoins[coinIndex][1] == mapX) {
+      currentMap[defaultCoins[coinIndex][2]][defaultCoins[coinIndex][3]] = 3;
+    }
   }
 }
 
@@ -193,8 +199,6 @@ void loop(void) {
       playerXnew = SCREEN_COLS - 1;
       changeMap = true;
     }
-
-    // load map from flash memory to ram
     if (changeMap) {
       loadMap(mapY, mapX);
     }
@@ -209,14 +213,14 @@ void loop(void) {
     if (currentMap[playerYnew][playerXnew] == 3) {
       playerX = playerXnew;
       playerY = playerYnew;
-      playerCoins++;
       currentMap[playerYnew][playerXnew] = 1;
 
       //finish? reset
+      /*
       if (defaultCoinsQuantity == playerCoins) {
         setDefaultValues();
         stage = 2;
-      }
+      }*/
     }
   }
   
@@ -242,15 +246,6 @@ void loop(void) {
 
   // rebuild the picture after some delay
   delay(10);
-}
-
-void loadMap(byte mapY, byte mapX)
-{
-  for (int y = 0; y < SCREEN_ROWS; y++){
-    for (int x = 0; x < SCREEN_COLS; x++){
-      currentMap[y][x] = pgm_read_byte(&(maps[mapY][mapX][y][x]));
-    }
-  }
 }
 
 void drawMenu()
@@ -287,7 +282,7 @@ void drawSidebar()
   u8g2.setCursor(97, 10);
   u8g2.print("coins");
   u8g2.setCursor(97, 20);
-  u8g2.print(String(playerCoins) + "/" + String(defaultCoinsQuantity));
+  //u8g2.print(String(playerCoins) + "/" + String(defaultCoinsQuantity));
 
   //coordinates
   //u8g2.setCursor(97, 40);
@@ -319,7 +314,7 @@ void drawMap()
         u8g2.drawFrame(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE, TILE_SIZE);
       } else if (currentMap[y][x] == 3) {
         // coin
-        //u8g2.drawDisc(x * TILE_SIZE + TILE_SIZE / 2, y * TILE_SIZE + TILE_SIZE / 2, TILE_SIZE / 2, U8G2_DRAW_ALL);
+        u8g2.drawDisc(x * TILE_SIZE + TILE_SIZE / 2, y * TILE_SIZE + TILE_SIZE / 2, TILE_SIZE / 2, U8G2_DRAW_ALL);
       }
     }
   }

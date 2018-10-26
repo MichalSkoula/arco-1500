@@ -1,6 +1,4 @@
 #include <U8g2lib.h>
-
-#include <Key.h>
 #include <Keypad.h>
 
 // Display which does not send AC
@@ -36,14 +34,18 @@ byte playerCoins;
 byte defaultCoins[][2] = {
   {3,3},
   {3,6},
-  {10,3},
-  {14, 10},
-  {22, 12},
-  {8,13}
+ // {10,3},
+  //{14, 10},
+  //{22, 12},
+  //{8,13}
 };
 byte defaultCoinsQuantity = sizeof(defaultCoins) / 2;
 
-//0 menu, 1 game
+/**
+ * 0 menu
+ * 1 game
+ * 2 gameover
+ */
 byte stage;
 
 /**
@@ -110,7 +112,11 @@ void loop(void) {
   // switch between menu and game
   startButtonState = digitalRead(startButton);
   if (startButtonState != lastStartButtonState && startButtonState == HIGH) {
-    stage = !stage;
+    if (stage == 1 || stage == 2) {
+      stage = 0;
+    } else if(stage == 0) {
+      stage = 1;
+    }
   }
   lastStartButtonState = startButtonState;
   
@@ -146,6 +152,7 @@ void loop(void) {
       //finish? reset
       if (defaultCoinsQuantity == playerCoins) {
         setDefaultValues();
+        stage = 2;
       }
     }
   }
@@ -161,6 +168,9 @@ void loop(void) {
       case 1:
         drawMap();
         drawSidebar();
+        break;
+      case 2:
+        drawGameOver();
         break;
       default:
         break;
@@ -178,7 +188,21 @@ void drawMenu()
 
   //logo
   u8g2.setCursor(18, 15);
-  u8g2.print("TRAIN LEGION v0");
+  u8g2.print("TRAIN LEGION v1");
+
+  //text
+  u8g2.setCursor(20, 50);
+  u8g2.print("press the start");
+}
+
+void drawGameOver()
+{
+  //rectangle
+  u8g2.drawFrame(0, 0, 128, 64);
+
+  //logo
+  u8g2.setCursor(20, 15);
+  u8g2.print("GAME OVER");
 
   //text
   u8g2.setCursor(20, 50);
@@ -197,13 +221,13 @@ void drawSidebar()
   //u8g2.setCursor(97, 40);
   //u8g2.print(String(playerX) + ":" + String(playerY));
 
-  //frame
+  //rectangles
   u8g2.drawFrame(0, 0, 96, 64);
   u8g2.drawFrame(0, 0, 128, 64);
 
   //minimap
   u8g2.drawFrame(100, 44, 24, 16);
-  u8g2.drawPixel(100 + playerX, 44 + playerY);
+  u8g2.drawPixel(100 + playerX / 2, 44 + playerY / 2);
 }
 
 void drawMap()

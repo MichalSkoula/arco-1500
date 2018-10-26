@@ -23,25 +23,26 @@ byte colPins[KEYPAD_COLS] = {6,7,8}; //connect to the column pinouts of the keyp
 Keypad keypad = Keypad( makeKeymap(keys), rowPins, colPins, KEYPAD_ROWS, KEYPAD_COLS );
 
 //player
-byte playerX;
-byte playerY;
-int playerXnew;
-int playerYnew;
+byte playerX = 4;
+byte playerY = 4;
+int playerXnew = playerX;
+int playerYnew = playerY;
+int playerCoins = 0;
 
 /**
  * 0 menu
  * 1 game
  * 2 gameover
  */
-byte stage;
+byte stage = 0;
 
 /**
  * map
  * 1 free place 
  * 2 wall
  */
-byte mapX;
-byte mapY;
+byte mapX = 0;
+byte mapY = 0;
 const byte MAP_SIZE = 2;
 const byte SCREEN_ROWS = 8;
 const byte SCREEN_COLS = 12;
@@ -53,7 +54,7 @@ const byte maps[MAP_SIZE][MAP_SIZE][SCREEN_ROWS][SCREEN_COLS] PROGMEM =
       {2,2,2,2,2,2,2,2,2,2,2,2},
       {2,1,1,2,2,1,2,2,2,1,1,2},
       {2,1,1,1,2,1,1,1,1,1,1,2},
-      {2,2,1,2,1,1,1,1,1,1,1,2},
+      {2,2,1,1,1,1,1,1,1,1,1,2},
       {2,2,1,1,1,1,1,1,1,1,1,2},
       {2,2,1,1,1,1,2,2,1,2,1,1},
       {2,2,1,1,1,1,1,1,1,1,1,2},
@@ -96,45 +97,16 @@ const byte maps[MAP_SIZE][MAP_SIZE][SCREEN_ROWS][SCREEN_COLS] PROGMEM =
 byte currentMap[SCREEN_ROWS][SCREEN_COLS];
 
 //coins - mapy, mapx, y, x
-byte defaultCoins[][4] =
+byte coins[][4] =
 {
   {0,0,3,3},
   {0,0,3,6},
   {1,0,4,3},
   {0,1,2,6},
 };
+const byte coinsQuantity = sizeof(coins) / sizeof(coins[0]);
 
-void setDefaultValues()
-{
-  playerX = 4;
-  playerY = 4;
-  playerXnew = playerX;
-  playerYnew = playerY;
-
-  mapX = 0;
-  mapY = 0;
-  loadMap(mapY, mapX);
-  
-  stage = 0;
-}
-
-void loadMap(byte mapY, byte mapX)
-{
-  // load map from flash memory to ram
-  for (int y = 0; y < SCREEN_ROWS; y++) {
-    for (int x = 0; x < SCREEN_COLS; x++) {
-      currentMap[y][x] = pgm_read_byte(&(maps[mapY][mapX][y][x]));
-    }
-  }
-
-  // add coins
-  for (int coinIndex = 0; coinIndex < sizeof(defaultCoins) / sizeof (defaultCoins[0]); coinIndex++) {
-    if (defaultCoins[coinIndex][0] == mapY && defaultCoins[coinIndex][1] == mapX) {
-      currentMap[defaultCoins[coinIndex][2]][defaultCoins[coinIndex][3]] = 3;
-    }
-  }
-}
-
+/* start ------------------------------------------------------------------- */
 void setup(void)
 {
   // activate buttons
@@ -147,14 +119,15 @@ void setup(void)
   // start serial monitor
   Serial.begin(9600);
 
-  setDefaultValues();
+  loadMap(mapY, mapX);
 }
 
+/* loop ------------------------------------------------------------------- */
 void loop(void) {
   // switch between menu and game
   startButtonState = digitalRead(startButton);
   if (startButtonState != lastStartButtonState && startButtonState == HIGH) {
-    if (stage == 1 || stage == 2) {
+    if (stage == 1) {
       stage = 0;
     } else if(stage == 0) {
       stage = 1;
@@ -180,6 +153,7 @@ void loop(void) {
   
   // key pressed
   if (strlen(key)) {
+    
     // on the edge => change map?
     bool changeMap = false;
     if (playerYnew == SCREEN_ROWS) {
@@ -199,6 +173,7 @@ void loop(void) {
       playerXnew = SCREEN_COLS - 1;
       changeMap = true;
     }
+    
     if (changeMap) {
       loadMap(mapY, mapX);
     }
@@ -207,20 +182,19 @@ void loop(void) {
     if (currentMap[playerYnew][playerXnew] == 1) {
       playerX = playerXnew;
       playerY = playerYnew;
-    }
-    
-    //pick coin and walk
-    if (currentMap[playerYnew][playerXnew] == 3) {
-      playerX = playerXnew;
-      playerY = playerYnew;
-      currentMap[playerYnew][playerXnew] = 1;
 
-      //finish? reset
-      /*
-      if (defaultCoinsQuantity == playerCoins) {
-        setDefaultValues();
-        stage = 2;
-      }*/
+      //pick coin and walk
+      for (int i = 0; i < coinsQuantity; i++) {
+        if (coins[i][0] == mapY && coins[i][1] == mapX && coins[i][2] == playerY && coins[i][3] == playerX) {
+          playerCoins++;
+          coins[i][1] = 99; //haha put it away
+  
+          //finish? reset
+          if (coinsQuantity == playerCoins) {
+            stage = 2;
+          }
+        }
+      }
     }
   }
   
@@ -248,6 +222,17 @@ void loop(void) {
   delay(10);
 }
 
+// load map from flash memory to ram
+void loadMap(byte mapY, byte mapX)
+{
+  for (byte y = 0; y < SCREEN_ROWS; y++) {
+    for (byte x = 0; x < SCREEN_COLS; x++) {
+      currentMap[y][x] = pgm_read_byte(&(maps[mapY][mapX][y][x]));
+    }
+  }
+}
+
+/* drawings --------------------------------------------------------------------- */
 void drawMenu()
 {
   //rectangle
@@ -270,10 +255,6 @@ void drawGameOver()
   //logo
   u8g2.setCursor(20, 15);
   u8g2.print("GAME OVER");
-
-  //text
-  u8g2.setCursor(20, 50);
-  u8g2.print("press the start");
 }
 
 void drawSidebar()
@@ -282,11 +263,7 @@ void drawSidebar()
   u8g2.setCursor(97, 10);
   u8g2.print("coins");
   u8g2.setCursor(97, 20);
-  //u8g2.print(String(playerCoins) + "/" + String(defaultCoinsQuantity));
-
-  //coordinates
-  //u8g2.setCursor(97, 40);
-  //u8g2.print(String(playerX) + ":" + String(playerY));
+  u8g2.print(String(playerCoins) + "/" + String(coinsQuantity));
 
   //rectangles
   //u8g2.drawFrame(0, 0, 96, 64);
@@ -299,23 +276,22 @@ void drawSidebar()
 
 void drawMap()
 { 
-  int offsetX = playerX - SCREEN_COLS / 2;
-  int offsetY = playerY - SCREEN_ROWS / 2;
-
   //player - always centered
   u8g2.drawBox((playerX) * TILE_SIZE, (playerY) * TILE_SIZE, TILE_SIZE, TILE_SIZE);
 
   //map
   for (int y = 0; y < SCREEN_ROWS; y++){
     for (int x = 0; x < SCREEN_COLS; x++){
-      
       if (currentMap[y][x] == 2) {
-        // normal wall
         u8g2.drawFrame(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE, TILE_SIZE);
-      } else if (currentMap[y][x] == 3) {
-        // coin
-        u8g2.drawDisc(x * TILE_SIZE + TILE_SIZE / 2, y * TILE_SIZE + TILE_SIZE / 2, TILE_SIZE / 2, U8G2_DRAW_ALL);
       }
+    }
+  }
+
+  //coins
+  for (int i = 0; i < coinsQuantity; i++) {
+    if (coins[i][0] == mapY && coins[i][1] == mapX) {
+      u8g2.drawDisc(coins[i][3] * TILE_SIZE + TILE_SIZE / 2, coins[i][2] * TILE_SIZE + TILE_SIZE / 2, TILE_SIZE / 2, U8G2_DRAW_ALL);
     }
   }
 }

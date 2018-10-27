@@ -27,17 +27,23 @@ byte playerX = 4;
 byte playerY = 4;
 int playerXnew = playerX;
 int playerYnew = playerY;
-int playerCoins = 0;
+byte playerCoins = 0;
+byte playerHealth = 100;
 
-// images
+// bitmaps
 static unsigned char playerBits[] = { 0x3c, 0x3c, 0x99, 0x7e, 0x3c, 0x3c, 0x7e, 0x81 };
 static unsigned char wallBits[] = { 0xff, 0xaa, 0xff, 0xaa, 0xff, 0xaa, 0xff, 0xaa };
 static unsigned char coinBits[] = { 0x3c, 0x66, 0xc3, 0x99, 0x99, 0xc3, 0x66, 0x3c };
+static unsigned char enemyBits[2][8] = { 
+  { 0x24, 0x7e, 0x5a, 0xff, 0x42, 0x5a, 0x7e, 0x42 },
+  { 0x42, 0x7e, 0x5a, 0x7e, 0xc3, 0x5a, 0x7e, 0x42 }
+};
   
 /**
  * 0 menu
  * 1 game
- * 2 gameover
+ * 2 gameover (win)
+ * 3 gameover (lose)
  */
 byte stage = 0;
 
@@ -58,8 +64,8 @@ const byte maps[MAP_SIZE][MAP_SIZE][SCREEN_ROWS][SCREEN_COLS] PROGMEM =
     {
       {2,2,2,2,2,2,2,2,2,2,2,2},
       {2,1,1,2,2,1,2,2,2,1,1,2},
-      {2,1,1,1,2,1,1,1,1,1,1,2},
-      {2,2,1,1,1,1,1,1,1,1,1,2},
+      {2,1,1,1,2,1,1,1,1,1,1,1},
+      {2,2,1,1,1,1,1,1,1,1,1,1},
       {2,2,1,1,1,1,1,1,1,1,1,2},
       {2,2,1,1,1,1,2,2,1,2,1,1},
       {2,2,1,1,1,1,1,1,1,1,1,2},
@@ -68,8 +74,8 @@ const byte maps[MAP_SIZE][MAP_SIZE][SCREEN_ROWS][SCREEN_COLS] PROGMEM =
     {
       {2,2,2,2,2,2,2,2,2,2,2,2},
       {2,1,2,2,2,2,2,2,2,1,1,2},
-      {2,1,1,1,1,1,1,1,1,1,1,2},
-      {2,1,1,1,1,1,1,1,1,1,1,2},
+      {1,1,1,1,1,1,1,1,1,1,1,2},
+      {1,1,1,1,1,1,1,1,1,1,1,2},
       {2,2,1,1,1,1,1,1,1,1,1,2},
       {1,1,1,1,1,1,2,2,1,2,2,2},
       {2,2,2,1,1,1,1,1,1,1,1,2},
@@ -111,6 +117,16 @@ byte coins[][4] =
 };
 const byte coinsQuantity = sizeof(coins) / sizeof(coins[0]);
 
+//enemies - mapy, mapx, y, x
+byte enemies[][4] =
+{
+  {0,0,4,10},
+  {0,0,6,5},
+  {1,1,3,4},
+  {0,1,5,4},
+};
+const byte enemiesQuantity = sizeof(enemies) / sizeof(enemies[0]);
+
 /* start ------------------------------------------------------------------- */
 void setup(void)
 {
@@ -119,7 +135,7 @@ void setup(void)
 
   // set font globally
   u8g2.begin();
-  u8g2.setFont(u8g2_font_6x12_tf);
+  u8g2.setFont(u8g2_font_5x7_tf);
 
   // start serial monitor
   Serial.begin(9600);
@@ -188,7 +204,7 @@ void loop(void) {
       playerX = playerXnew;
       playerY = playerYnew;
 
-      //pick coin and walk
+      // pick coin
       for (int i = 0; i < coinsQuantity; i++) {
         if (coins[i][0] == mapY && coins[i][1] == mapX && coins[i][2] == playerY && coins[i][3] == playerX) {
           playerCoins++;
@@ -197,6 +213,19 @@ void loop(void) {
           //finish? reset
           if (coinsQuantity == playerCoins) {
             stage = 2;
+          }
+        }
+      }
+
+      // kick enemy
+      for (int i = 0; i < enemiesQuantity; i++) {
+        if (enemies[i][0] == mapY && enemies[i][1] == mapX && enemies[i][2] == playerY && enemies[i][3] == playerX) {
+          playerHealth -= 25;
+          enemies[i][1] = 99; //haha put it away
+  
+          // finish? reset
+          if (playerHealth <= 0) {
+            stage = 3;
           }
         }
       }
@@ -216,7 +245,10 @@ void loop(void) {
         drawSidebar();
         break;
       case 2:
-        drawGameOver();
+        drawWin();
+        break;
+      case 3:
+        drawLose();
         break;
       default:
         break;
@@ -252,54 +284,73 @@ void drawMenu()
   u8g2.print("press the start");
 }
 
-void drawGameOver()
+void drawWin()
 {
   //rectangle
   u8g2.drawFrame(0, 0, 128, 64);
 
-  //logo
+  //win
   u8g2.setCursor(20, 15);
-  u8g2.print("GAME OVER");
+  u8g2.print("!! YOU WON !!");
+}
+
+void drawLose()
+{
+  //rectangle
+  u8g2.drawFrame(0, 0, 128, 64);
+
+  //lose
+  u8g2.setCursor(20, 15);
+  u8g2.print(" :( GAME OVER :(");
 }
 
 void drawSidebar()
 {
-  //score
-  u8g2.setCursor(97, 10);
-  u8g2.print("coins");
-  u8g2.setCursor(97, 20);
-  u8g2.print(String(playerCoins) + "/" + String(coinsQuantity));
-
-  //rectangles
-  //u8g2.drawFrame(0, 0, 96, 64);
+  // rectangles
   u8g2.drawFrame(96, 0, 32, 64);
+  
+  // score
+  //u8g2.setCursor(100, 4);
+  //u8g2.print("coins");
+  u8g2.setCursor(100, 10);
+  u8g2.print(String(playerCoins) + " / " + String(coinsQuantity));
 
-  //minimap
+  // health
+  //u8g2.setCursor(100, 28);
+  //u8g2.print("health");
+  u8g2.drawFrame(100, 36, 24, 4);
+  u8g2.drawBox(100, 36, playerHealth / 4.16, 4);
+  
+  // minimap
   u8g2.drawFrame(100, 44, 24, 16);
   u8g2.drawPixel(100 + mapX * SCREEN_COLS + playerX, 44 + mapY * SCREEN_ROWS + playerY);
 }
 
 void drawMap()
 { 
-  //player - always centered
-  //u8g2.drawBox((playerX) * TILE_SIZE, (playerY) * TILE_SIZE, TILE_SIZE, TILE_SIZE);
+  // player - always centered
   u8g2.drawXBM(playerX * TILE_SIZE, playerY * TILE_SIZE, TILE_SIZE, TILE_SIZE, playerBits);
 
-  //map
+  // map
   for (int y = 0; y < SCREEN_ROWS; y++){
     for (int x = 0; x < SCREEN_COLS; x++){
       if (currentMap[y][x] == 2) {
-        //u8g2.drawFrame(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE, TILE_SIZE);
         u8g2.drawXBM(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE, TILE_SIZE, wallBits);
       }
     }
   }
 
-  //coins
+  // coins
   for (int i = 0; i < coinsQuantity; i++) {
     if (coins[i][0] == mapY && coins[i][1] == mapX) {
-      //u8g2.drawDisc(coins[i][3] * TILE_SIZE + TILE_SIZE / 2, coins[i][2] * TILE_SIZE + TILE_SIZE / 2, TILE_SIZE / 2, U8G2_DRAW_ALL);
       u8g2.drawXBM(coins[i][3] * TILE_SIZE, coins[i][2] * TILE_SIZE, TILE_SIZE, TILE_SIZE, coinBits);
+    }
+  }
+
+  // enemies
+  for (int i = 0; i < enemiesQuantity; i++) {
+    if (enemies[i][0] == mapY && enemies[i][1] == mapX) {
+      u8g2.drawXBM(enemies[i][3] * TILE_SIZE, enemies[i][2] * TILE_SIZE, TILE_SIZE, TILE_SIZE, enemyBits[random(2)]);
     }
   }
 }

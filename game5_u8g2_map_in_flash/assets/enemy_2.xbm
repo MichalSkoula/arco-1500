@@ -1,0 +1,4 @@
+#define enemy_2_width 8
+#define enemy_2_height 8
+static unsigned char enemy_2_bits[] = {
+   0x42, 0x7e, 0x5a, 0x7e, 0xc3, 0x5a, 0x7e, 0x42 };

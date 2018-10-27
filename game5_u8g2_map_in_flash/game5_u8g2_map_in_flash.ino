@@ -9,7 +9,7 @@ const byte startButton = 13;
 byte startButtonState = 0;
 byte lastStartButtonState = 0;
 
-//keypad
+// keypad
 const byte KEYPAD_ROWS = 4; //four rows
 const byte KEYPAD_COLS = 3; //three columns
 char keys[KEYPAD_ROWS][KEYPAD_COLS] = {
@@ -22,13 +22,18 @@ byte rowPins[KEYPAD_ROWS] = {2, 3, 4, 5}; //connect to the row pinouts of the ke
 byte colPins[KEYPAD_COLS] = {6,7,8}; //connect to the column pinouts of the keypad
 Keypad keypad = Keypad( makeKeymap(keys), rowPins, colPins, KEYPAD_ROWS, KEYPAD_COLS );
 
-//player
+// player
 byte playerX = 4;
 byte playerY = 4;
 int playerXnew = playerX;
 int playerYnew = playerY;
 int playerCoins = 0;
 
+// images
+static unsigned char playerBits[] = { 0x3c, 0x3c, 0x99, 0x7e, 0x3c, 0x3c, 0x7e, 0x81 };
+static unsigned char wallBits[] = { 0xff, 0xaa, 0xff, 0xaa, 0xff, 0xaa, 0xff, 0xaa };
+static unsigned char coinBits[] = { 0x3c, 0x66, 0xc3, 0x99, 0x99, 0xc3, 0x66, 0x3c };
+  
 /**
  * 0 menu
  * 1 game
@@ -74,22 +79,22 @@ const byte maps[MAP_SIZE][MAP_SIZE][SCREEN_ROWS][SCREEN_COLS] PROGMEM =
   {
     {
       {2,2,2,2,2,2,2,2,2,1,2,2},
-      {2,1,1,2,2,1,2,2,2,1,1,2},
+      {2,1,1,2,2,1,1,2,2,1,1,2},
       {2,1,1,1,2,1,1,1,1,1,1,1},
       {2,2,1,2,1,1,1,1,1,1,1,1},
-      {2,2,1,1,1,1,1,1,1,1,1,2},
+      {2,2,1,1,1,1,2,1,1,1,1,2},
       {2,2,1,1,1,1,2,2,1,2,2,2},
       {2,2,1,1,1,1,1,1,1,1,1,2},
       {2,2,2,2,2,2,2,2,2,2,2,2}
     },
     {
       {2,2,2,2,2,2,2,2,2,1,2,2},
-      {2,1,2,2,2,2,2,2,2,1,1,2},
-      {1,1,1,1,1,1,1,1,1,1,1,2},
-      {1,1,1,1,1,1,1,1,1,1,1,2},
+      {2,1,1,2,1,2,2,1,2,1,1,2},
+      {1,1,1,1,1,2,1,1,1,1,1,2},
+      {1,1,1,1,1,2,1,1,1,1,1,2},
       {2,2,1,1,1,1,1,1,1,1,1,2},
-      {2,2,1,1,1,1,2,2,1,2,2,2},
-      {2,2,2,1,1,1,1,1,1,1,1,2},
+      {2,2,1,1,1,1,1,2,1,2,2,2},
+      {2,2,2,1,1,2,1,1,1,1,1,2},
       {2,2,2,2,2,2,2,2,2,2,2,2}
     }
   }
@@ -239,11 +244,11 @@ void drawMenu()
   u8g2.drawFrame(0, 0, 128, 64);
 
   //logo
-  u8g2.setCursor(18, 15);
-  u8g2.print("TRAIN LEGION v1");
-
+  u8g2.setCursor(15, 15);
+  u8g2.print("DIY Handheld Game");
+  
   //text
-  u8g2.setCursor(20, 50);
+  u8g2.setCursor(20, 55);
   u8g2.print("press the start");
 }
 
@@ -277,13 +282,15 @@ void drawSidebar()
 void drawMap()
 { 
   //player - always centered
-  u8g2.drawBox((playerX) * TILE_SIZE, (playerY) * TILE_SIZE, TILE_SIZE, TILE_SIZE);
+  //u8g2.drawBox((playerX) * TILE_SIZE, (playerY) * TILE_SIZE, TILE_SIZE, TILE_SIZE);
+  u8g2.drawXBM(playerX * TILE_SIZE, playerY * TILE_SIZE, TILE_SIZE, TILE_SIZE, playerBits);
 
   //map
   for (int y = 0; y < SCREEN_ROWS; y++){
     for (int x = 0; x < SCREEN_COLS; x++){
       if (currentMap[y][x] == 2) {
-        u8g2.drawFrame(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE, TILE_SIZE);
+        //u8g2.drawFrame(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE, TILE_SIZE);
+        u8g2.drawXBM(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE, TILE_SIZE, wallBits);
       }
     }
   }
@@ -291,7 +298,8 @@ void drawMap()
   //coins
   for (int i = 0; i < coinsQuantity; i++) {
     if (coins[i][0] == mapY && coins[i][1] == mapX) {
-      u8g2.drawDisc(coins[i][3] * TILE_SIZE + TILE_SIZE / 2, coins[i][2] * TILE_SIZE + TILE_SIZE / 2, TILE_SIZE / 2, U8G2_DRAW_ALL);
+      //u8g2.drawDisc(coins[i][3] * TILE_SIZE + TILE_SIZE / 2, coins[i][2] * TILE_SIZE + TILE_SIZE / 2, TILE_SIZE / 2, U8G2_DRAW_ALL);
+      u8g2.drawXBM(coins[i][3] * TILE_SIZE, coins[i][2] * TILE_SIZE, TILE_SIZE, TILE_SIZE, coinBits);
     }
   }
 }

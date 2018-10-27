@@ -137,9 +137,13 @@ void setup(void)
   u8g2.begin();
   u8g2.setFont(u8g2_font_5x7_tf);
 
-  // start serial monitor
+  // serial
   Serial.begin(9600);
+  
+  // random seed
+  randomSeed(analogRead(0));
 
+  // load map 
   loadMap(mapY, mapX);
 }
 

@@ -10,16 +10,13 @@ byte startButtonState = 0;
 byte lastStartButtonState = 0;
 
 // keypad
-const byte KEYPAD_ROWS = 4; //four rows
-const byte KEYPAD_COLS = 3; //three columns
+const byte KEYPAD_ROWS = 1; //four rows
+const byte KEYPAD_COLS = 4; //three columns
 char keys[KEYPAD_ROWS][KEYPAD_COLS] = {
-  {'1','2','3'},
-  {'4','5','6'},
-  {'7','8','9'},
-  {'*','0','#'}
+  {'1','2','3','4'},
 };
-byte rowPins[KEYPAD_ROWS] = {2, 3, 4, 5}; //connect to the row pinouts of the keypad
-byte colPins[KEYPAD_COLS] = {6,7,8}; //connect to the column pinouts of the keypad
+byte rowPins[KEYPAD_ROWS] = {2}; //connect to the row pinouts of the keypad
+byte colPins[KEYPAD_COLS] = {6,5,4,3}; //connect to the column pinouts of the keypad
 Keypad keypad = Keypad( makeKeymap(keys), rowPins, colPins, KEYPAD_ROWS, KEYPAD_COLS );
 
 // player
@@ -162,16 +159,16 @@ void loop(void) {
   
   // keypad movement
   char key = keypad.getKey();
-  if (key == '2'){
+  if (key == '1'){
     playerYnew = playerY - 1;
     playerXnew = playerX;
-  } else if (key == '8'){
+  } else if (key == '2'){
     playerYnew = playerY + 1;
     playerXnew = playerX;
-  } else if (key == '4'){
+  } else if (key == '3'){
     playerXnew = playerX - 1;
     playerYnew = playerY;
-  } else if (key == '6'){
+  } else if (key == '4'){
     playerXnew = playerX + 1;
     playerYnew = playerY;
   }

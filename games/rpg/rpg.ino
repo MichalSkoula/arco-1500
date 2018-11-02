@@ -144,7 +144,7 @@ void setup(void)
   loadMap(mapY, mapX);
 }
 
-/* loop ------------------------------------------------------------------- */
+/* loop -------------------------------------------------------------------- */
 void loop(void) {
   // switch between menu and game
   startButtonState = digitalRead(startButton);
@@ -156,116 +156,23 @@ void loop(void) {
     }
   }
   lastStartButtonState = startButtonState;
-  
-  // keypad movement
-  char key = keypad.getKey();
-  if (key == '1'){
-    playerYnew = playerY - 1;
-    playerXnew = playerX;
-  } else if (key == '2'){
-    playerYnew = playerY + 1;
-    playerXnew = playerX;
-  } else if (key == '3'){
-    playerXnew = playerX - 1;
-    playerYnew = playerY;
-  } else if (key == '4'){
-    playerXnew = playerX + 1;
-    playerYnew = playerY;
+
+  // which stage?
+  if (stage == 1) {
+    //potential movement
+    movement();
+  }  
+
+  //finish? reset
+  if (coinsQuantity == playerCoins) {
+    stage = 2;
   }
-  
-  // key pressed
-  if (strlen(key)) {
-    
-    // on the edge => change map?
-    bool changeMap = false;
-    if (playerYnew == SCREEN_ROWS) {
-      mapY++;
-      playerYnew = 0;
-      changeMap = true;
-    } else if (playerYnew == -1) {
-      mapY--;
-      playerYnew = SCREEN_ROWS - 1;
-      changeMap = true;
-    } else if (playerXnew == SCREEN_COLS) {
-      mapX++;
-      playerXnew = 0;
-      changeMap = true;
-    } else if (playerXnew == -1) {
-      mapX--;
-      playerXnew = SCREEN_COLS - 1;
-      changeMap = true;
-    }
-    
-    if (changeMap) {
-      loadMap(mapY, mapX);
-    }
-    
-    // walk
-    if (currentMap[playerYnew][playerXnew] == 1) {
-      playerX = playerXnew;
-      playerY = playerYnew;
 
-      // pick coin
-      for (int i = 0; i < coinsQuantity; i++) {
-        if (coins[i][0] == mapY && coins[i][1] == mapX && coins[i][2] == playerY && coins[i][3] == playerX) {
-          playerCoins++;
-          coins[i][1] = 99; //haha put it away
-  
-          //finish? reset
-          if (coinsQuantity == playerCoins) {
-            stage = 2;
-          }
-        }
-      }
-
-      // kick enemy
-      for (int i = 0; i < enemiesQuantity; i++) {
-        if (enemies[i][0] == mapY && enemies[i][1] == mapX && enemies[i][2] == playerY && enemies[i][3] == playerX) {
-          playerHealth -= 25;
-          enemies[i][1] = 99; //haha put it away
-  
-          // finish? reset
-          if (playerHealth <= 0) {
-            stage = 3;
-          }
-        }
-      }
-    }
+  // finish? reset
+  if (playerHealth <= 0) {
+    stage = 3;
   }
-  
-  // picture loop
-  u8g2.firstPage();
-  do {
-    //decide what to draw at this iteration
-    switch (stage) {
-      case 0:
-        drawMenu();
-        break;
-      case 1:
-        drawMap();
-        drawSidebar();
-        break;
-      case 2:
-        drawWin();
-        break;
-      case 3:
-        drawLose();
-        break;
-      default:
-        break;
-    }
-  } while ( u8g2.nextPage() );
 
-  // rebuild the picture after some delay
-  delay(10);
-}
-
-// load map from flash memory to ram
-void loadMap(byte mapY, byte mapX)
-{
-  for (byte y = 0; y < SCREEN_ROWS; y++) {
-    for (byte x = 0; x < SCREEN_COLS; x++) {
-      currentMap[y][x] = pgm_read_byte(&(maps[mapY][mapX][y][x]));
-    }
-  }
+  //draw everything
+  pictureLoop();
 }

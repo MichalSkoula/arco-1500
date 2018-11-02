@@ -1,3 +1,31 @@
+void pictureLoop()
+{
+  u8g2.firstPage();
+  do {
+    //decide what to draw at this iteration
+    switch (stage) {
+      case 0:
+        drawMenu();
+        break;
+      case 1:
+        drawMap();
+        drawSidebar();
+        break;
+      case 2:
+        drawWin();
+        break;
+      case 3:
+        drawLose();
+        break;
+      default:
+        break;
+    }
+  } while ( u8g2.nextPage() );
+
+  // rebuild the picture after some delay
+  delay(10);
+}
+
 void drawMenu()
 {
   //rectangle

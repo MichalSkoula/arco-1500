@@ -12,9 +12,12 @@ void pictureLoop()
         drawSidebar();
         break;
       case 2:
+        drawFight();
+        break;
+      case 8:
         drawWin();
         break;
-      case 3:
+      case 9:
         drawLose();
         break;
       default:
@@ -66,14 +69,10 @@ void drawSidebar()
   u8g2.drawFrame(96, 0, 32, 64);
   
   // score
-  //u8g2.setCursor(100, 4);
-  //u8g2.print("coins");
   u8g2.setCursor(100, 10);
   u8g2.print(String(playerCoins) + " / " + String(coinsQuantity));
 
   // health
-  //u8g2.setCursor(100, 28);
-  //u8g2.print("health");
   u8g2.drawFrame(100, 36, 24, 4);
   u8g2.drawBox(100, 36, playerHealth / 4.16, 4);
   
@@ -109,4 +108,43 @@ void drawMap()
       u8g2.drawXBM(enemies[i][3] * TILE_SIZE, enemies[i][2] * TILE_SIZE, TILE_SIZE, TILE_SIZE, enemyBits[random(2)]);
     }
   }
+
+  // doctors
+  for (int i = 0; i < doctorsQuantity; i++) {
+    if (doctors[i][0] == mapY && doctors[i][1] == mapX) {
+      u8g2.drawXBM(doctors[i][3] * TILE_SIZE, doctors[i][2] * TILE_SIZE, TILE_SIZE, TILE_SIZE, doctorBits);
+    }
+  }
+}
+
+void drawFight()
+{
+  // rectangle
+  u8g2.drawFrame(0, 0, 128, 64);
+
+  // win
+  u8g2.setCursor(20, 10);
+  u8g2.print("THIS IF FIGHT!!!");
+  u8g2.drawHLine(0, 14, 128);
+
+  // draw player 8-60
+  u8g2.setCursor(8, 24);
+  u8g2.print("YOU");
+
+  u8g2.drawFrame(8, 28, 48, 4);
+  u8g2.drawBox(8, 28, playerHealth / 2.08, 4);
+
+  u8g2.drawXBM(22, 40, TILE_SIZE, TILE_SIZE, playerBits);
+
+  // draw enemy 68-120
+  u8g2.setCursor(68, 24);
+  u8g2.print("ENEMY");
+
+  u8g2.drawFrame(68, 28, 48, 4);
+  u8g2.drawBox(68, 28, enemies[currentEnemy][4] / 2.08, 4);
+
+  u8g2.drawXBM(82, 40, TILE_SIZE, TILE_SIZE, enemyBits[random(2)]);
+
+  // draw bullet whos on the move
+  u8g2.drawDisc(whoseMove ? 52 : 112, 21, 2, U8G2_DRAW_ALL);
 }

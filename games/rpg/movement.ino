@@ -62,12 +62,22 @@ void movement()
     }
   }
 
-  // enemy nearby
+  // pick doctor
+  for (int i = 0; i < doctorsQuantity; i++) {
+    if (doctors[i][0] == mapY && doctors[i][1] == mapX && doctors[i][2] == playerY && doctors[i][3] == playerX) {
+      playerHealth += doctors[i][4];
+      if (playerHealth > 100) {
+        playerHealth = 100;
+      }
+      doctors[i][1] = 99; //haha put it away i dont know ho to unset item from array
+    }
+  }
+
+  // enemy nearby ? maybe enter fight
   for (int i = 0; i < enemiesQuantity; i++) {
     if (enemies[i][0] == mapY && enemies[i][1] == mapX) { //in this map
       if (abs(enemies[i][2] - playerY) < 2 && abs(enemies[i][3] - playerX) < 2) {
-        playerHealth -= 34;
-        enemies[i][1] = 99; //haha put it away i dont know ho to unset item from array
+        startFight(i);
       }
     }
   }

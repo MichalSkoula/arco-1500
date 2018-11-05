@@ -50,6 +50,9 @@ void movement()
     return;
   }
 
+  // step sound
+  playTone(500);
+
   // yes he can
   playerX = playerXnew;
   playerY = playerYnew;

@@ -12,6 +12,7 @@ void fight()
     actionButtonState = digitalRead(actionButton);
     if (actionButtonState == HIGH) {
       whoseMove = !whoseMove;
+      playTone(300);
       byte attack = playerAttack + random(-2, 4);
 
       // attack
@@ -27,6 +28,7 @@ void fight()
     // enemy move
     if (random(0, 10) == 1) {
       whoseMove = !whoseMove;
+      playTone(300);
       byte attack = enemies[currentEnemy][5] + random(-2, 4);
 
       // attack 

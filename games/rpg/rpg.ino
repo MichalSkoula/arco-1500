@@ -4,12 +4,13 @@
 // Display which does not send AC
 U8G2_SSD1306_128X64_NONAME_1_HW_I2C u8g2(U8G2_R0);
 
-// buttons
+// buttons, pins
 const byte startButton = 13;
 byte startButtonState = 0;
 byte lastStartButtonState = 0;
 const byte actionButton = 12;
 byte actionButtonState = 0;
+byte buzzerPin = 11;
 
 // keypad
 const byte KEYPAD_ROWS = 1; //four rows
@@ -148,6 +149,9 @@ void setup(void)
   // activate buttons
   pinMode(startButton, INPUT);
   pinMode(actionButton, INPUT);
+
+  // buzzer
+  pinMode(buzzerPin, OUTPUT);
 
   // set font globally
   u8g2.begin();

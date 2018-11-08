@@ -84,7 +84,7 @@ void drawSidebar()
 void drawMap()
 { 
   // player - always centered
-  u8g2.drawXBM(playerX * TILE_SIZE, playerY * TILE_SIZE, TILE_SIZE, TILE_SIZE, playerBits);
+  u8g2.drawXBM(playerX * TILE_SIZE, playerY * TILE_SIZE, TILE_SIZE, TILE_SIZE, playerBits[random(2)]);
 
   // map
   for (int y = 0; y < SCREEN_ROWS; y++){
@@ -134,7 +134,7 @@ void drawFight()
   u8g2.drawFrame(8, 28, 48, 4);
   u8g2.drawBox(8, 28, playerHealth / 2.08, 4);
 
-  u8g2.drawXBM(22, 40, TILE_SIZE, TILE_SIZE, playerBits);
+  u8g2.drawXBM(22, 40, TILE_SIZE, TILE_SIZE, playerBits[random(2)]);
 
   // draw enemy 68-120
   u8g2.setCursor(68, 24);

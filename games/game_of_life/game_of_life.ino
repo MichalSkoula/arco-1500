@@ -8,48 +8,59 @@ const byte startButton = 13;
 const byte actionButton = 12;
 byte lastActionState = 0;
 
-enum CellState
-{
-  Dead = 0,
-  Alive,
-  Born,
-  Surviving  
-};
-
 const byte CELL_SIZE = 2;     // in pixels
-const byte ROWS = 16;
-const byte COLS = 32;
-static_assert(ROWS * CELL_SIZE <= 64 && COLS * CELL_SIZE <= 128, "Size of display is 128x64 pixels");
+const byte X = 64;            // number of columns of cells
+const byte Y = 32;            // number of rows of cells
+static_assert(X * CELL_SIZE <= 128 && Y * CELL_SIZE <= 64, "Size of display is 128x64 pixels");
+static_assert((X * Y) % 8 == 0, "Disgusting cell count");
 
-byte cells[COLS][ROWS];
+// 1 byte stores state of 8 cells
+byte cells[(X * Y) / 8];
+byte tmpCells[(X * Y) / 8];
 bool pause = false;
 
 /* functions ------------------------------------------------------------------ */
+byte cell(byte x, byte y)
+{
+  int pos = y * X + x;
+  return cells[pos / 8] & (1 << pos % 8);
+}
+
+void cell_set(byte x, byte y, bool alive)
+{
+  int pos = y * X + x;
+  cells[pos / 8] = (cells[pos / 8] & ~(1 << (pos % 8))) | (alive << pos % 8);
+}
+
+void cell_set_tmp(byte x, byte y, bool alive)
+{
+  int pos = y * X + x;
+  tmpCells[pos / 8] = (tmpCells[pos / 8] & ~(1 << (pos % 8))) | (alive << pos % 8);
+}
+
 //void resetCells(byte density)
 void resetCells()
 {
-  for (int i = 0; i < COLS; ++i)
-    for (int j = 0; j < ROWS; ++j)
-      //cells[i][j] = random(100) < density ? CellState::Alive : CellState::Dead;
-      cells[i][j] = random(100) < 50 ? CellState::Alive : CellState::Dead;
-      //cells[i][j] = random(2) ? CellState::Alive : CellState::Dead;
+  for (int y = 0; y < Y; ++y)
+    for (int x = 0; x < X; ++x)
+      cell_set(x, y, random(100) < 50);
 }
 
 bool isAlive(byte x, byte y)
 {
-  if (x >= COLS || y >= ROWS)
+  if (x >= X || y >= Y)
     return false;
-  return cells[x][y] == CellState::Alive || cells[x][y] == CellState::Surviving;
+  return cell(x, y);
 }
 
 byte countNeighbourCells(byte x, byte y)
 {
   byte count = 0;
-  for (byte i = x == 0 ? 0 : x - 1; i < x + 2; ++i) {
-    for (byte j = y == 0 ? 0 : y - 1; j < y + 2; ++j) {
-        if (x == i && y == j)
+  for (byte i = y == 0 ? 0 : y - 1; i < y + 2; ++i) {
+    for (byte j = x == 0 ? 0 : x - 1; j < x + 2; ++j) {
+        if (x == j && y == i)
           continue;
-        if (isAlive(i, j))
+        if (isAlive(j, i))
           ++count;
     }
   }
@@ -58,42 +69,31 @@ byte countNeighbourCells(byte x, byte y)
 
 void updateCells()
 {
-  // NOW                                  NEXT GEN
-  // Dead:  not exactly 3 neighbours   -> Dead
-  // Dead:  exactly 3 neighbours       -> Born
-  // Alive: fewer than 2 more than 3   -> Dead
-  // Alive: exactly 2 or 3 neighbours  -> Surviving
-  //
-  // cells surviving on to the next generation:
-  //      Born || Surviving -> Alive
-  //      Dead || Alive -> Dead
-  // cells counted as neighbors:
-  //      Alive || Surviving  
-  for (int i = 0; i < COLS; ++i) {
-    for (int j = 0; j < ROWS; ++j) {
-      int count = countNeighbourCells(i, j);
-      if (cells[i][j] == CellState::Alive) {
-          if (count == 3 || count == 2) cells[i][j] = CellState::Surviving;
+  // alive cell must have 2 or 3 neighbours, otherwise it dies
+  // dead cell with exactly 3 neighbours becomes alive  
+  for (int y = 0; y < Y; ++y) {
+    for (int x = 0; x < X; ++x) {
+      int count = countNeighbourCells(x, y);
+      if (cell(x, y)) {
+        cell_set_tmp(x, y, count == 3 || count == 2);
       } else {
-          if (count == 3) cells[i][j] = CellState::Born;
+        cell_set_tmp(x, y, count == 3);
       }
     }
   }
-  for (int i = 0; i < COLS; ++i) {
-    for (int j = 0; j < ROWS; ++j) {
-      cells[i][j] = (cells[i][j] == CellState::Born || cells[i][j] == CellState::Surviving)
-        ? CellState::Alive
-        : CellState::Dead;
-    }
-  }
+
+  // copy state
+  memcpy(cells, tmpCells, sizeof(cells));
+  //for (int i = 0; i < sizeof(cells); ++i)
+    //cells[i] = tmpCells[i];
 }
 
 void drawCells()
 {
-  for (int i = 0; i < COLS; ++i) {
-    for (int j = 0; j < ROWS; ++j) {
-      if (cells[i][j] == CellState::Alive)
-        u8g2.drawBox(i * CELL_SIZE, j * CELL_SIZE, CELL_SIZE, CELL_SIZE);
+  for (int y = 0; y < Y; ++y) {
+    for (int x = 0; x < X; ++x) {
+      if (cell(x, y))
+        u8g2.drawBox(x * CELL_SIZE, y * CELL_SIZE, CELL_SIZE, CELL_SIZE);
     }
   }
 }

@@ -66,10 +66,10 @@ void drawBar()
 
   // score
   if (stage > 0) {
-    u8g2.setCursor(5, 10);
+    u8g2.setCursor(4, 10);
     u8g2.print((String)aiScore); 
 
-    u8g2.setCursor(screenWidth - 5, 10);
+    u8g2.setCursor(screenWidth - 8, 10);
     u8g2.print((String)playerScore); 
   }
 }

@@ -50,7 +50,7 @@ void drawWin()
 
   //win
   u8g2.setCursor(20, 15);
-  u8g2.print("!! YOU WON !!");
+  u8g2.print("!! YOU WIN !!");
 }
 
 void drawLose()

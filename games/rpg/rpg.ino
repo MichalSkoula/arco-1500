@@ -8,8 +8,10 @@ U8G2_SSD1306_128X64_NONAME_1_HW_I2C u8g2(U8G2_R0);
 const byte startButton = 13;
 byte startButtonState = 0;
 byte lastStartButtonState = 0;
+
 const byte actionButton = 12;
 byte actionButtonState = 0;
+
 byte buzzerPin = 11;
 
 // keypad

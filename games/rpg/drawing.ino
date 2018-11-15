@@ -124,27 +124,45 @@ void drawFight()
 
   // win
   u8g2.setCursor(20, 10);
-  u8g2.print("THIS IF FIGHT!!!");
+  u8g2.print("THIS IS FIGHT!!!");
   u8g2.drawHLine(0, 14, 128);
 
-  // draw player 8-60
-  u8g2.setCursor(8, 24);
+  // draw player 4-60
+  u8g2.setCursor(4, 24);
   u8g2.print("YOU");
 
-  u8g2.drawFrame(8, 28, 48, 4);
-  u8g2.drawBox(8, 28, playerHealth / 2.08, 4);
+  u8g2.drawFrame(4, 28, 50, 4);
+  u8g2.drawBox(4, 28, playerHealth / 1.92, 4);
 
-  u8g2.drawXBM(22, 40, TILE_SIZE, TILE_SIZE, playerBits[random(2)]);
+  u8g2.setCursor(4, 40);
+  u8g2.print("health " + (String)playerHealth);
 
-  // draw enemy 68-120
-  u8g2.setCursor(68, 24);
+  u8g2.setCursor(4, 48);
+  u8g2.print("attack " + (String)playerAttack);
+
+  u8g2.drawXBM(4, 53, TILE_SIZE, TILE_SIZE, playerBits[random(2)]);
+
+  // draw enemy 66-124
+  u8g2.setCursor(66, 24);
   u8g2.print("ENEMY");
 
-  u8g2.drawFrame(68, 28, 48, 4);
-  u8g2.drawBox(68, 28, enemies[currentEnemy][4] / 2.08, 4);
+  u8g2.drawFrame(66, 28, 50, 4);
+  u8g2.drawBox(66, 28, enemies[currentEnemy][4] / 1.92, 4);
 
-  u8g2.drawXBM(82, 40, TILE_SIZE, TILE_SIZE, enemyBits[random(2)]);
+  u8g2.setCursor(66, 40);
+  u8g2.print("health " + (String)enemies[currentEnemy][4]);
+
+  u8g2.setCursor(66, 48);
+  u8g2.print("attack " + (String)enemies[currentEnemy][5]);
+
+  u8g2.drawXBM(66, 53, TILE_SIZE, TILE_SIZE, enemyBits[random(2)]);
 
   // draw bullet whos on the move
-  u8g2.drawDisc(whoseMove ? 52 : 112, 21, 2, U8G2_DRAW_ALL);
+  u8g2.drawDisc(whoseMove ? 52 : 116, 21, 2, U8G2_DRAW_ALL);
+
+  // draw last wound
+  if (lastAttack > 0) {
+    u8g2.setCursor(whoseMove ? 41 : 105, 60);
+    u8g2.print("-" + (String)lastAttack);
+  }
 }

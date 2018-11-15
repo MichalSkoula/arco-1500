@@ -36,6 +36,7 @@ byte playerAttack = 10;
 // fight
 byte currentEnemy;
 byte whoseMove;
+byte lastAttack;
 
 // bitmaps
 static unsigned char playerBits[2][8] = { 
@@ -142,9 +143,9 @@ const byte enemiesQuantity = sizeof(enemies) / sizeof(enemies[0]);
 //doctors - mapy, mapx, y, x, health
 byte doctors[][5] =
 {
-  {0, 0, 3, 6, 25},
-  {0, 1, 2, 3, 25},
-  {1, 1, 6, 7, 25}
+  {0, 0, 3, 6, 50},
+  {0, 1, 2, 3, 35},
+  {1, 1, 6, 7, 35}
 };
 const byte doctorsQuantity = sizeof(doctors) / sizeof(doctors[0]);
 

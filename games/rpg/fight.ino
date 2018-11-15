@@ -13,11 +13,11 @@ void fight()
     if (actionButtonState == HIGH) {
       whoseMove = !whoseMove;
       playTone(300);
-      byte attack = playerAttack + random(-2, 4);
+      lastAttack = playerAttack + random(-2, 4);
 
       // attack
-      if (enemies[currentEnemy][4] > attack) {
-        enemies[currentEnemy][4] -= attack;
+      if (enemies[currentEnemy][4] > lastAttack) {
+        enemies[currentEnemy][4] -= lastAttack;
       } else {
         // enemy dead
         enemies[currentEnemy][1] = 99; //haha put it away i dont know ho to unset item from array
@@ -26,14 +26,14 @@ void fight()
     } 
   } else {
     // enemy move
-    if (random(0, 10) == 1) {
+    if (random(0, 15) == 1) {
       whoseMove = !whoseMove;
       playTone(300);
-      byte attack = enemies[currentEnemy][5] + random(-2, 4);
+      lastAttack = enemies[currentEnemy][5] + random(-2, 4);
 
       // attack 
-      if (playerHealth > attack) {
-        playerHealth -= attack;
+      if (playerHealth > lastAttack) {
+        playerHealth -= lastAttack;
       } else {
         // player dead 
         stage = 9;

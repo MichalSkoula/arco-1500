@@ -13,7 +13,7 @@ void fight()
     if (actionButtonState == HIGH) {
       whoseMove = !whoseMove;
       playTone(300);
-      lastAttack = playerAttack + random(-2, 4);
+      lastAttack = playerAttack + random(-2, 3);
 
       // attack
       if (enemies[currentEnemy][4] > lastAttack) {
@@ -22,6 +22,7 @@ void fight()
         // enemy dead
         enemies[currentEnemy][1] = 99; //haha put it away i dont know ho to unset item from array
         stage = 1;
+        lastAttack = 0;
       }
     } 
   } else {
@@ -29,7 +30,7 @@ void fight()
     if (random(0, 15) == 1) {
       whoseMove = !whoseMove;
       playTone(300);
-      lastAttack = enemies[currentEnemy][5] + random(-2, 4);
+      lastAttack = enemies[currentEnemy][5] + random(-2, 3);
 
       // attack 
       if (playerHealth > lastAttack) {

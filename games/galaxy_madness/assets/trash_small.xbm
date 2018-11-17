@@ -1,0 +1,4 @@
+#define trash_small_width 8
+#define trash_small_height 8
+static unsigned char trash_small_bits[] = {
+   0x30, 0x3c, 0xfe, 0xfe, 0x7f, 0x3f, 0x7e, 0x30 };

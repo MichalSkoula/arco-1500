@@ -1,10 +1,9 @@
 void gameLoop()
 {
   // keypad movement
-  char key = keypad.getKey();
-  if (key == '1' && playerX - step >= 0) {
+  if (digitalRead(leftButton) == LOW && playerX - step >= 0) {
     playerX -= step;
-  } else if (key == '2' && playerX + step < gameWidth) {
+  } else if (digitalRead(rightButton) == LOW && playerX + step < gameWidth) {
     playerX += step;
   }
 

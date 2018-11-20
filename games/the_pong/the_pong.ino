@@ -1,24 +1,18 @@
 #include <U8g2lib.h>
-#include <Keypad.h>
 
 // Display which does not send AC
 U8G2_SSD1306_128X64_NONAME_1_HW_I2C u8g2(U8G2_R0);
 
-// buttons, pins
+// button pins
 const byte startButton = 13;
 byte startButtonState = 0;
 
-byte buzzerPin = 11;
+const byte buzzerPin = 11;
 
-// keypad
-const byte KEYPAD_ROWS = 1; //four rows
-const byte KEYPAD_COLS = 4; //three columns
-char keys[KEYPAD_ROWS][KEYPAD_COLS] = {
-  {'1','2','3','4'},
-};
-byte rowPins[KEYPAD_ROWS] = {2}; //connect to the row pinouts of the keypad
-byte colPins[KEYPAD_COLS] = {6,5,4,3}; //connect to the column pinouts of the keypad
-Keypad keypad = Keypad(makeKeymap(keys), rowPins, colPins, KEYPAD_ROWS, KEYPAD_COLS);
+// d-pad
+const byte upButton = 3;
+const byte downButton = 6; 
+
 
 // constants
 const byte winningScore = 5;
@@ -35,7 +29,7 @@ int playerY = 24;
 int aiY = 24;
 
 byte aiSpeed = 3;
-byte playerSpeed = 6;
+byte playerSpeed = 2;
 
 int ballX = screenWidth / 2;
 int ballY = screenHeight / 2;
@@ -57,6 +51,8 @@ void setup()
 {
   // activate buttons
   pinMode(startButton, INPUT);
+  pinMode(upButton, INPUT_PULLUP);
+  pinMode(downButton, INPUT_PULLUP);
 
   // buzzer
   pinMode(buzzerPin, OUTPUT);
@@ -91,10 +87,9 @@ void loop()
   } else if (stage == 1) {
 
     // player movement
-    char key = keypad.getKey();
-    if (key == '1' && playerY > 0) {
+    if (digitalRead(upButton) == LOW && playerY > 0) {
       playerY = playerY - playerSpeed;
-    } else if (key == '2' && playerY + paddleHeight < screenHeight) {
+    } else if (digitalRead(downButton) == LOW && playerY + paddleHeight < screenHeight) {
       playerY = playerY + playerSpeed;
     } 
 

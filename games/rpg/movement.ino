@@ -1,25 +1,22 @@
 void movement()
 {
-  // keypad movement
-  char key = keypad.getKey();
-  if (key == '1') {
+  // d-pad movement
+  if (digitalRead(upButton) == LOW) {
     playerYnew = playerY - 1;
     playerXnew = playerX;
-  } else if (key == '2') {
+  } else if (digitalRead(downButton) == LOW) {
     playerYnew = playerY + 1;
     playerXnew = playerX;
-  } else if (key == '3') {
+  } else if (digitalRead(leftButton) == LOW) {
     playerXnew = playerX - 1;
     playerYnew = playerY;
-  } else if (key == '4') {
+  } else if (digitalRead(rightButton) == LOW) {
     playerXnew = playerX + 1;
     playerYnew = playerY;
-  }
-  
-  // key not pressed
-  if (!strlen(key)) {
+  } else {
     return;
   }
+  
     
   // on the edge => change map?
   bool changeMap = false;

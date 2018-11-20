@@ -1,10 +1,9 @@
 #include <U8g2lib.h>
-#include <Keypad.h>
 
 // Display which does not send AC
 U8G2_SSD1306_128X64_NONAME_1_HW_I2C u8g2(U8G2_R0);
 
-// buttons, pins
+// button pins
 const byte startButton = 13;
 byte startButtonState = 0;
 
@@ -13,15 +12,9 @@ byte actionButtonState = 0;
 
 const byte buzzerPin = 11;
 
-// keypad
-const byte KEYPAD_ROWS = 1; //four rows
-const byte KEYPAD_COLS = 4; //three columns
-char keys[KEYPAD_ROWS][KEYPAD_COLS] = {
-  {'1','2','3','4'},
-};
-byte rowPins[KEYPAD_ROWS] = {2}; //connect to the row pinouts of the keypad
-byte colPins[KEYPAD_COLS] = {6,5,4,3}; //connect to the column pinouts of the keypad
-Keypad keypad = Keypad(makeKeymap(keys), rowPins, colPins, KEYPAD_ROWS, KEYPAD_COLS);
+// d-pad
+const byte leftButton = 2;
+const byte rightButton = 4; 
 
 // bitmaps
 static unsigned char playerBits[] = { 0x18, 0x3c, 0x7e, 0x7e, 0x3c, 0x3c, 0x7e, 0xff };
@@ -44,7 +37,7 @@ static unsigned char trashBigBits[2][32] = {
 };
 
 // constants
-const byte step = 8;
+const byte step = 4;
 const byte bitmapSize = 8;
 const byte oneDamage = 25;
 const byte gameWidth = 96;
@@ -77,6 +70,9 @@ void setup()
 {
   // activate buttons
   pinMode(startButton, INPUT);
+  pinMode(actionButton, INPUT);
+  pinMode(leftButton, INPUT_PULLUP);
+  pinMode(rightButton, INPUT_PULLUP);
 
   // buzzer
   pinMode(buzzerPin, OUTPUT);

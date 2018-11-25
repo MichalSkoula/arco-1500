@@ -1,4 +1,4 @@
-##RPG project##
+## RPG project ##
 
 work in progress 
 

@@ -1,4 +1,4 @@
-##Galaxy Madness##
+## Galaxy Madness ##
 
 Simple arcade space game demo.
 

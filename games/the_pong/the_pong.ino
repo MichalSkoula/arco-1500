@@ -10,8 +10,8 @@ byte startButtonState = 0;
 const byte buzzerPin = 11;
 
 // d-pad
-const byte upButton = 3;
-const byte downButton = 6; 
+const byte upButton = 5;
+const byte downButton = 2; 
 
 
 // constants
@@ -116,4 +116,3 @@ void loop()
   //draw everything
   pictureLoop();
 }
-

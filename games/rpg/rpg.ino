@@ -14,10 +14,10 @@ byte actionButtonState = 0;
 const byte buzzerPin = 11;
 
 // d-pad
-const byte upButton = 3;
-const byte downButton = 6; 
-const byte leftButton = 2;
-const byte rightButton = 4; 
+const byte upButton = 5;
+const byte downButton = 2;
+const byte leftButton = 6;
+const byte rightButton = 4;
 
 // player
 byte playerX = 4;

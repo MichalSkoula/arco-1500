@@ -1,13 +1,4 @@
-#include <U8g2lib.h>
-
-// Display which does not send AC
-U8G2_SSD1306_128X64_NONAME_1_HW_I2C u8g2(U8G2_R0);
-
-// buttons, pins
-const byte startButton = 13;
-const byte actionButton = 12;
-byte lastStartState = 0;
-byte lastActionState = 0;
+#include <gamelib.h>
 
 // 128x64 pixels
 const byte PX_SIZE = 4;     // in pixels
@@ -58,13 +49,13 @@ void resetGame()
 void drawSnake()
 {
   for (int i = 0; i < size; ++i) {
-    u8g2.drawBox(snake[i].x * PX_SIZE, snake[i].y * PX_SIZE, PX_SIZE, PX_SIZE);
+    display.drawBox(snake[i].x * PX_SIZE, snake[i].y * PX_SIZE, PX_SIZE, PX_SIZE);
   }
 }
 
 void drawFood()
 {
-  u8g2.drawBox(food.x * PX_SIZE, food.y * PX_SIZE, PX_SIZE, PX_SIZE);  
+  display.drawBox(food.x * PX_SIZE, food.y * PX_SIZE, PX_SIZE, PX_SIZE);  
 }
 
 void updateSnake()
@@ -110,14 +101,8 @@ void updateSnake()
 /* start ------------------------------------------------------------------- */
 void setup(void)
 {
-  pinMode(startButton, INPUT);
-  pinMode(actionButton, INPUT);
-
-  u8g2.begin();
-  Serial.begin(9600);
-  
-  randomSeed(analogRead(0));
-
+  initGame(BUTTONS);
+    
   resetGame();
 }
 
@@ -126,31 +111,26 @@ void setup(void)
 void loop(void) {
   // TODO one button clock-wise and the other counter-clockwise?
   // change direction (counter-clockwise)
-  byte state = digitalRead(startButton);
-  if (state != lastStartState && state == HIGH) {
+  if (buttonPressed(START_BUTTON)) {
     direction++;
     if (direction >= 4)
       direction = 0;
     speed = directions[direction];
   }
-  lastStartState = state;
   
   // (un)pause game
-  state = digitalRead(actionButton);
-  if (state != lastActionState && state == HIGH) {
+  if (buttonPressed(ACTION_BUTTON))
     pause = !pause;
-  }
-  lastActionState = state;
 
   if (!pause)  
     updateSnake();
 
   // draw state
-  u8g2.firstPage();
+  display.firstPage();
   do {
     drawSnake();
     drawFood();
-  } while (u8g2.nextPage());
+  } while (display.nextPage());
   
   delay(20);    // TODO get rid of delay
 }

@@ -1,15 +1,14 @@
 void gameLoop()
 {
   // keypad movement
-  if (digitalRead(leftButton) == LOW && playerX - step >= 0) {
+  if (buttonDown(LEFT_BUTTON) && playerX - step >= 0) {
     playerX -= step;
-  } else if (digitalRead(rightButton) == LOW && playerX + step < gameWidth) {
+  } else if (buttonDown(RIGHT_BUTTON) && playerX + step < gameWidth) {
     playerX += step;
   }
 
   // action buttons - firing
-  actionButtonState = digitalRead(actionButton);
-  if (actionButtonState == HIGH && bulletY <= 0) {
+  if (buttonDown(ACTION_BUTTON) && bulletY <= 0) {
     bulletX = playerX + bitmapSize / 2;
     bulletY = gameHeight - bitmapSize;
     playTone(400);
@@ -34,7 +33,7 @@ void gameLoop()
       trashes[i][1] + bitmapSize * trashes[i][2] > bulletY &&
       bulletY >= 0 //only bullets on screen :)
     ) {
-      playTimedTone(200, 50);
+      playTone(200, 50);
 
       // destroy bullet
       bulletY = -1;
@@ -58,7 +57,7 @@ void gameLoop()
       trashes[i][1] < playerY + bitmapSize && 
       trashes[i][1] + bitmapSize * trashes[i][2] > playerY 
     ) {
-      playTimedTone(100, 100);
+      playTone(100, 100);
 
       // destroy trash
       trashes[i][1] = 90;

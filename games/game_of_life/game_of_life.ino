@@ -1,17 +1,9 @@
-#include <U8g2lib.h>
-
-// Display which does not send AC
-U8G2_SSD1306_128X64_NONAME_1_HW_I2C u8g2(U8G2_R0);
-
-// buttons, pins
-const byte startButton = 13;
-const byte actionButton = 12;
-byte lastActionState = 0;
+#include <gamelib.h>
 
 const byte CELL_SIZE = 2;     // in pixels
 const byte X = 64;            // number of columns of cells
 const byte Y = 32;            // number of rows of cells
-static_assert(X * CELL_SIZE <= 128 && Y * CELL_SIZE <= 64, "Size of display is 128x64 pixels");
+static_assert(X * CELL_SIZE <= DISPLAY_WIDTH && Y * CELL_SIZE <= DISPLAY_HEIGHT, "Size of display is 128x64 pixels");
 static_assert((X * Y) % 8 == 0, "Disgusting cell count");
 
 // 1 byte stores state of 8 cells
@@ -93,7 +85,7 @@ void drawCells()
   for (int y = 0; y < Y; ++y) {
     for (int x = 0; x < X; ++x) {
       if (cell(x, y))
-        u8g2.drawBox(x * CELL_SIZE, y * CELL_SIZE, CELL_SIZE, CELL_SIZE);
+        display.drawBox(x * CELL_SIZE, y * CELL_SIZE, CELL_SIZE, CELL_SIZE);
     }
   }
 }
@@ -101,38 +93,30 @@ void drawCells()
 /* start ------------------------------------------------------------------- */
 void setup(void)
 {
-  pinMode(startButton, INPUT);
-  pinMode(actionButton, INPUT);
-
-  u8g2.begin();
-  Serial.begin(9600);
+  initGame(BUTTONS);
   
-  randomSeed(analogRead(0));
   resetCells();
 }
 
 /* loop -------------------------------------------------------------------- */
 void loop(void) {
   // restart game
-  if (digitalRead(startButton) == HIGH) {
+  if (buttonPressed(START_BUTTON)) {
     resetCells();
   }
   // (un)pause game
   // TODO pressed action button -> 1 step?
-  byte actionState = digitalRead(actionButton);
-  if (actionState != lastActionState && actionState == HIGH) {
+  if (buttonPressed(ACTION_BUTTON))
     pause = !pause;
-  }
-  lastActionState = actionState;
 
   // update state if unpaused
   if (!pause)
     updateCells();
 
   // draw state
-  u8g2.firstPage();
+  display.firstPage();
   do {
     drawCells();
-  } while (u8g2.nextPage());
+  } while (display.nextPage());
   delay(10);
 }

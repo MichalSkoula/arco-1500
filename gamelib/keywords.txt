@@ -1,0 +1,47 @@
+# Syntax coloring
+
+# ---------------------------------
+# classes
+# ---------------------------------
+display				KEYWORD1
+
+
+# ---------------------------------
+# functions
+# ---------------------------------
+initGame			KEYWORD2
+buttonDown			KEYWORD2
+buttonPressed		KEYWORD2
+playTone			KEYWORD2
+drawText			KEYWORD2
+drawBigText			KEYWORD2
+drawSmallText		KEYWORD2
+
+
+# ---------------------------------
+# constants
+# ---------------------------------
+DISPLAY_WIDTH		LITERAL1
+DISPLAY_HEIGHT		LITERAL1
+
+START_BUTTON_PIN	LITERAL1
+ACTION_BUTTON_PIN	LITERAL1
+LEFT_BUTTON_PIN		LITERAL1
+UP_BUTTON_PIN		LITERAL1
+RIGHT_BUTTON_PIN	LITERAL1
+DOWN_BUTTON_PIN		LITERAL1
+CENTER_BUTTON_PIN	LITERAL1
+BUZZER_PIN			LITERAL1
+
+BUTTONS				LITERAL1
+JOYSTICK			LITERAL1
+SOUND				LITERAL1
+INIT_ALL			LITERAL1
+
+START_BUTTON		LITERAL1
+ACTION_BUTTON		LITERAL1
+LEFT_BUTTON			LITERAL1
+UP_BUTTON			LITERAL1
+RIGHT_BUTTON		LITERAL1
+DOWN_BUTTON			LITERAL1
+CENTER_BUTTON		LITERAL1

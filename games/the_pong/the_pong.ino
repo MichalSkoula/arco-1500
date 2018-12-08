@@ -1,25 +1,9 @@
-#include <U8g2lib.h>
-
-// Display which does not send AC
-U8G2_SSD1306_128X64_NONAME_1_HW_I2C u8g2(U8G2_R0);
-
-// button pins
-const byte startButton = 13;
-byte startButtonState = 0;
-
-const byte buzzerPin = 11;
-
-// d-pad
-const byte upButton = 5;
-const byte downButton = 2; 
-
+#include <gamelib.h>
 
 // constants
 const byte winningScore = 5;
 const byte paddleHeight = 16;
 const byte paddleWidth = 4;
-const byte screenWidth = 128;
-const byte screenHeight = 64;
 
 // variables
 byte playerScore = 0;
@@ -31,8 +15,8 @@ int aiY = 24;
 byte aiSpeed = 3;
 byte playerSpeed = 2;
 
-int ballX = screenWidth / 2;
-int ballY = screenHeight / 2;
+int ballX = DISPLAY_WIDTH / 2;
+int ballY = DISPLAY_HEIGHT / 2;
 int ballXVel = 1;
 int ballYVel = 1;
 byte ballSpeed = 2;
@@ -49,30 +33,14 @@ byte stage = 0;
 
 void setup()
 {
-  // activate buttons
-  pinMode(startButton, INPUT);
-  pinMode(upButton, INPUT_PULLUP);
-  pinMode(downButton, INPUT_PULLUP);
-
-  // buzzer
-  pinMode(buzzerPin, OUTPUT);
-
-  // u82
-  u8g2.begin();
-
-  // serial
-  Serial.begin(9600);
-
-  // random seed
-  randomSeed(analogRead(0));
+  initGame(BUTTONS | JOYSTICK | SOUND);
 }
 
 void loop() 
 {
   // main menu
   if (stage == 0) {
-    startButtonState = digitalRead(startButton);
-    if (startButtonState == HIGH) {
+    if (buttonPressed(START_BUTTON)) {
       stage = 1;
       aiDirection = random(0, 2);
     }
@@ -87,14 +55,14 @@ void loop()
   } else if (stage == 1) {
 
     // player movement
-    if (digitalRead(upButton) == LOW && playerY > 0) {
+    if (buttonDown(UP_BUTTON) && playerY > 0) {
       playerY = playerY - playerSpeed;
-    } else if (digitalRead(downButton) == LOW && playerY + paddleHeight < screenHeight) {
+    } else if (buttonDown(DOWN_BUTTON) && playerY + paddleHeight < DISPLAY_HEIGHT) {
       playerY = playerY + playerSpeed;
     } 
 
     // ai movement
-    if (aiY <= 0 || aiY + paddleHeight >= screenHeight) {
+    if (aiY <= 0 || aiY + paddleHeight >= DISPLAY_HEIGHT) {
       aiDirection = !aiDirection;
     }
     if (aiDirection == 0) {

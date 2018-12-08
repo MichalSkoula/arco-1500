@@ -1,16 +1,16 @@
 void movement()
 {
   // d-pad movement
-  if (digitalRead(upButton) == LOW) {
+  if (buttonDown(UP_BUTTON)) {
     playerYnew = playerY - 1;
     playerXnew = playerX;
-  } else if (digitalRead(downButton) == LOW) {
+  } else if (buttonDown(DOWN_BUTTON)) {
     playerYnew = playerY + 1;
     playerXnew = playerX;
-  } else if (digitalRead(leftButton) == LOW) {
+  } else if (buttonDown(LEFT_BUTTON)) {
     playerXnew = playerX - 1;
     playerYnew = playerY;
-  } else if (digitalRead(rightButton) == LOW) {
+  } else if (buttonDown(RIGHT_BUTTON)) {
     playerXnew = playerX + 1;
     playerYnew = playerY;
   } else {

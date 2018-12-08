@@ -1,8 +1,8 @@
 void pictureLoop()
 {
-  u8g2.firstPage();
+  display.firstPage();
   do {
-    //decide what to draw at this iteration
+    // decide what to draw at this iteration
     switch (stage) {
       case 0:
         drawMenu();
@@ -16,7 +16,7 @@ void pictureLoop()
       default:
         break;
     }
-  } while ( u8g2.nextPage() );
+  } while (display.nextPage());
 
   // rebuild the picture after some delay
   delay(10);
@@ -24,59 +24,40 @@ void pictureLoop()
 
 void drawMenu()
 {
-  u8g2.setFont(u8g2_font_9x15_tf);
-
-  //logo
-  u8g2.setCursor(1, 15);
-  u8g2.print("Galaxy Madness");
-  
-  u8g2.setFont(u8g2_font_5x7_tf);
-
-  //text
-  u8g2.setCursor(25, 55);
-  u8g2.print("press the start");
+  display.drawBigText(1, 15, "Galaxy Madness");
+  display.drawSmallText(25, 55, "press the start");
 }
 
 void drawLose()
 {
-  u8g2.setFont(u8g2_font_5x7_tf);
-
-  u8g2.setCursor(20, 15);
-  u8g2.print("GAME OVER");
-
-  u8g2.setCursor(20, 35);
-  u8g2.print("SCORE: " + (String)playerScore);
+  display.drawSmallText(20, 15, "GAME OVER");     // set small font
+  display.drawText(20, 35, "SCORE: " + (String)playerScore);
 }
 
 void drawGame()
 {
-  u8g2.drawVLine(gameWidth, 0, gameHeight);
-
-  u8g2.setFont(u8g2_font_5x7_tf);
+  display.drawVLine(gameWidth, 0, gameHeight);
 
   // score
-  u8g2.setCursor(98, 10);
-  u8g2.print("Score");
-  u8g2.setCursor(98, 20);
-  u8g2.print((String)playerScore);
+  display.drawSmallText(98, 10, "Score");         // set small font
+  display.drawText(98, 20, (String)playerScore);
 
   // health
-  u8g2.setCursor(98, 35);
-  u8g2.print("Health");
-  u8g2.drawFrame(98, 41, 30, 4);
-  u8g2.drawBox(98, 41, playerHealth / 3.33, 4);
+  display.drawText(98, 35, "Health");
+  display.drawFrame(98, 41, 30, 4);
+  display.drawBox(98, 41, playerHealth / 3.33, 4);
 
   // player 
-  u8g2.drawXBM(playerX, playerY, bitmapSize, bitmapSize, playerBits);
+  display.drawXBM(playerX, playerY, bitmapSize, bitmapSize, playerBits);
 
   // bullet
   if (bulletY >= 0) {
-    u8g2.drawPixel(bulletX, bulletY);
+    display.drawPixel(bulletX, bulletY);
   }
 
   // trashes
   for (byte i = 0; i < trashesCount; i++) {
-    u8g2.drawXBM(
+    display.drawXBM(
       trashes[i][0],
       trashes[i][1], 
       bitmapSize * trashes[i][2],

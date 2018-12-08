@@ -1,20 +1,4 @@
-#include <U8g2lib.h>
-
-// Display which does not send AC
-U8G2_SSD1306_128X64_NONAME_1_HW_I2C u8g2(U8G2_R0);
-
-// button pins
-const byte startButton = 13;
-byte startButtonState = 0;
-
-const byte actionButton = 12;
-byte actionButtonState = 0;
-
-const byte buzzerPin = 11;
-
-// d-pad
-const byte leftButton = 6;
-const byte rightButton = 4; 
+#include <gamelib.h>
 
 // bitmaps
 static unsigned char playerBits[] = { 0x18, 0x3c, 0x7e, 0x7e, 0x3c, 0x3c, 0x7e, 0xff };
@@ -68,32 +52,15 @@ byte stage = 0;
 
 void setup()
 {
-  // activate buttons
-  pinMode(startButton, INPUT);
-  pinMode(actionButton, INPUT);
-  pinMode(leftButton, INPUT_PULLUP);
-  pinMode(rightButton, INPUT_PULLUP);
-
-  // buzzer
-  pinMode(buzzerPin, OUTPUT);
-
-  // u82
-  u8g2.begin();
-  u8g2.setBitmapMode(1); //bitmap transparent background
-
-  // serial
-  Serial.begin(9600);
-
-  // random seed
-  randomSeed(analogRead(0));
+  initGame(INIT_ALL);
+  display.setBitmapMode(1);  // bitmap transparent background
 }
 
 void loop() 
 {
   // main menu
   if (stage == 0) {
-    startButtonState = digitalRead(startButton);
-    if (startButtonState == HIGH) {
+    if (buttonPressed(START_BUTTON)) {
       stage = 1;
     }
   }

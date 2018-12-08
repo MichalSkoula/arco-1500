@@ -9,8 +9,7 @@ void fight()
 {
   if (whoseMove == 1) {
     // player move
-    actionButtonState = digitalRead(actionButton);
-    if (actionButtonState == HIGH) {
+    if (buttonDown(ACTION_BUTTON)) {
       whoseMove = !whoseMove;
       playTone(300);
       lastAttack = playerAttack + random(-2, 3);

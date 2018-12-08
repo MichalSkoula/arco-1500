@@ -1,23 +1,4 @@
-#include <U8g2lib.h>
-
-// Display which does not send AC
-U8G2_SSD1306_128X64_NONAME_1_HW_I2C u8g2(U8G2_R0);
-
-// buttons, pins
-const byte startButton = 13;
-byte startButtonState = 0;
-byte lastStartButtonState = 0;
-
-const byte actionButton = 12;
-byte actionButtonState = 0;
-
-const byte buzzerPin = 11;
-
-// d-pad
-const byte upButton = 5;
-const byte downButton = 2;
-const byte leftButton = 6;
-const byte rightButton = 4;
+#include <gamelib.h>
 
 // player
 byte playerX = 4;
@@ -147,43 +128,22 @@ const byte doctorsQuantity = sizeof(doctors) / sizeof(doctors[0]);
 /* start ------------------------------------------------------------------- */
 void setup(void)
 {
-  // activate buttons
-  pinMode(startButton, INPUT);
-  pinMode(actionButton, INPUT);
-  pinMode(upButton, INPUT_PULLUP);
-  pinMode(downButton, INPUT_PULLUP);
-  pinMode(leftButton, INPUT_PULLUP);
-  pinMode(rightButton, INPUT_PULLUP);
+  initGame(INIT_ALL);  
+  display.setFont(u8g2_font_5x7_tf);
 
-  // buzzer
-  pinMode(buzzerPin, OUTPUT);
-
-  // set font globally
-  u8g2.begin();
-  u8g2.setFont(u8g2_font_5x7_tf);
-
-  // serial
-  Serial.begin(9600);
-  
-  // random seed
-  randomSeed(analogRead(0));
-
-  // load map 
   loadMap(mapY, mapX);
 }
 
 /* loop -------------------------------------------------------------------- */
 void loop(void) {
   // switch between menu and game
-  startButtonState = digitalRead(startButton);
-  if (startButtonState != lastStartButtonState && startButtonState == HIGH) {
+  if (buttonPressed(START_BUTTON)) {
     if (stage == 1) {
       stage = 0;
     } else if(stage == 0) {
       stage = 1;
     }
   }
-  lastStartButtonState = startButtonState;
 
   // stage 2? fight? action button
   if (stage == 2) {

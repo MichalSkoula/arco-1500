@@ -22,10 +22,10 @@ This option is for those of you who want to see (and maybe edit) the source code
 
 ## Build setup instructions (developers only)
 
-* Place Arduino IDE folder content to dist/arduino
-* Place U8g2 library to dist/arduino/portable/sketchbook/libraries https://github.com/olikraus/u8g2
-* Run build.bat 
-* Now dist folder contains everything you need
+1. Place Arduino IDE folder content to dist/arduino
+2. Place U8g2 library to dist/arduino/portable/sketchbook/libraries https://github.com/olikraus/u8g2
+3. Run build.bat 
+4. Now dist folder contains everything you need
 
 ## External Links
 

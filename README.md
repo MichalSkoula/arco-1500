@@ -16,18 +16,16 @@ This option is the fastest way to get games to your game handheld.
 This option is for those of you who want to see (and maybe edit) the source code of games and also create your own games! You must have Arduino IDE installed and have some experience in programming.
 
 1. Install U8G2 Library via Library Manager directly in IDE
-2. Copy "gamelib" folder to your Arduino data path, for example: $HOME/Arduino/libraries/gamelib
+2. Copy "src/gamelib" folder to your Arduino data path, for example: $HOME/Arduino/libraries/gamelib
 3. Restart Arduino IDE
-4. Load some game and upload it to your game console
+4. Load some game from src/games and upload it to your game console
 
-## Dependent libraries
+## Build setup instructions (developers only)
 
-U8g2 by oliver Version 2.24.3
-https://github.com/olikraus/u8g2
-
-GameLib (our own)
-
-If you use Option #1 for uploading games, everything is bundeled in the download :)
+* Place Arduino IDE folder content to dist/arduino
+* Place U8g2 library to dist/arduino/portable/sketchbook/libraries https://github.com/olikraus/u8g2
+* Run build.bat 
+* Now dist folder contains everything you need
 
 ## External Links
 

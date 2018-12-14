@@ -1,2 +1,2 @@
-# arduino ide folder
-arduino-*
+dist/*
+hardware/gerber*

@@ -9,7 +9,7 @@ This option is the fastest way to get games to your game handheld.
 1. Download latest release here: ...
 2. Extract it somewhere
 3. Connect your game console to PC
-4. Run upload-game.bat
+4. Run upload_game.cmd
 
 ### Option #2 (advanced) using your own installed Arduino IDE
 
@@ -24,7 +24,7 @@ This option is for those of you who want to see (and maybe edit) the source code
 
 1. Place Arduino IDE folder content to dist/arduino
 2. Place U8g2 library to dist/arduino/portable/sketchbook/libraries https://github.com/olikraus/u8g2
-3. Run build.bat 
+3. Run build.cmd
 4. Now dist folder contains everything you need
 
 ## External Links

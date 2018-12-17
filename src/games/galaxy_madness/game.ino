@@ -48,6 +48,9 @@ void gameLoop()
         trashes[i][1] = 90;
         playerScore++;
       }
+
+      // speed it up
+      trashes[i][4] += 1;
     }
 
     // collision with player

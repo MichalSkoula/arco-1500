@@ -1,2 +1,10 @@
+# dist folder
 dist/*
+
+# generated gerber from fritzing
 hardware/fritzing_sketch/gerber*
+
+# visual studio - gameuploader
+src/gameuploader/.vs
+src/gameuploader/DIY-game-uploader/bin
+src/gameuploader/DIY-game-uploader/obj

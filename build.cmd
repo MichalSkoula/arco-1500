@@ -42,12 +42,12 @@ echo Copying new games
 echo f | xcopy src\games dist\games /s /e /y /i /q
 echo[ 
 
-echo Copying upload script
-echo f | xcopy src\upload_game.cmd dist\upload_game.cmd /s /e /y /i /q
-echo[ 
-
 echo Copying gamelib to Arduino IDE
 echo f | xcopy src\gamelib dist\arduino\portable\sketchbook\libraries\gamelib\ /s /e /y /i /q
+echo[ 
+
+echo Copying upload script
+echo f | xcopy src\gameuploader\DIY-game-uploader\bin\Release\DIY-game-uploader.exe dist\game-uploader.exe /s /e /y /i /q
 echo[ 
 
 echo Done

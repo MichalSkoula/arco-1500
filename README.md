@@ -33,6 +33,6 @@ This option is for those of you who want to see (and maybe edit) the source code
 ## External Links
 
 * YouTube Channel
-https://www.youtube.com/watch?v=1ha5cjtXs_Q&list=PLZWNQlcHslXWuSwxoAaJYrSB9fYc1FXUI
+https://www.youtube.com/playlist?list=PLZWNQlcHslXWuSwxoAaJYrSB9fYc1FXUI
 * Official Online Store
 https://www.bastlime.eu

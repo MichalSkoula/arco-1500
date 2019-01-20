@@ -21,14 +21,21 @@ namespace DIY_game_uploader
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("DIY Arduino Handheld Game Console Uploading Software\n");
 
+            // Drivers
+            Driver driver = new Driver();
+            driver.CheckDriver();
+
+            // COM ports
             COMPort comPorts = new COMPort();
             comPorts.printCOMPorts();
             int comPort = comPorts.selectCOMPort();
 
+            // Games
             Games games = new Games();
             games.printGames();
             string game = games.selectGame();
 
+            // Upload
             Uploader uploader = new Uploader();
             uploader.upload(game, comPort);
 

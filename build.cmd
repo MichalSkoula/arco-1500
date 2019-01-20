@@ -27,6 +27,16 @@ IF EXIST dist\arduino\portable\sketchbook\libraries\U8g2 (
     exit
 )
 
+echo Checking if USB driver is there
+IF EXIST dist\arduino\drivers\CH341SER (
+    echo Ok 
+    echo[
+) ELSE (
+    echo You must place CH341SER USB driver into dist\arduino\drivers\CH341SER\ folder
+    pause
+    exit
+)
+
 echo Deleting old games
 del /s /f /q dist\games > NUL
 for /f %%f in ('dir /ad /b dist\games') do (

@@ -19,7 +19,7 @@ void pictureLoop()
   } while (display.nextPage());
 
   // rebuild the picture after some delay
-  delay(15);
+  delay(40);
 }
 
 void drawMenu()

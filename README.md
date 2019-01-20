@@ -16,8 +16,8 @@ This option is the fastest way to get games to your game handheld and play!!
 This option is for those of you who want to see (and maybe edit) the source code of games and also create your own games!
 
 1. Install Arduino IDE from https://www.arduino.cc/en/main/software
-2. Install U8G2 Library via Library Manager directly in IDE via Library Manager
-3. Copy "src/gamelib" folder to your Arduino data path, for example: $HOME/Arduino/libraries/gamelib
+2. Install U8G2 Library via Library Manager directly in the IDE
+3. Copy "src/gamelib" folder to your Arduino data path, for example: %userprofile%\documents\Arduino\libraries\gamelib
 4. Install USB driver CH341 https://github.com/himalayanelixir/Arduino_USB_Drivers
 3. Restart Arduino IDE
 4. Load some game from src/games and upload it to your game console

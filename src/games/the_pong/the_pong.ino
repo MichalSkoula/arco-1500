@@ -1,7 +1,7 @@
 #include <gamelib.h>
 
 // constants
-const byte winningScore = 5;
+const byte winningScore = 10;
 const byte paddleHeight = 16;
 const byte paddleWidth = 4;
 

@@ -24,6 +24,10 @@ void gameLoop()
 
     // move down
     trashes[i][1] += trashes[i][4];
+    // move to the side? maybe
+    if (random(3) == 1) {
+      trashes[i][0] += random(-1, 2);  
+    }
 
     // collision with bullet
     if (
@@ -49,8 +53,11 @@ void gameLoop()
         playerScore++;
       }
 
-      // speed it up
-      trashes[i][4] += 1;
+      // speed it up, maybe?
+      if (random(3) == 1) {
+        trashes[i][4] += 1;  
+      }
+      
     }
 
     // collision with player

@@ -1,7 +1,7 @@
 #include <gamelib.h>
 
 // bitmaps
-static unsigned char playerBits[] = { 0x18, 0x3c, 0x7e, 0x7e, 0x3c, 0x3c, 0x7e, 0xff };
+static unsigned char playerBits[] = { 0x18, 0x3c, 0x7e, 0x7e, 0x7e, 0xff, 0xff, 0x66 };
 static unsigned char trashSmallBits[2][8] = { 
   { 0x30, 0x3c, 0xfe, 0xfe, 0x7f, 0x3f, 0x7e, 0x30 },
   { 0x10, 0x3c, 0x7e, 0x7e, 0x7f, 0x3f, 0x7c, 0x36 }
@@ -23,7 +23,7 @@ static unsigned char trashBigBits[2][32] = {
 // constants
 const byte step = 4;
 const byte bitmapSize = 8;
-const byte oneDamage = 25;
+const byte oneDamage = 10;
 const byte gameWidth = 96;
 const byte gameHeight = 64;
 
@@ -53,7 +53,6 @@ byte stage = 0;
 void setup()
 {
   initGame(INIT_ALL);
-  display.setBitmapMode(1);  // bitmap transparent background
 }
 
 void loop() 

@@ -19,12 +19,12 @@ void pictureLoop()
   } while (display.nextPage());
 
   // rebuild the picture after some delay
-  delay(40);
+  delay(35);
 }
 
 void drawMenu()
 {
-  display.drawBigText(1, 15, "Galaxy Madness");
+  display.drawXBM(4, 0, 120, 40, logoBits);
   display.drawSmallText(25, 55, "press the start");
 }
 
@@ -50,9 +50,13 @@ void drawGame()
   // player 
   display.drawXBM(playerX, playerY, bitmapSize, bitmapSize, playerBits);
 
+  // doctor 
+  display.drawXBM(doctor[0], doctor[1], bitmapSize, bitmapSize, doctorBits);
+
   // bullet
   if (bulletY >= 0) {
     display.drawPixel(bulletX, bulletY);
+    display.drawPixel(bulletX, bulletY + 1);
   }
 
   // trashes

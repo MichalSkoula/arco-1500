@@ -103,7 +103,7 @@ int trashes[][5] = {
 const byte trashesCount = sizeof(trashes) / sizeof(trashes[0]);
 
 // x, y, velocity, heal
-int doctor[] = { 15, -20, 2, 20};
+int doctor[] = { 15, -50, 2, 20};
 
 /*
  0 - menu,

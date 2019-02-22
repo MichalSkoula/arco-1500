@@ -1,7 +1,9 @@
 #include "gamelib.h"
 
 Display::Display() : U8G2_SSD1306_128X64_NONAME_1_HW_I2C(U8G2_R0)
-{ }
+{ 
+
+}
 
 void Display::drawText(int x, int y, const String &text)
 {
@@ -20,8 +22,9 @@ void Display::drawSmallText(int x, int y, const String &text)
 
 void Display::drawText(const uint8_t *font, int x, int y, const String &text)
 {
-	if (font)
+	if (font) {
 		setFont(font);
+	}
 	setCursor(x, y);
 	print(text);
 }
@@ -46,7 +49,6 @@ void initGame(byte initFlags)
 	}
 	
 	display.begin();
-	display.setBitmapMode(1);  // bitmap transparent background
 	Serial.begin(9600);			// TODO optional?
 	randomSeed(analogRead(0));
 }
@@ -80,7 +82,8 @@ bool buttonDown(byte button)
 	return buttonActive(button, state);
 }
 
-bool buttonPressed(byte button) {
+bool buttonPressed(byte button) 
+{
 	// holds last states of all buttons (currently 7 total)
 	static byte lastButtonState = 0;
 	
@@ -97,4 +100,9 @@ bool buttonPressed(byte button) {
 void playTone(int pitch, int time)
 {
 	tone(BUZZER_PIN, pitch, time);
+}
+
+void softReset()
+{
+	asm volatile("jmp 0");
 }

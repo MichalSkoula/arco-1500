@@ -23,7 +23,7 @@ void gameLoop()
   doctor[1] += doctor[2]; // move down
   // out of screen?
   if (doctor[1] > gameHeight) {
-    doctor[1] = random(-100, -20); // y
+    doctor[1] = random(-200, -50); // y
     doctor[0] = random(0, gameWidth - bitmapSize);// x
     doctor[2] = random(2, 5); // velocity
   }

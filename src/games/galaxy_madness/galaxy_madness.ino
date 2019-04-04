@@ -86,7 +86,6 @@ const byte gameWidth = 96;
 const byte gameHeight = 64;
 
 // player
-byte playerScore = 0;
 byte playerHealth = 100;
 byte playerX = 48;
 byte playerY = 56;
@@ -108,9 +107,11 @@ int doctor[] = { 15, -50, 2, 20};
 /*
  0 - menu,
  1 - single player
- 2 - lose
+ 2 - score
  */ 
 byte stage = 0;
+
+ScoreTable<GID_GALAXY_MADNESS> scoreTable;
 
 void setup()
 {
@@ -128,7 +129,9 @@ void loop()
   
   if (stage == 1) {
     gameLoop();
-  }  
+  } else if (stage == 2) {
+	  scoreTable.update();
+  }
 
   //draw everything
   pictureLoop();

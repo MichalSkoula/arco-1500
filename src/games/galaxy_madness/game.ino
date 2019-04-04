@@ -73,7 +73,7 @@ void gameLoop()
       bulletY = -1;
 
       // score - increase by size + velocity of the trash
-      playerScore += trashes[i][2] + trashes[i][4];
+      scoreTable.addScore(trashes[i][2] + trashes[i][4]);
 
       // destroy or cut the trash into half
       if (trashes[i][2] == 2) {

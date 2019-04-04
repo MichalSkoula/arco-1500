@@ -8,3 +8,8 @@ hardware/fritzing_sketch/gerber*
 src/gameuploader/.vs
 src/gameuploader/DIY-game-uploader/bin
 src/gameuploader/DIY-game-uploader/obj
+
+src/not_emulator/bin
+src/not_emulator/build
+
+project.geany

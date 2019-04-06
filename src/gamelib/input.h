@@ -1,5 +1,5 @@
-#ifndef _GAMELIB_INPUT_H
-#define _GAMELIB_INPUT_H
+#ifndef GAMELIB_INPUT_H
+#define GAMELIB_INPUT_H
 
 #include <Arduino.h>
 
@@ -38,4 +38,4 @@ bool buttonDown(byte button);
 // TODO asi nefunguje pro joystick?
 bool buttonPressed(byte button);
 
-#endif	/* _GAMELIB_INPUT_H */
+#endif	/* GAMELIB_INPUT_H */

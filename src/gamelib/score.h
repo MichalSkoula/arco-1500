@@ -1,5 +1,5 @@
-#ifndef _GAMELIB_SCORE_H
-#define _GAMELIB_SCORE_H
+#ifndef GAMELIB_SCORE_H
+#define GAMELIB_SCORE_H
 
 #include <EEPROM.h>
 #include "display.h"
@@ -234,4 +234,4 @@ private:
 	}
 };
 
-#endif	/* _GAMELIB_SCORE_H */
+#endif	/* GAMELIB_SCORE_H */

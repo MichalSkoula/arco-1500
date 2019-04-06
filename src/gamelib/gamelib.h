@@ -1,5 +1,5 @@
-#ifndef _GAMELIB_H
-#define _GAMELIB_H
+#ifndef GAMELIB_H
+#define GAMELIB_H
 
 #include "display.h"
 #include "input.h"
@@ -25,4 +25,4 @@ void playTone(int pitch, int time = 10);
 // soft reset
 void softReset();
 
-#endif	/* _GAMELIB_H */
+#endif	/* GAMELIB_H */

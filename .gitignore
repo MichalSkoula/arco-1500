@@ -12,4 +12,6 @@ src/gameuploader/DIY-game-uploader/obj
 src/not_emulator/bin
 src/not_emulator/build
 
+# geany and qtcreator project files
 project.geany
+arduino_handheld_game_console.*

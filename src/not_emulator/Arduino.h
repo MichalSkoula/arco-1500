@@ -1,9 +1,11 @@
-#ifndef _NOT_EMULATOR_ARDUINO_H
-#define _NOT_EMULATOR_ARDUINO_H
+#ifndef NOT_EMULATOR_ARDUINO_H
+#define NOT_EMULATOR_ARDUINO_H
 
 #include <stdint.h>
 #include <string>
 #include <SDL2/SDL.h>
+
+#define UNUSED(x) (void)(x)
 
 #define PROGMEM
 // TODO "better" - no macro?
@@ -44,7 +46,7 @@ public:
 	String(char c) { m_str = std::string(1, c);	}
 
 	String(int n) { m_str = std::to_string(n); }
-	String(unsigned n) { m_str = std::to_string(n);	}
+    String(unsigned int n) { m_str = std::to_string(n);	}
 
 	operator std::string() const { return m_str; }
 	operator const char *() const {	return m_str.c_str(); }
@@ -87,7 +89,7 @@ void pinMode(int pin, int mode);
 
 void delay(int ms);
 
-void randomSeed(long int seed);
+void randomSeed(unsigned int seed);
 
 // random number between 0 and max - 1
 long int random(long int max);
@@ -97,4 +99,4 @@ long int random(long int min, long int max);
 
 void tone(int pin, int pitch, int ms);
 
-#endif	/* _NOT_EMULATOR_ARDUINO_H */
+#endif	/* NOT_EMULATOR_ARDUINO_H */

@@ -1,5 +1,5 @@
-#ifndef _NOT_EMULATOR_U8G2_H
-#define _NOT_EMULATOR_U8G2_H
+#ifndef NOT_EMULATOR_U8G2_H
+#define NOT_EMULATOR_U8G2_H
 
 #include "Arduino.h"
 #include <SDL2/SDL.h>
@@ -152,8 +152,9 @@ public:
 		SDL_RenderFillRect(renderer, &r);
 	}
 
-	void drawDisc(int x, int y, int r, uint8_t opt = U8G2_DRAW_ALL)
+    void drawDisc(int x, int y, int r, uint8_t opt = U8G2_DRAW_ALL)
 	{
+        UNUSED(opt);
 		// TODO impl
 		// https://en.wikipedia.org/wiki/Midpoint_circle_algorithm
 		// OR
@@ -188,7 +189,7 @@ public:
 
 	void print(const String &text)
 	{
-		SDL_Color fg = { 255, 255, 255 };
+        SDL_Color fg = { 255, 255, 255, 255 };
 		//SDL_Color bg = { 0, 0, 0 };
 		//SDL_Surface *surface = TTF_RenderText_Solid(font, text, fg);
 		//SDL_Surface *surface = TTF_RenderText_Shaded(font, text, fg, bg);
@@ -231,4 +232,4 @@ public:
 	U8G2_SSD1306_128X64_NONAME_1_HW_I2C(int) {}
 };
 
-#endif	/* _NOT_EMULATOR_U8G2_H */
+#endif	/* NOT_EMULATOR_U8G2_H */

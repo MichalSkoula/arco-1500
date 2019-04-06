@@ -1,5 +1,5 @@
-#ifndef _GAMELIB_DISPLAY_H
-#define _GAMELIB_DISPLAY_H
+#ifndef GAMELIB_DISPLAY_H
+#define GAMELIB_DISPLAY_H
 
 #include <Arduino.h>
 #include <U8g2lib.h>
@@ -25,4 +25,4 @@ private:
 
 extern Display display;
 
-#endif	/* _GAMELIB_DISPLAY_H */
+#endif	/* GAMELIB_DISPLAY_H */

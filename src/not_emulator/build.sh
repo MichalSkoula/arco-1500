@@ -1,9 +1,7 @@
 #!/bin/bash
 
-# ./build <game directory name>
-# e.g. ./build galaxy_madness
-
-#/usr/share/arduino/arduino-builder -preprocess -logger=machine -hardware /usr/share/arduino/hardware -tools /usr/share/arduino/tools-builder -built-in-libraries /usr/share/arduino/libraries -libraries /home/david/Arduino/libraries -fqbn=arduino:avr:nano:cpu=atmega328 -ide-version=10805 -build-path /tmp/test_build -warnings=all -build-cache /tmp/test_cache -prefs=build.warn_data_percentage=75 -verbose /home/david/projects/arduino_handheld_game_console/src/games/galaxy_madness/galaxy_madness.ino
+# ./build.sh <game directory name>
+# e.g. ./build.sh galaxy_madness
 
 if [ "$#" -ne 1 ]; then
 	echo "Must be called with exactly one parameter - name of the game"
@@ -40,12 +38,13 @@ mkdir "$PREP"
 cp "$PREP/sketch/$1.ino.cpp" "$BUILD/main.cpp"
 cat main.cpp >> "$BUILD/main.cpp"
 
-# TODO cmake?
-# TODO warnings
+# TODO cmake
+# TODO -Wconversion
 cd "$BUILD"
-g++ -D "WINDOW_TITLE=\"not_emulator - $1\"" -I ".." -I "../../gamelib" 			\
+g++ -std=c++17                                                                  \
+    -Wall -Wpedantic -pedantic-errors -Wextra                                   \
+    -I ".." -I "../../gamelib"                                                  \
+    -D "WINDOW_TITLE=\"not_emulator - $1\""                                     \
 	-o "$1"																		\
 	main.cpp ../Arduino.cpp ../EEPROM.cpp ../U8g2lib.cpp ../../gamelib/*.cpp	\
 	-lSDL2 -lSDL2_ttf
-# -fmax-errors=5
-# -std=c++14

@@ -1,5 +1,5 @@
-#ifndef _NOT_EMULATOR_EEPROM_H
-#define _NOT_EMULATOR_EEPROM_H
+#ifndef NOT_EMULATOR_EEPROM_H
+#define NOT_EMULATOR_EEPROM_H
 
 #include <cstdio>
 #include <cstring>
@@ -49,4 +49,4 @@ private:
 
 extern EEPROMemory EEPROM;
 
-#endif	/* _NOT_EMULATOR_EEPROM_H */
+#endif	/* NOT_EMULATOR_EEPROM_H */

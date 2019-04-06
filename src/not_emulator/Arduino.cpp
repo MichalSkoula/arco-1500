@@ -14,7 +14,7 @@ bool bitRead(byte b, byte bit)
 void bitWrite(byte &b, byte bit, bool on)
 {
 	// TODO typ b
-	b = b & ~(1 << bit) | (on << bit);
+    b = (b & ~(1 << bit)) | (on << bit);
 }
 
 /*
@@ -75,6 +75,7 @@ byte readPin(int pin)
 
 byte analogRead(int pin)
 {
+    UNUSED(pin);
 	// TODO impl
 	// at the moment only used as RNG seed
 	return LOW;
@@ -90,6 +91,7 @@ byte digitalRead(int pin)
 
 void pinMode(int pin, int mode)
 {
+    UNUSED(pin); UNUSED(mode);
 	// at the moment hardcoded in isPinPullUp
 	// TODO read from file (together with key mapping)?
 }
@@ -99,7 +101,7 @@ void delay(int ms)
 	std::this_thread::sleep_for(std::chrono::milliseconds(ms));
 }
 
-void randomSeed(long int seed)
+void randomSeed(unsigned int seed)
 {
 	srand(seed);
 }
@@ -116,5 +118,6 @@ long int random(long int min, long int max)
 
 void tone(int pin, int pitch, int ms)
 {
+    UNUSED(pin); UNUSED(pitch); UNUSED(ms);
 	// TODO impl
 }

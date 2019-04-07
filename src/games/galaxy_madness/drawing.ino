@@ -11,7 +11,7 @@ void pictureLoop()
         drawGame();
         break;
       case 2:
-        drawLose();
+        scoreTable.draw();
         break;
       default:
         break;
@@ -28,19 +28,13 @@ void drawMenu()
   display.drawSmallText(25, 55, "press the start");
 }
 
-void drawLose()
-{
-  display.drawSmallText(20, 15, "GAME OVER");     // set small font
-  display.drawText(20, 35, "SCORE: " + (String)playerScore);
-}
-
 void drawGame()
 {
   display.drawVLine(gameWidth, 0, gameHeight);
 
   // score
   display.drawSmallText(98, 10, "Score");         // set small font
-  display.drawText(98, 20, (String)playerScore);
+  display.drawText(98, 20, (String)scoreTable.getScore());
 
   // health
   display.drawText(98, 35, "Health");

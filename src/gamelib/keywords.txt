@@ -1,9 +1,25 @@
 # Syntax coloring
 
+# TODO
+
 # ---------------------------------
 # classes
 # ---------------------------------
 display				KEYWORD1
+score				KEYWORD1
+
+
+# ---------------------------------
+# methods
+# ---------------------------------
+
+# display
+drawText			KEYWORD2
+drawBigText			KEYWORD2
+drawSmallText		KEYWORD2
+
+# score
+
 
 
 # ---------------------------------
@@ -13,9 +29,6 @@ initGame			KEYWORD2
 buttonDown			KEYWORD2
 buttonPressed		KEYWORD2
 playTone			KEYWORD2
-drawText			KEYWORD2
-drawBigText			KEYWORD2
-drawSmallText		KEYWORD2
 
 
 # ---------------------------------

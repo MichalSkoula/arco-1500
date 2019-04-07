@@ -170,11 +170,10 @@ public:
 		SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
         SDL_RenderClear(renderer);
         SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
-		for (int i = 0; i < (w * h) / 8; ++i) {
-			for (int j = 0; j < 8; ++j) {
-				// TODO stop when x > w
-				if (data[i] & (1 << j))
-					SDL_RenderDrawPoint(renderer, ((i * 8) % w) * 8 + j, (i * 8) / w);
+        for (int i = 0; i < h; ++i) {
+            for (int j = 0; j < w; ++j) {
+                if (data[(i * w) / 8 + j / 8] & (1 << (j % 8)))
+                    SDL_RenderDrawPoint(renderer, j, i);
 			}
 		}
         SDL_SetRenderTarget(renderer, nullptr);

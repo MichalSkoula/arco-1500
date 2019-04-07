@@ -1,15 +1,19 @@
-# dist folder
-dist/*
-
-# generated gerber from fritzing
-hardware/fritzing_sketch/gerber*
-
 # visual studio - gameuploader
-src/gameuploader/.vs
-src/gameuploader/DIY-game-uploader/bin
-src/gameuploader/DIY-game-uploader/obj
+gameuploader/.vs
+gameuploader/DIY-game-uploader/bin
+gameuploader/DIY-game-uploader/obj
 
-src/not_emulator/bin
-src/not_emulator/build
+# not emulator
+not_emulator/bin
+not_emulator/build
 
+# some doncek shit
 project.geany
+
+# arduino ide
+arduino/**
+!arduino/portable/
+!arduino/portable/sketchbook/
+!arduino/portable/sketchbook/libraries/
+!arduino/portable/sketchbook/libraries/gamelib/
+!arduino/portable/sketchbook/libraries/gamelib/**

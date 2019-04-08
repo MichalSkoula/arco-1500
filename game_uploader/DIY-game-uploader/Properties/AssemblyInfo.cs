@@ -5,10 +5,10 @@ using System.Runtime.InteropServices;
 // Obecné informace o sestavení se řídí přes následující 
 // sadu atributů. Změnou hodnot těchto atributů se upraví informace
 // přidružené k sestavení.
-[assembly: AssemblyTitle("DIY-game-uploader")]
+[assembly: AssemblyTitle("game_uploader")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Michal Škoula")]
 [assembly: AssemblyProduct("DIY-game-uploader")]
 [assembly: AssemblyCopyright("Copyright ©  2019")]
 [assembly: AssemblyTrademark("")]

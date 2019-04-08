@@ -11,10 +11,10 @@ C:\arduino\DIY-Arduino-Handheld-Game-Console\src\gameuploader\DIY-game-uploader\
 C:\arduino\DIY-Arduino-Handheld-Game-Console\src\gameuploader\DIY-game-uploader\obj\Release\DIY-game-uploader.csproj.CoreCompileInputs.cache
 C:\arduino\DIY-Arduino-Handheld-Game-Console\src\gameuploader\DIY-game-uploader\obj\Release\DIY-game-uploader.exe
 C:\arduino\DIY-Arduino-Handheld-Game-Console\src\gameuploader\DIY-game-uploader\obj\Release\DIY-game-uploader.pdb
-C:\arduino\DIY-Arduino-Handheld-Game-Console\game_uploader\DIY-game-uploader\bin\Release\DIY-game-uploader.exe.config
-C:\arduino\DIY-Arduino-Handheld-Game-Console\game_uploader\DIY-game-uploader\bin\Release\DIY-game-uploader.exe
-C:\arduino\DIY-Arduino-Handheld-Game-Console\game_uploader\DIY-game-uploader\bin\Release\DIY-game-uploader.pdb
 C:\arduino\DIY-Arduino-Handheld-Game-Console\game_uploader\DIY-game-uploader\obj\Release\DIY-game-uploader.csprojAssemblyReference.cache
 C:\arduino\DIY-Arduino-Handheld-Game-Console\game_uploader\DIY-game-uploader\obj\Release\DIY-game-uploader.csproj.CoreCompileInputs.cache
-C:\arduino\DIY-Arduino-Handheld-Game-Console\game_uploader\DIY-game-uploader\obj\Release\DIY-game-uploader.exe
-C:\arduino\DIY-Arduino-Handheld-Game-Console\game_uploader\DIY-game-uploader\obj\Release\DIY-game-uploader.pdb
+C:\arduino\DIY-Arduino-Handheld-Game-Console\game_uploader\DIY-game-uploader\obj\Release\game_uploader.exe
+C:\arduino\DIY-Arduino-Handheld-Game-Console\game_uploader\DIY-game-uploader\obj\Release\game_uploader.pdb
+C:\arduino\DIY-Arduino-Handheld-Game-Console\game_uploader\game_uploader.exe.config
+C:\arduino\DIY-Arduino-Handheld-Game-Console\game_uploader\game_uploader.exe
+C:\arduino\DIY-Arduino-Handheld-Game-Console\game_uploader\game_uploader.pdb

@@ -1,7 +1,9 @@
 # visual studio - gameuploader
-gameuploader/.vs
-gameuploader/DIY-game-uploader/bin
-gameuploader/DIY-game-uploader/obj
+game_uploader/.vs
+game_uploader/DIY-game-uploader/bin
+game_uploader/DIY-game-uploader/obj
+game_uploader/game_uploader.exe.config
+game_uploader/game_uploader.pdb
 
 # not emulator
 not_emulator/bin

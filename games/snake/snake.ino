@@ -19,9 +19,15 @@ Point directions[4] = { { -1, 0 }, { 0, 1 }, { 1, 0 }, { 0, -1 } };
 byte direction = 0;
 bool changeDirection = false;
 
+// TODO generate timed food (bigger score?)
 Point food;
 
-bool pause = false;
+// 0        game
+// 1        paused game
+// 2        score table
+byte stage = 0;
+
+ScoreTable<GID_SNAKE> scoreTable;
 
 /* functions ------------------------------------------------------------------ */
 
@@ -60,11 +66,13 @@ void drawFood()
 
 void updateSnake()
 {
-  // check collision with food
-  if (food.x == snake[0].x && food.y == snake[0].y) {
-    ++size;
-    food = randomPoint();
-  }
+    // check collision with food
+    if (food.x == snake[0].x && food.y == snake[0].y) {
+        // TODO win when 200 is reached?!
+        ++size;
+        scoreTable.addScore(1);
+        food = randomPoint();
+    }
 
   // update parts of snek
   for (int i = size; i > 0; --i) {
@@ -76,15 +84,15 @@ void updateSnake()
   snake[0].y += speed.y;
 
   // check collisions with its body
-  // TODO show score and restart?
   if (speed.x != 0 || speed.y != 0) {
     int i;
     for (i = 1; i < size; ++i) {
       if (snake[0].x == snake[i].x && snake[0].y == snake[i].y)
         break;
     }
-    if (i < size)   // snek ate itself
-      size = i;
+    // snek ate itself - game over
+    if (i < size)
+        stage = 2;
   }
 
   // wrap around
@@ -109,28 +117,36 @@ void setup(void)
 /* loop -------------------------------------------------------------------- */
 // TODO slower start, speed up as snek grows
 void loop(void) {
-  // TODO one button clock-wise and the other counter-clockwise?
-  // change direction (counter-clockwise)
-  if (buttonPressed(START_BUTTON)) {
-    direction++;
-    if (direction >= 4)
-      direction = 0;
-    speed = directions[direction];
-  }
+    // TODO one button clock-wise and the other counter-clockwise?
+    // change direction (counter-clockwise)
+    if (buttonPressed(ACTION_BUTTON)) {
+        direction++;
+        if (direction >= 4)
+            direction = 0;
+        speed = directions[direction];
+    }
   
-  // (un)pause game
-  if (buttonPressed(ACTION_BUTTON))
-    pause = !pause;
+    if (stage != 2) {
+        // pause/unpause game
+        if (buttonPressed(START_BUTTON))
+            stage = stage == 0 ? 1 : 0;
+    }
 
-  if (!pause)  
-    updateSnake();
+    if (stage == 0)
+        updateSnake();
+    else if (stage == 2)
+        scoreTable.update();
 
-  // draw state
-  display.firstPage();
-  do {
-    drawSnake();
-    drawFood();
-  } while (display.nextPage());
-  
-  delay(20);    // TODO get rid of delay
+    // draw state
+    display.firstPage();
+    do {
+        if (stage != 2) {
+            drawSnake();
+            drawFood();
+        } else {
+            scoreTable.draw();
+        }
+    } while (display.nextPage());
+
+    delay(20);    // TODO get rid of delay
 }

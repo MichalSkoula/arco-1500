@@ -17,10 +17,7 @@ byte buttonPin(byte button)
 
 bool buttonActive(byte button, byte state)
 {
-	// TODO mapovat podle INPUT/INPUT_PULLUP?
-	if (button <= ACTION_BUTTON)	// start and action buttons
-		return state == HIGH;
-	return state == LOW;			// joystick buttons
+	return state == LOW; // everything is now INPUT_PULLUP
 }
 
 bool buttonDown(byte button)

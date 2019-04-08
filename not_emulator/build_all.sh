@@ -8,9 +8,7 @@
 #      binary modified time is newer than game files, gamelib files and not_emulator files
 
 BIN="bin"
-if [ -d "$BIN" ]; then
-	rm -r "$BIN"
-fi
+
 mkdir -p "$BIN"
 
 for game in $(ls ../games); do

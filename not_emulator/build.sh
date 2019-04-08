@@ -43,8 +43,9 @@ cat main.cpp >> "$BUILD/main.cpp"
 cd "$BUILD"
 g++ -std=c++17                                                                  \
     -Wall -Wpedantic -pedantic-errors -Wextra                                   \
-    -I ".." -I "../../gamelib"                                                  \
+    -I ".." -I "../../arduino/portable/sketchbook/libraries/gamelib"            \
     -D "WINDOW_TITLE=\"not_emulator - $1\""                                     \
 	-o "$1"																		\
-	main.cpp ../Arduino.cpp ../EEPROM.cpp ../U8g2lib.cpp ../../gamelib/*.cpp	\
+    main.cpp ../Arduino.cpp ../EEPROM.cpp ../U8g2lib.cpp                    	\
+    ../../arduino/portable/sketchbook/libraries/gamelib/*.cpp                   \
 	-lSDL2 -lSDL2_ttf

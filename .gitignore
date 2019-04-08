@@ -1,17 +1,22 @@
-# dist folder
-dist/*
-
-# generated gerber from fritzing
-hardware/fritzing_sketch/gerber*
-
 # visual studio - gameuploader
-src/gameuploader/.vs
-src/gameuploader/DIY-game-uploader/bin
-src/gameuploader/DIY-game-uploader/obj
+game_uploader/.vs
+game_uploader/DIY-game-uploader/bin
+game_uploader/DIY-game-uploader/obj
+game_uploader/game_uploader.exe.config
+game_uploader/game_uploader.pdb
 
-src/not_emulator/bin
-src/not_emulator/build
+# not emulator
+not_emulator/bin
+not_emulator/build
 
 # geany and qtcreator project files
 project.geany
 arduino_handheld_game_console.*
+
+# arduino ide
+arduino/**
+!arduino/portable/
+!arduino/portable/sketchbook/
+!arduino/portable/sketchbook/libraries/
+!arduino/portable/sketchbook/libraries/gamelib/
+!arduino/portable/sketchbook/libraries/gamelib/**

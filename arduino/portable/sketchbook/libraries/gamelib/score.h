@@ -142,7 +142,7 @@ private:
 
 	byte findLowestScore()
 	{
-		score_t low = -1;	// highest score_t value
+        score_t low = static_cast<score_t>(-1);     // max score_t value
 		score_t s;
 		byte lowIndex = Count;
 		for (byte i = 0; i < Count; ++i) {
@@ -160,9 +160,12 @@ private:
 	bool isHighScore()
 	{
 		byte i = findLowestScore();
-		score_t low;
-		EEPROM.get(gameId * Size + 1 + i * sizeof(Score) + 2, low);
-		return score.value > low;
+        if (i < Count) {
+            score_t low;
+            EEPROM.get(gameId * Size + 1 + i * sizeof(Score) + 2, low);
+            return score.value > low;
+        }
+        return false;
 	}
 
 	void drawGameOver()

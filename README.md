@@ -1,4 +1,4 @@
-# DIY-Arduino-Handheld-Game-Console
+# ARCO 1500 - DIY Arduino Game Console
 
 ## Uploading games to console
 

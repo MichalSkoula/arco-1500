@@ -11,7 +11,7 @@ not_emulator/build
 
 # geany and qtcreator project files
 project.geany
-arduino_handheld_game_console.*
+arco-1500.*
 
 # arduino ide
 arduino/**

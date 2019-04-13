@@ -103,7 +103,7 @@ public:
 		} else if (stage == 2 && buttonPressed(START_BUTTON)) {
 			// TODO return true/false instead?
 			// TODO redefine softReset for not_emulator and uncomment
-			//softReset();
+			softReset();
 		}
 	}
 

@@ -1,17 +1,25 @@
 #!/bin/bash
 
-# ./build.sh <game directory name>
+# ./build.sh [--no-arduino] <game_name>
+#
 # e.g. ./build.sh galaxy_madness
 
-# TODO add parameter --no-arduino to use fallback option instead of arduino-builder
+NO_ARDUINO=0
+if [ "$#" -eq 2 ] && [ "$1" == "--no-arduino" ]; then
+    NO_ARDUINO=1
+    shift
+fi
 
+GAMES="../games"
 if [ "$#" -ne 1 ]; then
-	echo "Must be called with exactly one parameter - name of the game"
-	echo "See the games directory"
+    echo "Usage: build.sh [--no-arduino] <game_name>"
+    echo -e "\nAvailable games:"
+    ls "$GAMES"
+    echo
 	exit
 fi
 
-GAME="../games/$1"
+GAME="$GAMES/$1"
 BUILD="build"
 MAIN="main.cpp"
 LIBS="../arduino/portable/sketchbook/libraries"
@@ -29,8 +37,9 @@ mkdir "$BUILD"
 
 ARDUINO_PORT="../arduino"
 ARDUINO_SYS="/usr/share/arduino"
-# TODO [ ! no-arduino ] && { ... }
-if [ -f "$ARDUINO_PORT/arduino-builder" ] || [ -f "$ARDUINO_SYS/arduino-builder" ]; then
+
+if [ "$NO_ARDUINO" -eq 0 ] && \
+ { [ -f "$ARDUINO_PORT/arduino-builder" ] || [ -f "$ARDUINO_SYS/arduino-builder" ]; } then
     PREP="$BUILD/preprocess"
     mkdir -p "$PREP"
 
@@ -105,6 +114,7 @@ cat "$MAIN" >> "$BUILD/$MAIN"
 # TODO -Wconversion
 cd "$BUILD"
 echo "Compiling..."
+
 g++ -std=c++17                                                  \
     -Wall -Wpedantic -pedantic-errors -Wextra                   \
     -I ".." -I "../$LIBS/gamelib"                               \
@@ -113,3 +123,5 @@ g++ -std=c++17                                                  \
     "$MAIN" ../Arduino.cpp ../EEPROM.cpp ../U8g2lib.cpp         \
     "../$LIBS/gamelib/"*.cpp                                    \
 	-lSDL2 -lSDL2_ttf
+
+echo "Done."

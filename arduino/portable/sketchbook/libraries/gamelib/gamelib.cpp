@@ -3,8 +3,8 @@
 void initGame(byte initFlags)
 {
 	if (initFlags & BUTTONS) {
-		pinMode(START_BUTTON_PIN, INPUT);
-  		pinMode(ACTION_BUTTON_PIN, INPUT);
+		pinMode(START_BUTTON_PIN, INPUT_PULLUP);
+  		pinMode(ACTION_BUTTON_PIN, INPUT_PULLUP);
 	}
 	if (initFlags & JOYSTICK) {
 		pinMode(LEFT_BUTTON_PIN, INPUT_PULLUP);

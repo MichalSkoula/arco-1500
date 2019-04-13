@@ -50,7 +50,7 @@ class ScoreTable
 {
 public:
 	enum { Size = 14 };		// ScoreTable size in EEPROM
-	enum { Count = 3 };		// Score count		// TODO constexpr
+	enum { Count = 5 };		// Score count		// TODO constexpr
 
 	ScoreTable()
 	{
@@ -173,25 +173,27 @@ private:
 	void drawGameOver()
 	{
 		if (isHighScore()) {
-			display.drawSmallText(20, 15, "GAME OVER");
+			display.drawBigText(15, 10, "GAME OVER");
 			// TODO
-			display.drawText(20, 35, "NEW HIGH SCORE: " + (String)score.value);
+			display.drawSmallText(15, 35, "New High Score: " + (String)score.value);
 		} else {
-			display.drawSmallText(20, 15, "GAME OVER");
-			display.drawText(20, 35, "SCORE: " + (String)score.value);
+			display.drawBigText(15, 10, "GAME OVER");
+			display.drawSmallText(15, 35, "Score: " + (String)score.value);
 		}
 	}
 
 	void drawNameInput()
 	{
-		display.drawBigText(20 + 0 * 20, 32, (String)static_cast<char>(score.c1 + 'A'));
-		display.drawBigText(20 + 1 * 20, 32, (String)static_cast<char>(score.c2 + 'A'));
-		display.drawBigText(20 + 2 * 20, 32, (String)static_cast<char>(score.c3 + 'A'));
+		display.drawBigText(15, 10, "YOUR NICK");
+
+		display.drawBigText(20 + 0 * 20, 40, (String)static_cast<char>(score.c1 + 'A'));
+		display.drawBigText(20 + 1 * 20, 40, (String)static_cast<char>(score.c2 + 'A'));
+		display.drawBigText(20 + 2 * 20, 40, (String)static_cast<char>(score.c3 + 'A'));
 		for (byte i = 0; i < 3; ++i) {
 			if (i == nameIndex) {
-				display.drawFrame(18 + i * 20, 18, 13, 20);
+				display.drawFrame(18 + i * 20, 26, 13, 20);
 			} else {
-				display.drawBigText(20 + i * 20, 38, "_");
+				display.drawBigText(20 + i * 20, 46, "_");
 			}
 		}
 	}
@@ -199,8 +201,8 @@ private:
 	// TODO probably not necessary to render this too often
 	void drawTable()
 	{
-		display.drawBigText(15, 10, "High Scores");
-		display.drawBigText(15, 18, "-----------");
+		display.drawBigText(15, 10, "HIGH SCORES");
+		display.drawSmallText(15, 18, "--------------------");
 
 		// TODO could probably be optimized to use less memory
 		// read scores from memory
@@ -233,8 +235,8 @@ private:
 			name[1] = scores[i].c2 + 'A';
 			name[2] = scores[i].c3 + 'A';
 			name[3] = 0;
-			display.drawBigText(20, 30 + i * 13, name);
-	  		display.drawText(65, 30 + i * 13, (String)scores[i].value);
+			display.drawSmallText(15, 25 + i * 9, name);
+	  		display.drawText(85, 25 + i * 9, (String)scores[i].value);
 		}
 	}
 };

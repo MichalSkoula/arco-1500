@@ -14,7 +14,11 @@ mkdir -p "$BIN"
 for game in $(ls ../games); do
 	echo "Building '$game'"
 	echo "---------------------------------"
-	./build.sh "$game"
+    if [ "$1" == "--no-arduino" ]; then
+        ./build.sh --no-arduino "$game"
+    else
+        ./build.sh "$game"
+    fi
 	rc=$?
 	if [[ $rc != 0 ]]; then
 		echo

@@ -13,6 +13,9 @@ enum GameId {
 	GID_SNAKE
 };
 
+// TODO move from gamelib.h to different file and remove this forward declaration
+void softReset();
+
 using score_t = uint16_t;
 
 struct Score
@@ -101,9 +104,7 @@ public:
 				stage = 2;
 			}
 		} else if (stage == 2 && buttonPressed(START_BUTTON)) {
-			// TODO return true/false instead?
-			// TODO redefine softReset for not_emulator and uncomment
-			softReset();
+            softReset();
 		}
 	}
 

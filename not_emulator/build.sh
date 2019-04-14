@@ -118,6 +118,7 @@ echo "Compiling..."
 g++ -std=c++17                                                  \
     -Wall -Wpedantic -pedantic-errors -Wextra                   \
     -I ".." -I "../$LIBS/gamelib"                               \
+    -D "NOT_ARDUINO"                                            \
     -D "WINDOW_TITLE=\"not_emulator - $1\""                     \
     -o "$1"                                                     \
     "$MAIN" ../Arduino.cpp ../EEPROM.cpp ../U8g2lib.cpp         \

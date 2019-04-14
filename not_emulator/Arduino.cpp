@@ -17,50 +17,27 @@ void bitWrite(byte &b, byte bit, bool on)
     b = (b & ~(1 << bit)) | (on << bit);
 }
 
-/*
-enum Pins {
-	START_BUTTON_PIN 	= 13,
-	ACTION_BUTTON_PIN 	= 12,
-
-	LEFT_BUTTON_PIN 	= 6,
-	UP_BUTTON_PIN 		= 5,
-	RIGHT_BUTTON_PIN 	= 4,
-	DOWN_BUTTON_PIN 	= 2,
-	CENTER_BUTTON_PIN 	= 3,
-
-	BUZZER_PIN 			= 11
-};
-*/
-
 // TODO const static pole
 int pinToScanCode(int pin)
 {
-	switch (pin) {
-		case 13: return SDL_SCANCODE_S;
-		case 12: return SDL_SCANCODE_A;
-		case 6:  return SDL_SCANCODE_LEFT;
-		case 5:  return SDL_SCANCODE_UP;
-		case 4:  return SDL_SCANCODE_RIGHT;
-		case 2:  return SDL_SCANCODE_DOWN;
-		case 3:  return SDL_SCANCODE_KP_0;
-		default: return -1;
-	}
+    // see gamelib/input.h Pins enum
+    switch (pin) {
+        case 3:  return SDL_SCANCODE_S;
+        case 2:  return SDL_SCANCODE_A;
+        case 12: return SDL_SCANCODE_LEFT;
+        case 11: return SDL_SCANCODE_UP;
+        case 10: return SDL_SCANCODE_RIGHT;
+        case 8:  return SDL_SCANCODE_DOWN;
+        case 9:  return SDL_SCANCODE_KP_0;
+        default: return -1;
+    }
 }
 
+// all pins are now PULLUP
 bool isPinPullUp(int pin)
 {
-	switch (pin) {
-		case 13:
-		case 12: return false;
-
-		case 6:
-		case 5:
-		case 4:
-		case 2:
-		case 3:  return true;
-
-		default: return false;
-	}
+    UNUSED(pin);
+    return true;
 }
 
 byte readPin(int pin)

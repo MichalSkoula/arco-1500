@@ -2,6 +2,7 @@
 #define GAMELIB_H
 
 #include "display.h"
+#include "sound.h"
 #include "input.h"
 #include "score.h"
 
@@ -18,9 +19,6 @@ enum InitFlags {
 
 // called in setup() with ORed mask of desired init flags
 void initGame(byte initFlags);
-
-// play tone for 10 ms by default
-void playTone(int pitch, int time = 10);
 
 // soft reset
 void softReset();

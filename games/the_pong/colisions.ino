@@ -3,11 +3,11 @@ void checkHittingWall()
   if (ballX > DISPLAY_WIDTH - 1) {
     ballReset(false);
     aiScore++;
-    playTone(500, 20);
+    sound.playTone(500, 20);
   } else if (ballX < 0) {
     ballReset(true);
     playerScore++;
-    playTone(500, 20);
+    sound.playTone(500, 20);
   }
 }
 
@@ -15,7 +15,7 @@ void checkHittingCeiling()
 {
   if (ballY > DISPLAY_HEIGHT - 1 || ballY < 0) {
     ballYVel = -ballYVel;
-    playTone(100);
+    sound.playTone(100);
   }
 }
 
@@ -24,11 +24,11 @@ void checkPaddleHit()
   if (ballX > DISPLAY_WIDTH - paddleWidth && ballY >= playerY && ballY <= (playerY + paddleHeight) && ballXVel == 1) {
     // right (player);
     ballXVel = -ballXVel;
-    playTone(100);
+    sound.playTone(100);
   } else if (ballX < 0 + paddleWidth && ballY >= aiY && ballY <= (aiY + paddleHeight) && ballXVel == -1) {
     // left (ai)
     ballXVel = -ballXVel;
-    playTone(100);
+    sound.playTone(100);
   }
 }
 

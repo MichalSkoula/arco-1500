@@ -78,6 +78,14 @@ static unsigned char logoBits[] = {
    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 
 };
 
+// soundtrack
+Song song = {
+  0, 
+  150, 
+  "eeeeeeegcde fffffeeeeddedg", 
+  { 1, 1, 2, 1, 1, 2, 1, 1, 1, 1, 4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 0} 
+};
+
 // constants
 const byte step = 4;
 const byte bitmapSize = 8;
@@ -122,6 +130,10 @@ void loop()
 {
   // main menu
   if (stage == 0) {
+    // play music in menu
+    sound.playSong(song);
+
+    // should we start?
     if (buttonPressed(START_BUTTON)) {
       stage = 1;
     }

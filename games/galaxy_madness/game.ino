@@ -11,7 +11,7 @@ void gameLoop()
   if (buttonDown(ACTION_BUTTON) && bulletY <= 0) {
     bulletX = playerX + bitmapSize / 2;
     bulletY = gameHeight - bitmapSize;
-    playTone(400);
+    sound.playTone(400);
   }
 
   // bullet exists?
@@ -34,7 +34,7 @@ void gameLoop()
     doctor[1] < playerY + bitmapSize && 
     doctor[1] + bitmapSize > playerY 
   ) {
-    playTone(500, 100);
+    sound.playTone(500, 100);
 
     // destroy doctor
     doctor[1] = random(-100, -20); // y
@@ -67,7 +67,7 @@ void gameLoop()
       trashes[i][1] + bitmapSize * trashes[i][2] > bulletY &&
       bulletY >= 0 //only bullets on screen :)
     ) {
-      playTone(200, 50);
+      sound.playTone(200, 50);
 
       // destroy bullet
       bulletY = -1;
@@ -99,7 +99,7 @@ void gameLoop()
       trashes[i][1] < playerY + bitmapSize && 
       trashes[i][1] + bitmapSize * trashes[i][2] > playerY 
     ) {
-      playTone(100, 100);
+      sound.playTone(100, 100);
 
       // destroy trash
       trashes[i][1] = 90;

@@ -23,11 +23,6 @@ void initGame(byte initFlags)
 	randomSeed(analogRead(0));
 }
 
-void playTone(int pitch, int time)
-{
-	tone(BUZZER_PIN, pitch, time);
-}
-
 void softReset()
 {
 	asm volatile("jmp 0");

@@ -48,7 +48,7 @@ void movement()
   }
 
   // step sound
-  playTone(500);
+  sound.playTone(500);
 
   // yes he can
   playerX = playerXnew;

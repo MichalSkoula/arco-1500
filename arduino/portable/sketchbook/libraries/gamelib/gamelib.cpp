@@ -23,7 +23,12 @@ void initGame(byte initFlags)
 	randomSeed(analogRead(0));
 }
 
+// TODO better? redefine g++ -include? wrap g++ -wrap?
 void softReset()
 {
-	asm volatile("jmp 0");
+#ifdef NOT_ARDUINO
+    exit(0);
+#else
+    asm volatile("jmp 0");
+#endif
 }

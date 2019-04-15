@@ -16,7 +16,7 @@ class Sound
 {
     private:
         static char notesNames[8];
-        static byte notesTones[8];
+        static int notesTones[8];
         
     public:
         void playTone(int pitch, int time = 10);

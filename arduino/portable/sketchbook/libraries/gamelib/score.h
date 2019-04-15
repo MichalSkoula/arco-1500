@@ -13,6 +13,9 @@ enum GameId {
 	GID_SNAKE
 };
 
+// TODO move from gamelib.h to different file and remove this forward declaration
+void softReset();
+
 using score_t = uint16_t;
 
 struct Score
@@ -33,14 +36,13 @@ static_assert(sizeof(Score) == 4, "Score struct size should be 4 bytes");
 // TODO Inner state size
 //
 // Format:
-// Saved to EEPROM (max 512 bytes of memory - score for ~36 games)
+// Saved to EEPROM (max 512 bytes of memory)
 // TODO checksum, probably not CRC? table too big? or CRC without table? too slow?
 //		this? https://en.wikipedia.org/wiki/Fletcher%27s_checksum#Fletcher-16
 // TODO problem with CRC/Checksum byte - it will be the most used cell
 // Format
-// fixed size 14 B = 1 B Header + 3 * 4 B Record + 1 B CRC
 // Header (1 B) 		GameId
-// Record (4 B)			Name + Score
+// N Records (N * 4 B)  Name + Score
 // 		Name (2 B)		3 characters A-Z
 //		Score (2 B)		uint
 // CRC (1 B)			TODO
@@ -49,8 +51,11 @@ template<int gameId>
 class ScoreTable
 {
 public:
-	enum { Size = 14 };		// ScoreTable size in EEPROM
-	enum { Count = 5 };		// Score count		// TODO constexpr
+    // Score count
+    static constexpr uint8_t Count = 5;
+
+    // ScoreTable size in EEPROM
+    static constexpr uint8_t Size = 1 + Count * sizeof(Score) + 1;
 
 	ScoreTable()
 	{
@@ -101,9 +106,7 @@ public:
 				stage = 2;
 			}
 		} else if (stage == 2 && buttonPressed(START_BUTTON)) {
-			// TODO return true/false instead?
-			// TODO redefine softReset for not_emulator and uncomment
-			softReset();
+            softReset();
 		}
 	}
 
@@ -128,7 +131,7 @@ private:
 	byte nameIndex = 0;
 	Score score;
 
-	// TODO better - currently ScoreTable is at offset gameId * Size (14 bytes)
+    // TODO better - currently ScoreTable is at offset gameId * Size
 	void init()
 	{
 		score = { 0, 0, 0, 0 };

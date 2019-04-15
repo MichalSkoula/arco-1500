@@ -17,7 +17,8 @@ byte buttonPin(byte button)
 
 bool buttonActive(byte button, byte state)
 {
-	return state == LOW; // everything is now INPUT_PULLUP
+    (void)button;
+    return state == LOW;        // everything is now INPUT_PULLUP
 }
 
 bool buttonDown(byte button)

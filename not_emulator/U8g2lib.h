@@ -20,6 +20,14 @@ constexpr int WINDOW_H = DISPLAY_H * RENDER_SCALE;
 	#define WINDOW_TITLE "not_emulator"
 #endif
 
+// TODO better fonts
+#ifndef FONT_BIG_PATH
+    #define FONT_BIG_PATH "/usr/share/fonts/dejavu/DejaVuSansMono.ttf"
+#endif
+#ifndef FONT_SMALL_PATH
+    #define FONT_SMALL_PATH "/usr/share/fonts/dejavu/DejaVuSansMono.ttf"
+#endif
+
 enum CircleFill
 {
 	U8G2_DRAW_UPPER_RIGHT 	= 0x01,
@@ -49,12 +57,16 @@ public:
 
 		//SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "1");		// linear filtering
 
-		smallFont = TTF_OpenFont("/usr/share/fonts/dejavu/DejaVuSansMono.ttf", 7);
-		if (!smallFont)
-			printf("SDL_ttf error: %s", TTF_GetError());
-		bigFont = TTF_OpenFont("/usr/share/fonts/dejavu/DejaVuSansMono.ttf", 15);
-		if (!bigFont)
-			printf("SDL_ttf error: %s", TTF_GetError());
+        smallFont = TTF_OpenFont(FONT_SMALL_PATH, 7);
+        if (!smallFont) {
+            printf("Failed to open small font: %s", TTF_GetError());
+            exit(1);
+        }
+        bigFont = TTF_OpenFont(FONT_BIG_PATH, 15);
+        if (!bigFont) {
+            printf("Failed to open big font: %s", TTF_GetError());
+            exit(1);
+        }
 		font = smallFont;
 		printCursor = { 0, 0, 0, 0 };
 	}

@@ -110,6 +110,18 @@ fi
 
 cat "$MAIN" >> "$BUILD/$MAIN"
 
+# TODO better fonts
+# font path in Fedora
+FONT="/usr/share/fonts/dejavu/DejaVuSansMono.ttf"
+if [ ! -f "$FONT" ]; then
+    # font path in Ubuntu
+    FONT="/usr/share/fonts/truetype/dejavu/DejaVuSansMono.ttf"
+    if [ ! -f "$FONT" ]; then
+        echo "Cannot find DejaVuSansMono.ttf font"
+        exit
+    fi
+fi
+
 # TODO cmake
 # TODO -Wconversion
 cd "$BUILD"
@@ -120,6 +132,7 @@ g++ -std=c++17                                                  \
     -I ".." -I "../$LIBS/gamelib"                               \
     -D "NOT_ARDUINO"                                            \
     -D "WINDOW_TITLE=\"not_emulator - $1\""                     \
+    -D "FONT_BIG_PATH=\"$FONT\"" -D "FONT_SMALL_PATH=\"$FONT\"" \
     -o "$1"                                                     \
     "$MAIN" ../Arduino.cpp ../EEPROM.cpp ../U8g2lib.cpp         \
     "../$LIBS/gamelib/"*.cpp                                    \

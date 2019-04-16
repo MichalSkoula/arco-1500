@@ -2,7 +2,6 @@
 
 # build all games
 # stops immediately if one of the games fails to compile
-# binaries are copied to directory bin
 
 # TODO skip games that were not modified
 #      binary modified time is newer than game files, gamelib files and not_emulator files
@@ -25,7 +24,6 @@ for game in $(ls ../games); do
 		echo "Failed to build '$game'"
 		exit 1
 	fi
-	mv "build/$game" "bin/$game"
 	echo
 done
 

@@ -138,4 +138,6 @@ g++ -std=c++17                                                  \
     "../$LIBS/gamelib/"*.cpp                                    \
 	-lSDL2 -lSDL2_ttf
 
+mv "$1" "../bin"
+
 echo "Done."

@@ -2,6 +2,7 @@
 game_uploader/.vs
 game_uploader/DIY-game-uploader/bin
 game_uploader/DIY-game-uploader/obj
+game_uploader/DIY-game-uploader/v15/*
 game_uploader/game_uploader.exe.config
 game_uploader/game_uploader.pdb
 

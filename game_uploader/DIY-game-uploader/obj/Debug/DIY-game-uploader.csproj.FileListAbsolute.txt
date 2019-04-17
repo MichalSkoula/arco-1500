@@ -19,3 +19,10 @@ C:\arduino\DIY-Arduino-Handheld-Game-Console\game_uploader\DIY-game-uploader\bin
 C:\arduino\DIY-Arduino-Handheld-Game-Console\game_uploader\DIY-game-uploader\bin\Debug\game_uploader.pdb
 C:\arduino\DIY-Arduino-Handheld-Game-Console\game_uploader\DIY-game-uploader\obj\Debug\game_uploader.exe
 C:\arduino\DIY-Arduino-Handheld-Game-Console\game_uploader\DIY-game-uploader\obj\Debug\game_uploader.pdb
+C:\arduino\arco-1500\game_uploader\DIY-game-uploader\obj\Debug\DIY-game-uploader.csprojAssemblyReference.cache
+C:\arduino\arco-1500\game_uploader\DIY-game-uploader\obj\Debug\DIY-game-uploader.csproj.CoreCompileInputs.cache
+C:\arduino\arco-1500\game_uploader\DIY-game-uploader\bin\Debug\game_uploader.exe.config
+C:\arduino\arco-1500\game_uploader\DIY-game-uploader\bin\Debug\game_uploader.exe
+C:\arduino\arco-1500\game_uploader\DIY-game-uploader\bin\Debug\game_uploader.pdb
+C:\arduino\arco-1500\game_uploader\DIY-game-uploader\obj\Debug\game_uploader.exe
+C:\arduino\arco-1500\game_uploader\DIY-game-uploader\obj\Debug\game_uploader.pdb

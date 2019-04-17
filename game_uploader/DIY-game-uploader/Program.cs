@@ -19,7 +19,16 @@ namespace DIY_game_uploader
         static void Main(string[] args)
         {
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("DIY Arduino Handheld Game Console Uploading Software\n");
+            
+            string title = @"
+           _____    ____  ___    __ _____  ___   ___  
+     /\   |  __ \ / ____/ __ \  /_ | ____|/ _ \ / _ \ 
+    /  \  | |__) | |   | |  | |  | | |__ | | | | | | |
+   / /\ \ |  _  /| |   | |  | |  | |___ \| | | | | | |
+  / ____ \| | \ \| |___| |__| |  | |___) | |_| | |_| |
+ /_/    \_\_|  \_\\_____\____/   |_|____/ \___/ \___/                                                      
+            ";
+            Console.WriteLine(title);
 
             // Drivers
             Driver driver = new Driver();

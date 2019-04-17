@@ -21,3 +21,8 @@ arduino/**
 !arduino/portable/sketchbook/libraries/
 !arduino/portable/sketchbook/libraries/gamelib/
 !arduino/portable/sketchbook/libraries/gamelib/**
+
+# docs jekyll
+docs/_site
+docs/.sass-cache
+docs/.jekyll-metadata

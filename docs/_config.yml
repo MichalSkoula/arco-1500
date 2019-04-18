@@ -13,29 +13,35 @@
 # you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
-title: ARCO 1500 - DIY Arduino Game Console
+title: ARCO 1500
 email: info@arco1500.com
 description: >- # this means to ignore newlines until "baseurl:"
-  Build your own gaming console, with your own games with ARCO 1500, DIY kit built on Arduino platform.
+  Build your own retro gaming console based on Arduino platform
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "https://www.arco1500.com" # the base hostname & protocol for your site, e.g. http://example.com
+url: "" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: MichalSkoula
 github_username:  MichalSkoula
+github:
+  repository_url: https://github.com/MichalSkoula/arco-1500
+  zip_url: http://example.com/download.zip
+bastlime_url: https://www.bastlime.eu
+
+show_downloads: true
+google_analytics: UA-43769753-37
+
+
 
 # Build settings
 markdown: kramdown
-theme: minima
+theme: jekyll-theme-hacker
 plugins:
   - jekyll-feed
 
 # Exclude from processing.
-# The following items will not be processed, by default. Create a custom list
-# to override the default setting.
-# exclude:
-#   - Gemfile
-#   - Gemfile.lock
-#   - node_modules
-#   - vendor/bundle/
-#   - vendor/cache/
-#   - vendor/gems/
-#   - vendor/ruby/
+exclude:
+   - Gemfile
+   - Gemfile.lock
+   - vendor/bundle/
+   - vendor/cache/
+   - vendor/gems/
+   - vendor/ruby/

@@ -6,7 +6,7 @@
 
 This option is the fastest way to get games to your game handheld and play!!
 
-1. Download latest release here [TODO] and extract it somewhere
+1. Download latest release here https://github.com/MichalSkoula/arco-1500/releases and extract it somewhere
 2. Install USB driver - run arduino/drivers/CH341SER/SETUP.EXE
 3. Connect your game console to PC
 4. Run game_uploader/game_uploader.exe

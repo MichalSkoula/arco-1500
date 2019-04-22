@@ -4,36 +4,6 @@
 # See: https://jekyllrb.com/docs/themes/#overriding-theme-defaults
 layout: default
 
-# Gallery files
-images:
-  
-
-prototypes:
-  - image_path: /assets/images/IMG_20190417_142112.jpg
-    title: 3D printed case v2
-  - image_path: /assets/images/IMG_20190416_205057.jpg
-    title: First printed case
-  - image_path: /assets/images/IMG_20190408_162205.jpg
-    title: Final prototype, without case
-  - image_path: /assets/images/IMG_20190126_205416.jpg
-    title: Abandoned PCB prototype
-  - image_path: /assets/images/IMG_20181127_153439.jpg
-    title: Different controls layout
-  - image_path: /assets/images/IMG_20181127_152401.jpg
-    title: DC/DC Booster to test out power supply
-  - image_path: /assets/images/IMG_20181105_225753.jpg
-    title: Arduino NANO version on tiny breadboards
-  - image_path: /assets/images/IMG_20181021_142213.jpg
-    title: First documented version with just one button and keypad
-
-games:
-  - image_path: /assets/images/IMG_20190416_205057.jpg
-    title: 3D printed case v1
-  - image_path: /assets/images/IMG_20190417_142112.jpg
-    title: 3D printed case v2
-  - image_path: /assets/images/IMG_20190417_142112.jpg
-    title: 3D printed case v2
-
 ---
 
 ## The gaming console, you've actually built!
@@ -63,7 +33,7 @@ You can also buy a nice, complete set and start in a few minutes. Visit our <a h
 You can write your own games too!
 
 <div class="photo-gallery">
-    {% for image in page.games %}
+    {% for image in site.data.games %}
         <a href="{{ image.image_path }}" data-fancybox="games" data-caption="{{ image.title}}">
             <figure>
                 <img src="{{ image.image_path }}" alt="{{ image.title}}" />
@@ -80,7 +50,7 @@ You can write your own games too!
 If you want proper game experience
 
 <div class="photo-gallery">
-    {% for image in page.images %}
+    {% for image in site.data.consoles %}
         <a href="{{ image.image_path }}" data-fancybox="gallery" data-caption="{{ image.title}}">
             <figure>
                 <img src="{{ image.image_path }}" alt="{{ image.title}}" />
@@ -97,7 +67,7 @@ If you want proper game experience
 Some development moments
 
 <div class="photo-gallery">
-    {% for image in page.prototypes %}
+    {% for image in site.data.prototypes %}
         <a href="{{ image.image_path }}" data-fancybox="prototypes" data-caption="{{ image.title}}">
             <figure>
                 <img src="{{ image.image_path }}" alt="{{ image.title}}" />

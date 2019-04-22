@@ -1,0 +1,10 @@
+- image_path: /assets/images/games/rpg.png
+  title: RPG project
+- image_path: /assets/images/games/snake.png
+  title: Snake
+- image_path: /assets/images/games/galaxy_madness.png
+  title: Galaxy Madness
+- image_path: /assets/images/games/the_pong.png
+  title: The Pong
+- image_path: /assets/images/games/game_of_life.png
+  title: Game of Life

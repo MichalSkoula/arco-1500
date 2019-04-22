@@ -30,13 +30,9 @@
         <h2>{{ site.description | default: site.github.project_tagline }}</h2>
 
         <section id="downloads">
-          {% if site.bastlime_url %}
             <a href="{{ site.bastlime_url }}" class="btn"><i class="fas fa-shopping-cart"></i> Buy</a>
-          {% endif %}
-          {% if site.show_downloads %}
-            <a href="{{ site.github.zip_url }}" class="btn"><i class="fas fa-file-archive"></i> Download</a>
-          {% endif %}
-          <a href="{{ site.github.repository_url }}" class="btn btn-github"><span class="icon"></span>GitHub</a>
+            <a href="{{ site.github_url }}" class="btn"><i class="fab fa-github"></i> GitHub</a>
+            <a href="{{ site.youtube_url }}" class="btn"><i class="fab fa-youtube"></i> YouTube</a>
         </section>
       </div>
     </header>

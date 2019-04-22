@@ -4,21 +4,101 @@
 # See: https://jekyllrb.com/docs/themes/#overriding-theme-defaults
 layout: default
 
+# Gallery files
 images:
+  
+
+prototypes:
+  - image_path: /assets/images/IMG_20190417_142112.jpg
+    title: 3D printed case v2
+  - image_path: /assets/images/IMG_20190416_205053.jpg
+    title: First printed case
+  - image_path: /assets/images/IMG_20190408_162205.jpg
+    title: Final prototype, without case
+  - image_path: /assets/images/IMG_20190126_205416.jpg
+    title: Abandoned PCB prototype
+  - image_path: /assets/images/IMG_20181127_153439.jpg
+    title: Different controls layout
+  - image_path: /assets/images/IMG_20181127_152401.jpg
+    title: DC/DC Booster to test out power supply
+  - image_path: /assets/images/IMG_20181105_225753.jpg
+    title: Arduino NANO version on tiny breadboards
+  - image_path: /assets/images/IMG_20181021_142213.jpg
+    title: First documented version with just one button and keypad
+
+games:
   - image_path: /assets/images/IMG_20190416_205053.jpg
     title: 3D printed case v1
+  - image_path: /assets/images/IMG_20190417_142112.jpg
+    title: 3D printed case v2
   - image_path: /assets/images/IMG_20190417_142112.jpg
     title: 3D printed case v2
 
 ---
 
-## More stuff coming soon
+## The gaming console, you've actually built!
 
-## Gallery 
+ARCO 1500 is an open source, 8 bit DIY gaming console - both software and hardware. It comes bundled with:
+
+- Arduino IDE (with U8G2 and our own Gamelib libraries)
+- Game Uploader - for easy games uploading to console (Windows)
+- Not Emulator - emulator for playing games on PCB (Linux)
+- Games - currently 5 extra funny games
+- Console case for 3D print
+
+
+### A/ I want to build it all alone, with my parts
+
+All you need is some affordable electronic stuff (Arduino), 3D printed case (optional) and programing skills. 
+No PCB, soldering - just Arduino, breadboard, OLED, joystick, buzzer and some jumper cables. Use the 
+<a href="{{ site.github_url }}">GitHub link</a> to get source files.
+
+### B/ Where can i buy it?
+
+You can also buy a nice, complete set and start in a few minutes. Visit our <a href="{{ site.bastlime_url }}">store</a>.
+
+
+## Games
+
+You can write your own games too!
+
+<div class="photo-gallery">
+    {% for image in page.games %}
+        <a href="{{ image.image_path }}" data-fancybox="games" data-caption="{{ image.title}}">
+            <figure>
+                <img src="{{ image.image_path }}" alt="{{ image.title}}" />
+                <figcaption>
+                    {{ image.title}}
+                </figcaption>
+            </figure>
+        </a>
+    {% endfor %}
+</div>
+
+## Game console
+
+If you want proper game experience
 
 <div class="photo-gallery">
     {% for image in page.images %}
         <a href="{{ image.image_path }}" data-fancybox="gallery" data-caption="{{ image.title}}">
+            <figure>
+                <img src="{{ image.image_path }}" alt="{{ image.title}}" />
+                <figcaption>
+                    {{ image.title}}
+                </figcaption>
+            </figure>
+        </a>
+    {% endfor %}
+</div>
+
+## Prototypes
+
+Some development moments
+
+<div class="photo-gallery">
+    {% for image in page.prototypes %}
+        <a href="{{ image.image_path }}" data-fancybox="prototypes" data-caption="{{ image.title}}">
             <figure>
                 <img src="{{ image.image_path }}" alt="{{ image.title}}" />
                 <figcaption>

@@ -4,28 +4,31 @@
 @import "{{ site.theme }}";
 
 $background: #181818;
-$break-small: 480px;
+$break-small: 768px;
 $break-large: 1200px;
 
 body {
-    background: $background;
-    background-image: none;
+    background-color: $background;
 }
 
 .btn {
     border-radius: 0;
 }
 
+h2, h3, h4 {
+    text-transform: capitalize; 
+}
+
 .photo-gallery {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between; /* or space-around */
 
     a {
-        width: calc(50% - 8px);
+        width: calc(33% - 8px);
         margin: 0;
         overflow: hidden;
         margin-bottom: 20px;
+        margin-right: 10px;
 
         @media screen and (max-width: $break-small) {
             width: calc(100% - 6px)

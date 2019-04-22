@@ -16,17 +16,16 @@
 title: ARCO 1500
 email: info@arco1500.com
 description: >- # this means to ignore newlines until "baseurl:"
-  Build your own retro gaming console based on Arduino platform
+  Build your own retro gaming console based on the Arduino platform
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
+
 twitter_username: MichalSkoula
 github_username:  MichalSkoula
-github:
-  repository_url: https://github.com/MichalSkoula/arco-1500
-  zip_url: https://github.com/MichalSkoula/arco-1500/releases
+github_url: https://github.com/MichalSkoula/arco-1500/releases
 bastlime_url: https://www.bastlime.eu
+youtube_url: https://www.youtube.com/playlist?list=PLZWNQlcHslXWuSwxoAaJYrSB9fYc1FXUI
 
-show_downloads: true
 google_analytics: UA-43769753-37
 
 

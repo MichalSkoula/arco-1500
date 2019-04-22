@@ -23,7 +23,7 @@ twitter_username: MichalSkoula
 github_username:  MichalSkoula
 github:
   repository_url: https://github.com/MichalSkoula/arco-1500
-  zip_url: http://example.com/download.zip
+  zip_url: https://github.com/MichalSkoula/arco-1500/releases
 bastlime_url: https://www.bastlime.eu
 
 show_downloads: true

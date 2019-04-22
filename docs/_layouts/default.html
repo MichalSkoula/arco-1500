@@ -12,6 +12,9 @@
     <script src="{{'/node_modules/@fancyapps/fancybox/dist/jquery.fancybox.min.js' | prepend: site.baseurl}}"></script>
     <link rel="stylesheet" href="{{'/node_modules/@fancyapps/fancybox/dist/jquery.fancybox.min.css' | prepend: site.baseurl}}">
 
+    <!-- font awesome -->
+    <link rel="stylesheet" href="{{'/node_modules/@fortawesome/fontawesome-free/css/all.min.css' | prepend: site.baseurl}}">
+
     <!-- own -->
     <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}">
     <script src="{{'/assets/js/main.js' | prepend: site.baseurl}}"></script>
@@ -28,12 +31,12 @@
 
         <section id="downloads">
           {% if site.bastlime_url %}
-            <a href="{{ site.bastlime_url }}" class="btn">Buy</a>
+            <a href="{{ site.bastlime_url }}" class="btn"><i class="fas fa-shopping-cart"></i> Buy</a>
           {% endif %}
           {% if site.show_downloads %}
-            <a href="{{ site.github.zip_url }}" class="btn">Download Software</a>
+            <a href="{{ site.github.zip_url }}" class="btn"><i class="fas fa-file-archive"></i> Download</a>
           {% endif %}
-          <a href="{{ site.github.repository_url }}" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
+          <a href="{{ site.github.repository_url }}" class="btn btn-github"><span class="icon"></span>GitHub</a>
         </section>
       </div>
     </header>

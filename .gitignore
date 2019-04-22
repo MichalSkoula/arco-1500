@@ -27,3 +27,8 @@ docs/_site
 docs/.sass-cache
 docs/.jekyll-metadata
 docs/_site
+docs/node_modules/@fortawesome/fontawesome-free/svgs
+docs/node_modules/@fortawesome/fontawesome-free/js
+docs/node_modules/@fortawesome/fontawesome-free/less
+docs/node_modules/@fortawesome/fontawesome-free/scss
+docs/node_modules/@fortawesome/fontawesome-free/sprites

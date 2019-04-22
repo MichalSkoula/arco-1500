@@ -12,5 +12,8 @@
   "dependencies": {
     "@fancyapps/fancybox": "^3.5.7",
     "jquery": "^3.4.0"
+  },
+  "devDependencies": {
+    "@fortawesome/fontawesome-free": "^5.8.1"
   }
 }

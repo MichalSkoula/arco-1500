@@ -11,7 +11,7 @@ images:
 prototypes:
   - image_path: /assets/images/IMG_20190417_142112.jpg
     title: 3D printed case v2
-  - image_path: /assets/images/IMG_20190416_205053.jpg
+  - image_path: /assets/images/IMG_20190416_205057.jpg
     title: First printed case
   - image_path: /assets/images/IMG_20190408_162205.jpg
     title: Final prototype, without case
@@ -27,7 +27,7 @@ prototypes:
     title: First documented version with just one button and keypad
 
 games:
-  - image_path: /assets/images/IMG_20190416_205053.jpg
+  - image_path: /assets/images/IMG_20190416_205057.jpg
     title: 3D printed case v1
   - image_path: /assets/images/IMG_20190417_142112.jpg
     title: 3D printed case v2

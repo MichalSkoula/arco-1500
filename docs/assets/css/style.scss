@@ -11,6 +11,10 @@ body {
     background-color: $background;
 }
 
+footer {
+    padding-bottom: 1em;
+}
+
 .btn {
     border-radius: 0;
 }
@@ -49,7 +53,7 @@ h2, h3, h4 {
             }
 
             figcaption {
-                margin-top:15px;
+                margin-top: 10px;
             }
         }   
     }    

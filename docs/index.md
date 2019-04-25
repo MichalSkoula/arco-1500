@@ -12,9 +12,9 @@ ARCO 1500 is an open source, 8 bit DIY gaming console - both software and hardwa
 
 - Arduino IDE (with U8G2 and our own Gamelib libraries)
 - Game Uploader - for easy games uploading to console (Windows)
-- Not Emulator - emulator for playing games on PCB (Linux)
-- Games - currently 5 extra funny games
-- Console case for 3D print
+- Not Emulator - emulator for playing games on PC, without console (Linux)
+- [Games](#games) - currently {{ site.data.games | size }} extra funny games
+- [Console case](#game-console) for 3D print
 
 
 ### A/ I want to build it all alone, with my parts
@@ -30,13 +30,13 @@ You can also buy a nice, complete set and start in a few minutes. Visit our <a h
 
 ## Games
 
-You can write your own games too!
+You can write your own games too! Currently {{ site.data.games | size }} games.
 
 <div class="photo-gallery">
     {% for image in site.data.games %}
-        <a href="{{ image.image_path }}" data-fancybox="games" data-caption="{{ image.title}}">
+        <a href="{{ image.image_path }}" data-fancybox="games-gallery" data-caption="{{ image.title | escape }}">
             <figure>
-                <img src="{{ image.image_path }}" alt="{{ image.title}}" />
+                <img src="{{ image.image_path }}" alt="{{ image.title | escape }}" />
                 <figcaption>
                     {{ image.title}}
                 </figcaption>
@@ -47,13 +47,13 @@ You can write your own games too!
 
 ## Game console
 
-If you want proper game experience
+If you want proper game experience.
 
 <div class="photo-gallery">
     {% for image in site.data.consoles %}
-        <a href="{{ image.image_path }}" data-fancybox="gallery" data-caption="{{ image.title}}">
+        <a href="{{ image.image_path }}" data-fancybox="console-gallery" data-caption="{{ image.title | escape }}">
             <figure>
-                <img src="{{ image.image_path }}" alt="{{ image.title}}" />
+                <img src="{{ image.image_path }}" alt="{{ image.title | escape }}" />
                 <figcaption>
                     {{ image.title}}
                 </figcaption>
@@ -62,15 +62,15 @@ If you want proper game experience
     {% endfor %}
 </div>
 
-## Prototypes
+## Prototypes / Development
 
-Some development moments
+Some development moments captured for your pleasure.
 
 <div class="photo-gallery">
     {% for image in site.data.prototypes %}
-        <a href="{{ image.image_path }}" data-fancybox="prototypes" data-caption="{{ image.title}}">
+        <a href="{{ image.image_path }}" data-fancybox="prototypes-gallery" data-caption="{{ image.title | escape }}">
             <figure>
-                <img src="{{ image.image_path }}" alt="{{ image.title}}" />
+                <img src="{{ image.image_path }}" alt="{{ image.title | escape }}" />
                 <figcaption>
                     {{ image.title}}
                 </figcaption>

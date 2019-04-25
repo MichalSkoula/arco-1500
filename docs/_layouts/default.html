@@ -8,6 +8,9 @@
     <!-- jquery -->
     <script src="{{'/node_modules/jquery/dist/jquery.min.js' | prepend: site.baseurl}}"></script>
 
+    <!-- smooth scroll -->
+    <script src="{{'/node_modules/jquery-smooth-scroll/jquery.smooth-scroll.min.js' | prepend: site.baseurl}}"></script>
+
     <!-- fancybox -->
     <script src="{{'/node_modules/@fancyapps/fancybox/dist/jquery.fancybox.min.js' | prepend: site.baseurl}}"></script>
     <link rel="stylesheet" href="{{'/node_modules/@fancyapps/fancybox/dist/jquery.fancybox.min.css' | prepend: site.baseurl}}">
@@ -42,6 +45,12 @@
         {{ content }}
       </section>
     </div>
+
+    <hr>
+
+    <footer class="container">
+      ©2019 <a href="{{ site.skoula_url }}">Michal Škoula</a>, David Donátek
+    </footer>
 
     {% if site.google_analytics %}
       <script>

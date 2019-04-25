@@ -20,14 +20,13 @@ description: >- # this means to ignore newlines until "baseurl:"
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 
-twitter_username: MichalSkoula
-github_username:  MichalSkoula
-github_url: https://github.com/MichalSkoula/arco-1500/releases
+# urls
+github_url: https://github.com/MichalSkoula/arco-1500/
 bastlime_url: https://www.bastlime.eu
 youtube_url: https://www.youtube.com/playlist?list=PLZWNQlcHslXWuSwxoAaJYrSB9fYc1FXUI
+skoula_url: https://www.skoula.cz
 
 google_analytics: UA-43769753-37
-
 
 
 # Build settings

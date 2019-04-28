@@ -3,9 +3,9 @@ layout: default
 
 ---
 
-## Uploading games to console
+## Play games on ARCO 1500
 
-### Option #1 (recommended) using our upload script
+### A/ Using our upload script (recommended, Windows only) 
 
 This option is the fastest way to get games to your game handheld and play!!
 
@@ -14,7 +14,9 @@ This option is the fastest way to get games to your game handheld and play!!
 3. Connect your game console to PC
 4. Run game_uploader/game_uploader.exe
 
-### Option #2 (advanced) using your own installed Arduino IDE
+<img src="{{ '/assets/images/arco-game-uploader.png' | prepend: site.baseurl }}">
+
+### B/ Using Arduino IDE
 
 This option is for those of you who want to see (and maybe edit) the source code of games and also create your own games!
 

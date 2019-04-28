@@ -1,32 +1,23 @@
 ---
-# You don't need to edit this file, it's empty on purpose.
-# Edit theme's home layout instead if you wanna make some changes
-# See: https://jekyllrb.com/docs/themes/#overriding-theme-defaults
 layout: default
 
 ---
 
-## The gaming console, you've actually built!
+## The gaming console, you can build by yourself!
 
-ARCO 1500 is an open source, 8 bit DIY gaming console - both software and hardware. It comes bundled with:
+ARCO 1500 is an open source, 8 bit DIY gaming console - both software and hardware. 
+
+### A/ *I want to build it all alone, with my parts* [See how to build it](/build.html).
+
+### B/ *I want to buy complete set.* [See where to buy it](/buy.html).
+
+It comes with:
 
 - Arduino IDE (with U8G2 and our own Gamelib libraries)
 - Game Uploader - for easy games uploading to console (Windows)
 - Not Emulator - emulator for playing games on PC, without console (Linux)
 - [Games](#games) - currently {{ site.data.games | size }} extra funny games
-- [Console case](#game-console) for 3D print
-
-
-### A/ I want to build it all alone, with my parts
-
-All you need is some affordable electronic stuff (Arduino), 3D printed case (optional) and programing skills. 
-No PCB, soldering - just Arduino, breadboard, OLED, joystick, buzzer and some jumper cables. Use the 
-<a href="{{ site.github_url }}">GitHub link</a> to get source files.
-
-### B/ Where can i buy it?
-
-You can also buy a nice, complete set and start in a few minutes. Visit our <a href="{{ site.bastlime_url }}">store</a>.
-
+- 3D printed [Console case](#game-console) 
 
 ## Games
 

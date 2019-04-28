@@ -33,9 +33,16 @@
         <h2>{{ site.description | default: site.github.project_tagline }}</h2>
 
         <section id="downloads">
-            <a href="{{ site.bastlime_url }}" class="btn"><i class="fas fa-shopping-cart"></i> Buy</a>
-            <a href="{{ site.github_url }}" class="btn"><i class="fab fa-github"></i> GitHub</a>
-            <a href="{{ site.youtube_url }}" class="btn"><i class="fab fa-youtube"></i> YouTube</a>
+            <a href="/" class="btn {% if page.url == '/' %} active {% endif %}"><i class="fas fa-home"></i> Home</a>
+            <a href="/buy.html" class="btn {% if page.url == '/buy.html' %} active {% endif %}"><i class="fas fa-shopping-cart"></i> Buy</a>
+            <a href="/build.html" class="btn {% if page.url == '/build.html' %} active {% endif %} "><i class="fas fa-hammer"></i> Build</a>
+            <a href="/play.html" class="btn {% if page.url == '/play.html' %} active {% endif %}"><i class="fas fa-gamepad"></i> Play</a>
+            
+            <div class="pull-right">
+              <a href="{{ site.youtube_url }}" class="btn" target="_blank"><i class="fab fa-youtube"></i> </a>
+              <a href="{{ site.facebook_url }}" class="btn" target="_blank"><i class="fab fa-facebook"></i> </a>
+              <a href="{{ site.github_url }}" class="btn" target="_blank"><i class="fab fa-github"></i> </a>
+            </div>
         </section>
       </div>
     </header>

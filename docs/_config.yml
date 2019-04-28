@@ -22,9 +22,10 @@ url: "" # the base hostname & protocol for your site, e.g. http://example.com
 
 # urls
 github_url: https://github.com/MichalSkoula/arco-1500/
-bastlime_url: https://www.bastlime.eu
+bastlime_url: https://www.en.bastlime.eu
 youtube_url: https://www.youtube.com/playlist?list=PLZWNQlcHslXWuSwxoAaJYrSB9fYc1FXUI
 skoula_url: https://www.skoula.cz
+facebook_url: https://www.facebook.com/ARCO-1500-494530131084329
 
 google_analytics: UA-43769753-37
 

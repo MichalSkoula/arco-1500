@@ -4,6 +4,8 @@
 @import "{{ site.theme }}";
 
 $background: #181818;
+$green: #b5e53a;
+$grey: #666;
 $break-small: 768px;
 $break-large: 1200px;
 
@@ -17,10 +19,18 @@ footer {
 
 .btn {
     border-radius: 0;
+
+    &.active {
+        color: $green;
+    }
 }
 
 h2, h3, h4 {
     text-transform: capitalize; 
+}
+
+.pull-right {
+    float: right;
 }
 
 .photo-gallery {

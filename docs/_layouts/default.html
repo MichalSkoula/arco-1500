@@ -15,8 +15,9 @@
     <script src="{{'/node_modules/@fancyapps/fancybox/dist/jquery.fancybox.min.js' | prepend: site.baseurl}}"></script>
     <link rel="stylesheet" href="{{'/node_modules/@fancyapps/fancybox/dist/jquery.fancybox.min.css' | prepend: site.baseurl}}">
 
-    <!-- font awesome -->
+    <!-- fonts -->
     <link rel="stylesheet" href="{{'/node_modules/@fortawesome/fontawesome-free/css/all.min.css' | prepend: site.baseurl}}">
+    <link href="https://fonts.googleapis.com/css?family=Racing+Sans+One&amp;subset=latin-ext" rel="stylesheet"> 
 
     <!-- own -->
     <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}">
@@ -29,7 +30,7 @@
 
     <header>
       <div class="container">
-        <h1>{{ site.title | default: site.github.repository_name }}</h1>
+        <h1>ARCO <span>1500</span></h1>
         <h2>{{ site.description | default: site.github.project_tagline }}</h2>
 
         <section id="downloads">
@@ -39,9 +40,9 @@
             <a href="/play.html" class="btn {% if page.url == '/play.html' %} active {% endif %}"><i class="fas fa-gamepad"></i> Play</a>
             
             <div class="pull-right">
-              <a href="{{ site.youtube_url }}" class="btn" target="_blank"><i class="fab fa-youtube"></i> </a>
-              <a href="{{ site.facebook_url }}" class="btn" target="_blank"><i class="fab fa-facebook"></i> </a>
-              <a href="{{ site.github_url }}" class="btn" target="_blank"><i class="fab fa-github"></i> </a>
+              <a href="{{ site.youtube_url }}" class="white fa-2x" target="_blank"><i class="fab fa-youtube"></i></a>
+              <a href="{{ site.facebook_url }}" class="white fa-2x" target="_blank"><i class="fab fa-facebook"></i></a>
+              <a href="{{ site.github_url }}" class="white fa-2x" target="_blank"><i class="fab fa-github"></i></a>
             </div>
         </section>
       </div>
@@ -53,9 +54,8 @@
       </section>
     </div>
 
-    <hr>
-
     <footer class="container">
+      -- <br>
       ©2019 <a href="{{ site.skoula_url }}">Michal Škoula</a>, David Donátek
     </footer>
 

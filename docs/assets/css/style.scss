@@ -5,32 +5,91 @@
 
 $background: #181818;
 $green: #b5e53a;
+$blue: #b0f0fd;
+$purple: #e2a2e3;
 $grey: #666;
+$white: #eaeaea;
+
 $break-small: 768px;
 $break-large: 1200px;
 
+
+html {
+    min-height: 100%;
+}
+
 body {
+    min-height: 100%;
     background-color: $background;
+    background: url("../images/background.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+
+    @media screen and (max-width: $break-small) {
+        background: none;
+        background-color: $background;
+    }
+}
+
+header {
+    margin-bottom: 25px;
+    padding-bottom: 5px;
+}
+
+header {
+    border-bottom: 2px solid $blue;
 }
 
 footer {
     padding-bottom: 1em;
 }
 
-.btn {
-    border-radius: 0;
+a {
+    color: $blue;
+}
 
-    &.active {
-        color: $green;
+ul li {
+    list-style-image: url("../images/bullet.png");
+}
+
+h1 {
+    font-family: 'Racing Sans One', cursive !important;
+    font-size: 4em !important;
+    margin: 0em !important;
+    display: inline;
+
+    span {
+        color: $purple;
+    }
+
+    &:before {
+        content: "" !important;
+
     }
 }
 
-h2, h3, h4 {
-    text-transform: capitalize; 
+h1, h2, h3, h4 {
+    text-transform: capitalize;
+    color: $blue !important;
+}
+
+.btn {
+    border-radius: 0;
+    font-size: 1em;
+    margin: 0 0 0.5em 0 !important;
+
+    &.active {
+        color: $blue;
+    }
 }
 
 .pull-right {
     float: right;
+}
+
+.white {
+    color: $white;
 }
 
 .photo-gallery {

@@ -59,13 +59,12 @@ h1 {
     margin: 0em !important;
     display: inline;
 
-    span {
-        color: $purple;
+    img {
+        height: 100px;
     }
 
     &:before {
         content: "" !important;
-
     }
 }
 

@@ -18,6 +18,9 @@ namespace DIY_game_uploader
 
         static void Main(string[] args)
         {
+            
+            Console.SetWindowSize(80, 40);
+            Console.SetBufferSize(80, 40);
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.Beep(1500, 500);
 

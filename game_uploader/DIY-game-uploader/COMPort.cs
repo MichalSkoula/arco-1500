@@ -15,6 +15,7 @@ namespace DIY_game_uploader
         public void printCOMPorts()
         {
             Console.WriteLine("Available COM ports:");
+
             availablePortNumbers = new List<int>();
             foreach (string s in System.IO.Ports.SerialPort.GetPortNames())
             {

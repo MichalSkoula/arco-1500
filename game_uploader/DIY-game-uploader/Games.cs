@@ -14,16 +14,19 @@ namespace DIY_game_uploader
         private int gameNumber;
         private string[] availableGames;
 
-        public void printGames()
+        public bool printGames()
         {
             gamesFolder = getGamesFolder();
             if (gamesFolder == "")
             {
                 Console.WriteLine("Game folder not found");
+                Console.Beep(500, 3000);
+                return false;
             }
 
             // get available games
             Console.WriteLine("\nAvailable games:");
+
             availableGames = Directory.GetDirectories(gamesFolder);
             int i = 0;
             string gameTitle;
@@ -33,6 +36,8 @@ namespace DIY_game_uploader
                 Console.WriteLine(i + ": " + gameTitle);
                 i++;
             }
+
+            return true;
         }
 
         public string selectGame()

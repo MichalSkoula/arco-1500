@@ -12,6 +12,7 @@ namespace DIY_game_uploader
         public bool CheckDriver()
         {
             Console.WriteLine("Checking USB driver");
+
             SelectQuery query = new SelectQuery("Win32_SystemDriver");
             query.Condition = "Name like '%CH341%'";
             ManagementObjectSearcher searcher = new ManagementObjectSearcher(query);
@@ -23,6 +24,7 @@ namespace DIY_game_uploader
             else
             {
                 Console.WriteLine("USB driver not found. Please, install it first - arduino\\drivers\\CH341SER\\SETUP.EXE\n");
+                Console.Beep(500, 3000);
                 Console.ReadKey();
                 Environment.Exit(1);
                 return false;

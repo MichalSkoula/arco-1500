@@ -14,7 +14,7 @@ This option is the fastest way to get games to your game handheld and play!!
 3. Connect your game console to PC
 4. Run game_uploader/game_uploader.exe
 
-<img src="{{ '/assets/images/arco-game-uploader.png' | prepend: site.baseurl }}">
+<img src="{{ '/assets/images/arco-game-uploader.png' | prepend: site.baseurl }}" class="img-responsive">
 
 ### B/ Using Arduino IDE
 

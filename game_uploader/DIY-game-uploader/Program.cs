@@ -18,8 +18,12 @@ namespace DIY_game_uploader
 
         static void Main(string[] args)
         {
-            Console.ForegroundColor = ConsoleColor.Green;
             
+            Console.SetWindowSize(80, 40);
+            Console.SetBufferSize(80, 40);
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.Beep(1500, 500);
+
             string title = @"
            _____    ____  ___    __ _____  ___   ___  
      /\   |  __ \ / ____/ __ \  /_ | ____|/ _ \ / _ \ 
@@ -41,7 +45,11 @@ namespace DIY_game_uploader
 
             // Games
             Games games = new Games();
-            games.printGames();
+            bool isFolderOk = games.printGames();
+            if (!isFolderOk)
+            {
+                return;
+            }
             string game = games.selectGame();
 
             // Upload

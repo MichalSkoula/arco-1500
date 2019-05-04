@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace DIY_game_uploader
@@ -21,18 +22,41 @@ namespace DIY_game_uploader
             
             Console.SetWindowSize(80, 40);
             Console.SetBufferSize(80, 40);
-            Console.ForegroundColor = ConsoleColor.Cyan;
             Console.Beep(1500, 500);
 
+            // print nice ASCI logo
             string title = @"
-           _____    ____  ___    __ _____  ___   ___  
-     /\   |  __ \ / ____/ __ \  /_ | ____|/ _ \ / _ \ 
-    /  \  | |__) | |   | |  | |  | | |__ | | | | | | |
-   / /\ \ |  _  /| |   | |  | |  | |___ \| | | | | | |
-  / ____ \| | \ \| |___| |__| |  | |___) | |_| | |_| |
- /_/    \_\_|  \_\\_____\____/   |_|____/ \___/ \___/                                                      
-            ";
-            Console.WriteLine(title);
+           _____   _____ ____    _ ___  __   __  
+     /\   |  __ \ / ____/ __ \  / | __|/  \ /  \ 
+    /  \  | |__) | |   | |  | | | |__ \ () | () |
+   / /\ \ |  _  /| |   | |  | | |_|___/\__/ \__/ 
+  / ____ \| | \ \| |___| |__| |                  
+ /_/    \_\_|  \_\\_____\____/
+";
+            //Console.WriteLine(title);
+
+            int i = 0;
+            foreach (char l in title)
+            {
+                if (i <= 32)
+                {
+                    Console.ForegroundColor = ConsoleColor.Cyan;
+                } else
+                {
+                    Console.ForegroundColor = ConsoleColor.Magenta;
+                }
+                Console.Write(l);
+                Thread.Sleep(3); // sleep for 10 milliseconds   
+
+                i++;
+                if (i > 50)
+                {
+                    i = 0;
+                }
+            }
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine(" __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ ");
+            Console.WriteLine();
 
             // Drivers
             Driver driver = new Driver();

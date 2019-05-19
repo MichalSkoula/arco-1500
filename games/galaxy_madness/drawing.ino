@@ -24,7 +24,7 @@ void pictureLoop()
 
 void drawMenu()
 {
-  display.drawXBM(4, 0, 120, 40, logoBits);
+  display.drawXBM(8, 1, 111, 34, logoBits);
   display.drawSmallText(25, 55, "press the start");
 }
 

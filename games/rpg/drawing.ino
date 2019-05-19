@@ -35,10 +35,12 @@ void drawMenu()
   display.drawFrame(0, 0, 128, 64);
 
   // logo
-  display.drawText(15, 15, "DIY Handheld Game");
+  display.drawSmallText(5, 15, "THE UNFINIDSHED");
+  display.drawBigText(53, 30, "RPG");
+  display.drawSmallText(45, 40, "PROJECT");
   
   // text
-  display.drawText(20, 55, "press the start");
+  display.drawSmallText(29, 57, "press the start");
 }
 
 void drawWin()

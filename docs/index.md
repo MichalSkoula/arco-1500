@@ -23,7 +23,7 @@ You can write your own games too! Currently {{ site.data.games | size }} games.
     {% for image in site.data.games %}
         <a href="{{ image.image_path }}" data-fancybox="games-gallery" data-caption="{{ image.title | escape }}">
             <figure>
-                <img src="{{ image.image_path }}" alt="{{ image.title | escape }}" />
+                <img data-src="{{ image.image_path }}" alt="{{ image.title | escape }}" />
                 <figcaption>
                     {{ image.title}}
                 </figcaption>
@@ -40,7 +40,7 @@ If you want proper game experience.
     {% for image in site.data.consoles %}
         <a href="{{ image.image_path }}" data-fancybox="console-gallery" data-caption="{{ image.title | escape }}">
             <figure>
-                <img src="{{ image.image_path }}" alt="{{ image.title | escape }}" />
+                <img data-src="{{ image.image_path }}" alt="{{ image.title | escape }}" />
                 <figcaption>
                     {{ image.title}}
                 </figcaption>
@@ -57,7 +57,7 @@ Some development moments captured for your pleasure.
     {% for image in site.data.prototypes %}
         <a href="{{ image.image_path }}" data-fancybox="prototypes-gallery" data-caption="{{ image.title | escape }}">
             <figure>
-                <img src="{{ image.image_path }}" alt="{{ image.title | escape }}" />
+                <img data-src="{{ image.image_path }}" alt="{{ image.title | escape }}" />
                 <figcaption>
                     {{ image.title}}
                 </figcaption>

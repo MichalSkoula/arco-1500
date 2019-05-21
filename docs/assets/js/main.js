@@ -1,7 +1,7 @@
 $(document).ready(function() {
-    $('[data-fancybox="gallery"]').fancybox({
-        // Options will go here
-    });
+    $('[data-fancybox="gallery"]').fancybox();
 
     $('a[href ^= "#"').smoothScroll();
+
+    $("img[data-src]").Lazy();
 });

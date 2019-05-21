@@ -5,23 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- jquery -->
-    <script src="{{'/node_modules/jquery/dist/jquery.min.js' | prepend: site.baseurl}}"></script>
-
-    <!-- smooth scroll -->
-    <script src="{{'/node_modules/jquery-smooth-scroll/jquery.smooth-scroll.min.js' | prepend: site.baseurl}}"></script>
-
     <!-- fancybox -->
-    <script src="{{'/node_modules/@fancyapps/fancybox/dist/jquery.fancybox.min.js' | prepend: site.baseurl}}"></script>
-    <link rel="stylesheet" href="{{'/node_modules/@fancyapps/fancybox/dist/jquery.fancybox.min.css' | prepend: site.baseurl}}">
+    <link rel="stylesheet" href="{{'/assets/css/jquery.fancybox.min.css' | prepend: site.baseurl}}">
 
     <!-- fonts -->
-    <link rel="stylesheet" href="{{'/node_modules/@fortawesome/fontawesome-free/css/all.min.css' | prepend: site.baseurl}}">
+    <link rel="stylesheet" href="{{'/assets/css/fontawesome.all.min.css' | prepend: site.baseurl}}">
     <link href="https://fonts.googleapis.com/css?family=Racing+Sans+One&amp;subset=latin-ext" rel="stylesheet"> 
 
     <!-- own -->
     <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}">
-    <script src="{{'/assets/js/main.js' | prepend: site.baseurl}}"></script>
 
     <!-- favicon -->
     <link rel="icon" type="image/png" href="{{ '/assets/images/favicon.png' | prepend: site.baseurl }}">
@@ -62,6 +54,21 @@
       -- <br>
       ©2019 <a href="{{ site.skoula_url }}">Michal Škoula</a>, David Donátek
     </footer>
+
+    <!-- jquery -->
+    <script src="{{'/assets/js/jquery.min.js' | prepend: site.baseurl}}"></script>
+
+    <!-- lazy load -->
+    <script src="{{'/assets/js/jquery.lazy.min.js' | prepend: site.baseurl}}"></script>
+
+    <!-- smooth scroll -->
+    <script src="{{'/assets/js/jquery.smooth-scroll.min.js' | prepend: site.baseurl}}"></script>
+
+    <!-- fancybox -->
+    <script src="{{'/assets/js/jquery.fancybox.min.js' | prepend: site.baseurl}}"></script>
+
+    <!-- own -->
+    <script src="{{'/assets/js/main.js' | prepend: site.baseurl}}"></script>
 
     {% if site.google_analytics %}
       <script>

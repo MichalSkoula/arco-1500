@@ -7,4 +7,4 @@ layout: default
 
 The setup is simple:
 
-<img src="{{ '/assets/images/arco-fritzing.png' | prepend: site.baseurl }}"  class="img-responsive">
+<img data-src="{{ '/assets/images/arco-fritzing.png' | prepend: site.baseurl }}"  class="img-responsive">

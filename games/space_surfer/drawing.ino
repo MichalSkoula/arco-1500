@@ -1,29 +1,3 @@
-void pictureLoop()
-{
-    display.firstPage();
-    do {
-        // decide what to draw at this iteration
-        switch (stage) {
-            case 0:
-                drawGrid();
-                drawMenu();
-                break;
-            case 1:
-                drawGrid();
-                drawGame();
-                break;
-            case 2:
-                scoreTable.draw();
-                break;
-            default:
-                break;
-        }
-    } while (display.nextPage());
-
-    // rebuild the picture after some delay
-    delay(40);
-}
-
 void drawGrid()
 {
     // vertical lines - first are manual, because of negative coordinates fucks up the direction
@@ -58,6 +32,16 @@ void drawMenu()
 
 void drawGame()
 {
-    display.drawXBM(player.x, player.y, player.width, player.height, playerBits);
+    display.drawSmallText(4, 8, "SCORE " + (String)scoreTable.getScore());
+
+    display.drawSmallText(65, 8, "HEALTH");
+    display.drawFrame(98, 2, 30, 6);
+    display.drawBox(98, 2, player.health / 3.33, 6);
+
+    for (int i = 0; i < enemiesCount; i++) {
+        enemies[i].draw();
+    }
+
+    player.draw();
 }
 

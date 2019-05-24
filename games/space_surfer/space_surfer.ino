@@ -1,62 +1,160 @@
 #include <gamelib.h>
 
-// 0        menu
-// 1        game
-// 2        score table
-byte stage = 0;
+/* headers ------------------------------------------------------------------ */
+boolean circleRect(float cx, float cy, float radius, float rx, float ry, float rw, float rh);
 
-// grid lines
+/* graphics ------------------------------------------------------------------ */
+static unsigned char playerBits[] = { 0x1e, 0x1e, 0x0c, 0x3f, 0x0c, 0x1e, 0x12, 0x3f };
+
 byte lines[] = { 0, 16 };
 const byte linesCount = sizeof(lines) / sizeof(lines[0]);
 
-// bitmaps
-static unsigned char playerBits[] = { 0x1e, 0x1e, 0x0c, 0x3f, 0x0c, 0x1e, 0x12, 0x3f };
 
-struct Player {
-    byte x = 60;
-    byte y = 54;
-    byte width = 6;
-    byte height = 8;
-    byte step = 6;
-    byte health = 100;
-};
-Player player;
-
+/* classes ------------------------------------------------------------------ */
 struct Game {
     byte gridWidth = 128;
     byte gridHeight = 32;
-};
-Game game;
 
+    byte gameWidth = 128;
+    byte gameHeight = 64;
+
+    byte speed = 2;
+
+    // 0        menu
+    // 1        game
+    // 2        score table
+    byte stage = 0;
+} game;
+
+class Player {
+    public:
+        byte x = 60;
+        byte y = 54;
+        byte width = 6;
+        byte height = 8;
+        byte step = 6;
+        byte health = 100;
+
+        void draw()
+        {
+            display.drawXBM(x, y, width, height, playerBits);
+        }
+
+        void hurt(byte strength)
+        {
+            if (health - strength < 0) {
+                game.stage = 2;
+            } else {
+                health -= strength;
+            }
+            sound.playTone(100, 30);
+        }
+
+        void checkMovement()
+        {
+            if (buttonDown(LEFT_BUTTON) && x - step >= 0) {
+                moveHorizontal(-1);
+            } else if (buttonDown(RIGHT_BUTTON) && x + width + step < game.gridWidth) {
+                moveHorizontal(1);
+            } else if (buttonDown(UP_BUTTON) && y - step > game.gridHeight) {
+                moveVertical(-1);
+            } else if (buttonDown(DOWN_BUTTON) && y + height + step < game.gridHeight * 2) {
+                moveVertical(1);
+            } 
+        }
+
+        void moveHorizontal(int movement)
+        {
+            x += step * movement;
+            sound.playTone(200);
+        }
+
+        void moveVertical(int movement)
+        {
+            y += step * movement;
+            sound.playTone(200);
+        }
+} player;
+
+
+class Enemy {
+    public:
+        byte x;
+        byte y;
+        byte sizeCoeff;
+        byte strength;
+
+        void die()
+        {
+            y = game.gridHeight - (game.gridHeight / sizeCoeff) * 2;
+            x = random(4, 124);
+        }
+
+        void move()
+        {
+            y += game.speed;
+        }
+
+        void draw()
+        {
+            if (y > game.gridHeight - (y / sizeCoeff) * 2) {
+                display.drawDisc(x, y, y / sizeCoeff);
+            }
+        }
+
+        boolean checkCollision()
+        {
+            return circleRect(x, y, y / sizeCoeff, player.x, player.y, player.width, player.height);
+        }
+};
+Enemy enemies[] = { 
+    { 10, 0, 10, 40 },
+    { 80, 10, 12, 35 },
+    { 50, 0, 14, 30 },
+    { 110, 20, 16, 25 },
+};
+const byte enemiesCount = sizeof(enemies) / sizeof(enemies[0]);
 
 ScoreTable<GID_SURFER> scoreTable;
+
 
 /* functions ------------------------------------------------------------------ */
 
 void gameLoop()
 {
-    // keypad movement
-    if (buttonDown(LEFT_BUTTON) && player.x - player.step >= 0) {
-        player.x -= player.step;
-        sound.playTone(100);
-    } else if (buttonDown(RIGHT_BUTTON) && player.x + player.width + player.step < game.gridWidth) {
-        player.x += player.step;
-        sound.playTone(100);
-    } else if (buttonDown(UP_BUTTON) && player.y - player.step > game.gridHeight) {
-        player.y -= player.step;
-        sound.playTone(100);
-    } else if (buttonDown(DOWN_BUTTON) && player.y + player.height + player.step < game.gridHeight * 2) {
-        player.y += player.step;
-        sound.playTone(100);
-    } 
+    // player movement
+    player.checkMovement();
 
     // move grid lines 
-    for (int x = 0; x < linesCount; x++) {
-        lines[x] += 2;
-        if (lines[x] > game.gridHeight) {
-            lines[x] = 0;
+    for (int i = 0; i < linesCount; i++) {
+        lines[i] += game.speed;
+        if (lines[i] > game.gridHeight) {
+            lines[i] = 0;
         }
-    } 
+    }
+
+    // move enemies
+    for (int i = 0; i < enemiesCount; i++) {
+        enemies[i].move();
+        
+        if (enemies[i].y > game.gameHeight) {
+            enemies[i].die();
+        }
+    }
+
+    // collisions
+    for (int i = 0; i < enemiesCount; i++) {
+        if (enemies[i].checkCollision()) {
+            enemies[i].die();
+            player.hurt(enemies[i].strength);
+        }
+    }
+
+    if (game.stage == 1) {
+        scoreTable.addScore(1);
+    } else if (game.stage == 2) {
+        scoreTable.update();
+    }
 }
 
 
@@ -69,21 +167,42 @@ void setup(void)
 /* loop -------------------------------------------------------------------- */
 void loop(void) 
 {
-
     // main menu
-    if (stage == 0) {
+    if (game.stage == 0) {
         // should we start?
         if (buttonPressed(START_BUTTON)) {
-            stage = 1;
+            game.stage = 1;
         }
     }
   
-    if (stage == 1) {
+    // game or game over
+    if (game.stage == 1) {
         gameLoop();
-    } else if (stage == 2) {
+    } else if (game.stage == 2) {
         scoreTable.update();
     }
 
-    //draw everything
-    pictureLoop();
+    // draw everything
+    display.firstPage();
+    do {
+        // decide what to draw at this iteration
+        switch (game.stage) {
+            case 0:
+                drawGrid();
+                drawMenu();
+                break;
+            case 1:
+                drawGrid();
+                drawGame();
+                break;
+            case 2:
+                scoreTable.draw();
+                break;
+            default:
+                break;
+        }
+    } while (display.nextPage());
+
+    // rebuild the picture after some delay
+    delay(30);
 }

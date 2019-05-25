@@ -12,6 +12,7 @@
 #define pgm_read_byte(addr) (*(const unsigned char *)(addr))
 
 using byte = unsigned char;
+using boolean = bool;
 
 enum PinLevel
 {

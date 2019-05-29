@@ -8,9 +8,12 @@
     <!-- fancybox -->
     <link rel="stylesheet" href="{{'/assets/css/jquery.fancybox.min.css' | prepend: site.baseurl}}">
 
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="{{'/assets/css/bootstrap.min.css' | prepend: site.baseurl}}">
+
     <!-- fonts -->
     <link rel="stylesheet" href="{{'/assets/css/fontawesome.all.min.css' | prepend: site.baseurl}}">
-    <link href="https://fonts.googleapis.com/css?family=Racing+Sans+One&amp;subset=latin-ext" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css?family=Racing+Sans+One&amp;subset=latin-ext&amp;display=optional" rel="stylesheet"> 
 
     <!-- own -->
     <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}">
@@ -24,35 +27,59 @@
   <body>
 
     <header>
-      <div class="container">
-        <h1><img src="{{ '/assets/images/arco_logo_wide.png' | prepend: site.baseurl }}" alt="{{ site.title }}" title="{{ site.title }}" class="img-responsive"></h1>
-        <h2>{{ site.description | default: site.github.project_tagline }}</h2>
+        <div class="container">
+            <h1><img src="{{ '/assets/images/arco_logo_wide.png' | prepend: site.baseurl }}" alt="{{ site.title }}" title="{{ site.title }}" class="img-responsive"></h1>
+            <h2>{{ site.description | default: site.github.project_tagline }}</h2>
 
-        <section id="downloads">
-            <a href="/" class="btn {% if page.url == '/' %} active {% endif %}"><i class="fas fa-home"></i> Home</a>
-            <a href="/get.html" class="btn {% if page.url == '/get.html' %} active {% endif %}"><i class="fas fa-shopping-cart"></i> Get</a>
-            <a href="/make.html" class="btn {% if page.url == '/make.html' %} active {% endif %} "><i class="fas fa-hammer"></i> Make</a>
-            <a href="/play.html" class="btn {% if page.url == '/play.html' %} active {% endif %}"><i class="fas fa-gamepad"></i> Play</a>
-            
-            <div class="pull-right">
-              <a href="{{ site.facebook_url }}" class="white fa-2x" target="_blank"><i class="fab fa-facebook"></i></a>
-              <a href="{{ site.twitter_url }}" class="white fa-2x" target="_blank"><i class="fab fa-twitter"></i></a>
-              <a href="{{ site.youtube_url }}" class="white fa-2x" target="_blank"><i class="fab fa-youtube"></i></a>
-              <a href="{{ site.github_url }}" class="white fa-2x" target="_blank"><i class="fab fa-github"></i></a>
-            </div>
-        </section>
-      </div>
+            <section id="downloads" class="row justify-content-between">
+                <div class="col-6">
+                    <a href="/" class="btn {% if page.url == '/' %} active {% endif %}"><i class="fas fa-home"></i> Home</a>
+                    <a href="/get.html" class="btn {% if page.url == '/get.html' %} active {% endif %}"><i class="fas fa-shopping-cart"></i> Get</a>
+                    <a href="/make.html" class="btn {% if page.url == '/make.html' %} active {% endif %} "><i class="fas fa-hammer"></i> Make</a>
+                    <a href="/play.html" class="btn {% if page.url == '/play.html' %} active {% endif %}"><i class="fas fa-gamepad"></i> Play</a>
+                </div>
+                
+                <div class="col-6 text-right">
+                    <a href="{{ site.facebook_url }}" class="white fa-2x" target="_blank"><i class="fab fa-facebook"></i></a>
+                    <a href="{{ site.twitter_url }}" class="white fa-2x" target="_blank"><i class="fab fa-twitter"></i></a>
+                    <a href="{{ site.youtube_url }}" class="white fa-2x" target="_blank"><i class="fab fa-youtube"></i></a>
+                    <a href="{{ site.github_url }}" class="white fa-2x" target="_blank"><i class="fab fa-github"></i></a>
+                </div>
+            </section>
+        </div>
+        <hr>
     </header>
 
     <div class="container">
-      <section id="main_content">
-        {{ content }}
-      </section>
+        <section id="main_content">
+            {{ content }}
+        </section>
     </div>
 
-    <footer class="container">
-      -- <br>
-      ©2019 <a href="{{ site.skoula_url }}">Michal Škoula</a>, David Donátek
+    <footer>
+        <hr>
+        <div class="container">
+            <div class="row justify-content-between">
+                <div class="col-4">
+                    ©2019<br>
+                    <a href="{{ site.skoula_url }}" target="_blank">Michal Škoula</a>, <a href="{{ site.donatek_url }}" target="_blank">David Donátek</a><br>
+                    <a href="mailto:{{ site.email }}">{{ site.email }}</a>
+                </div>
+
+                <div class="col-4 text-center">
+                    <a href="{{ site.facebook_url }}" class="white fa-2x" target="_blank"><i class="fab fa-facebook"></i></a>
+                    <a href="{{ site.twitter_url }}" class="white fa-2x" target="_blank"><i class="fab fa-twitter"></i></a>
+                    <a href="{{ site.youtube_url }}" class="white fa-2x" target="_blank"><i class="fab fa-youtube"></i></a>
+                    <a href="{{ site.github_url }}" class="white fa-2x" target="_blank"><i class="fab fa-github"></i></a>
+                </div>
+
+                <div class="col-4 text-right">
+                    <div class="fb-page" data-href="{{ site.facebook_url }}" data-tabs="" data-width="" data-height="" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="false">
+                        <blockquote cite="{{ site.facebook_url }}" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/arco1500/">ARCO 1500</a></blockquote>
+                    </div>
+                </div>
+            </div>
+        </div>
     </footer>
 
     <!-- jquery -->
@@ -70,6 +97,10 @@
     <!-- own -->
     <script src="{{'/assets/js/main.js' | prepend: site.baseurl}}"></script>
 
+    <!-- facebook -->
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.3&appId=132599337405702&autoLogAppEvents=1"></script>
+    
     {% if site.google_analytics %}
       <script>
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

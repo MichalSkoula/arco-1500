@@ -1,5 +1,7 @@
+- image_path: /assets/images/games/space_surfer.png
+  title: Space Surfer
 - image_path: /assets/images/games/rpg.png
-  title: RPG project
+  title: RPG Project
 - image_path: /assets/images/games/snake.png
   title: Snake
 - image_path: /assets/images/games/galaxy_madness.png

@@ -33,21 +33,27 @@ body {
 }
 
 header {
-    margin-bottom: 25px;
-    padding-bottom: 5px;
-}
-
-header {
-    border-bottom: 2px solid $blue;
-    box-shadow: 0px 5px 5px 0px rgba(176,240,253,0.2);
+    margin: 0em;
+    padding: 1em 0em;
+    border-bottom: 0px solid black;
 }
 
 footer {
-    padding-bottom: 1em;
+    padding: 1em 0em;
+}
+
+hr {
+    border-bottom: 2px dashed $blue;
+    box-shadow: 0px 5px 5px 0px rgba(176,240,253,0.2);
 }
 
 a {
     color: $blue;
+    text-decoration: underline;
+
+    &:hover {
+        color: $purple;
+    }
 }
 
 ul li {
@@ -88,10 +94,10 @@ h1, h2, h3, h4 {
     &.active {
         color: $blue;
     }
-}
 
-.pull-right {
-    float: right;
+    &:hover {
+        color: $purple;
+    }
 }
 
 .white {

@@ -34,24 +34,7 @@ You can write your own games too! Currently {{ site.data.games | size }} games.
 
 ## Game console
 
-If you want proper game experience.
-
-<div class="photo-gallery">
-    {% for image in site.data.consoles %}
-        <a href="{{ image.image_path }}" data-fancybox="console-gallery" data-caption="{{ image.title | escape }}">
-            <figure>
-                <img data-src="{{ image.image_path }}" alt="{{ image.title | escape }}" />
-                <figcaption>
-                    {{ image.title}}
-                </figcaption>
-            </figure>
-        </a>
-    {% endfor %}
-</div>
-
-## Prototypes / Development
-
-Some development moments captured for your pleasure.
+Get our [original game console](/get.html) to experience the proper feeling. Also some development moments captured for your pleasure.
 
 <div class="photo-gallery">
     {% for image in site.data.prototypes %}

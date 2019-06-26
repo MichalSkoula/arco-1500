@@ -25,3 +25,5 @@ This option is for those of you who want to see (and maybe edit) the source code
 3. Copy "arduino/portable/sketchbook/libraries/gamelib" folder to your Arduino data path, for example: %userprofile%\documents\Arduino\libraries\gamelib
 4. Install [USB driver CH341](https://github.com/himalayanelixir/Arduino_USB_Drivers) 
 5. Restart Arduino IDE and run some games from games directory
+
+###  [<< Make](/make.html) | Play

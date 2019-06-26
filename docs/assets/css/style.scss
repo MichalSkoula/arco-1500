@@ -34,7 +34,7 @@ body {
 
 header {
     margin: 0em;
-    padding: 1em 0em;
+    padding: 1em 0em 0em 0em;
     border-bottom: 0px solid black;
 }
 
@@ -74,6 +74,10 @@ h1 {
     &:before {
         content: "" !important;
     }
+}
+
+h2 {
+    margin-top: 1.5em;
 }
 
 h1, h2, h3, h4 {

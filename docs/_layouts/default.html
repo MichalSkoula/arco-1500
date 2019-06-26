@@ -33,7 +33,11 @@
 
     <header>
         <div class="container">
-            <h1><img src="{{ '/assets/images/arco_logo_wide.png' | prepend: site.baseurl }}" alt="{{ site.title }}" title="{{ site.title }}" class="img-responsive"></h1>
+            <h1>
+                <a href="/">
+                    <img src="{{ '/assets/images/arco_logo_wide.png' | prepend: site.baseurl }}" alt="{{ site.title }}" title="{{ site.title }}" class="img-responsive">
+                </a>
+            </h1>
             <h2>{{ site.description | default: site.github.project_tagline }}</h2>
 
             <section id="downloads" class="row justify-content-between">

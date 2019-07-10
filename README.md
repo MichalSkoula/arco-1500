@@ -1,4 +1,6 @@
-# ARCO 1500 - DIY Arduino Game Console
+# ARCO 1500
+
+Build your own retro gaming console based on the Arduino platform.
 
 ## Docs
 

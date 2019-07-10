@@ -3,7 +3,7 @@ layout: default
 
 ---
 
-## The gaming console, you can build by yourself!
+# The gaming console, you can build by yourself!
 
 ARCO 1500 is an open source, 8 bit DIY gaming console - both software and hardware. It comes with:
 
@@ -13,9 +13,10 @@ ARCO 1500 is an open source, 8 bit DIY gaming console - both software and hardwa
 - [Games](#games) - currently {{ site.data.games | size }} extra funny games
 - 3D printed [Console case](#game-console) 
 
-## *I am ready!* [Get ARCO 1500](/get.html).
+# *I am ready!* &nbsp;&nbsp; [Get ARCO 1500](/get.html).
 
-## Games
+
+# Games
 
 You can write your own games too! Currently {{ site.data.games | size }} games.
 
@@ -32,7 +33,7 @@ You can write your own games too! Currently {{ site.data.games | size }} games.
     {% endfor %}
 </div>
 
-## Game console
+# Game console
 
 Get our [original game console](/get.html) to experience the proper feeling. Also some development moments captured for your pleasure.
 

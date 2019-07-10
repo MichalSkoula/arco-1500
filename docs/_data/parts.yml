@@ -1,0 +1,8 @@
+- name: Arduino UNO
+- name: Half size breadboard
+- name: OLED 128x64 (I2C)
+- name: Passive buzzer
+- name: 2 buttons
+- name: 5 way joystick
+- name: about 20 jumper cables (10 cm, male to male)
+- name: power (optional) - 4x AA batteries and battery holder with 9V battery jack 

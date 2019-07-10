@@ -62,9 +62,8 @@ ul li {
 
 h1 {
     font-family: 'Racing Sans One', cursive !important;
-    font-size: 4em !important;
-    margin: 0em !important;
-    display: inline;
+    font-size: 2.5em !important;
+    margin: 0.5em 0em 0.5em 0em !important;
 
     img {
         height: 100px;
@@ -92,7 +91,7 @@ h1, h2, h3, h4 {
 
 .btn {
     border-radius: 0;
-    font-size: 1em;
+    font-size: 1.1em;
     margin: 0 0 0.5em 0 !important;
 
     &.active {

@@ -11,7 +11,8 @@ enum GameId {
 	GID_GAME_OF_LIFE,
 	GID_GALAXY_MADNESS,
 	GID_SNAKE,
-	GID_SURFER
+	GID_SURFER,
+	GID_HELLO
 };
 
 // TODO move from gamelib.h to different file and remove this forward declaration

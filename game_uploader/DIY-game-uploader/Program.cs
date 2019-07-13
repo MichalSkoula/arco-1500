@@ -58,10 +58,6 @@ namespace DIY_game_uploader
             Console.WriteLine(" __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ ");
             Console.WriteLine();
 
-            // Drivers
-            Driver driver = new Driver();
-            driver.CheckDriver();
-
             // COM ports
             COMPort comPorts = new COMPort();
             comPorts.printCOMPorts();

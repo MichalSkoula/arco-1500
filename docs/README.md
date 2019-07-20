@@ -6,6 +6,8 @@ bundle install
 
 bundle exec jekyll serve
 
+git hooks - pre-commit - jekyll thumbnail generator
+
 ## Jekyll on Fedora + generating site
 
 Dependencies - https://jekyllrb.com/docs/installation/other-linux/

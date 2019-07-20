@@ -1,12 +1,16 @@
 ## Jekyll on Windows + generating site
 
-Ruby installer - https://jekyllrb.com/docs/installation/windows/
+1. Ruby installer - https://jekyllrb.com/docs/installation/windows/
+2. bundle install
+3. bundle exec jekyll serve - then open localhost:4000
 
-bundle install
+thumbnails are generated + commited with ImageMagick + git pre-commit hook:
 
-bundle exec jekyll serve
-
-git hooks - pre-commit - jekyll thumbnail generator
+```
+#!/bin/sh
+magick mogrify -path 'docs/assets/images/prototypes/thumbnails' -thumbnail 650x650  'docs/assets/images/prototypes/*'
+git diff --name-only --cached | xargs -l git add
+```
 
 ## Jekyll on Fedora + generating site
 

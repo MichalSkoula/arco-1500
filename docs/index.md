@@ -29,9 +29,9 @@ You can write your own games too! Currently {{ site.data.games | size }} games. 
 
 <div class="photo-gallery">
     {% for image in site.data.games %}
-        <a href="{{ image.image_path }}" data-fancybox="games-gallery" data-caption="{{ image.title | escape }}">
+        <a href="/assets/images/games/{{ image.filename }}" data-fancybox="games-gallery" data-caption="{{ image.title | escape }}">
             <figure>
-                <img data-src="{{ image.image_path }}" alt="{{ image.title | escape }}" />
+                <img data-src="/assets/images/games/{{ image.filename }}" alt="{{ image.title | escape }}" />
                 <figcaption>
                     {{ image.title}}
                 </figcaption>
@@ -46,9 +46,9 @@ Get our [original game console](/get.html) to experience the proper feeling. Als
 
 <div class="photo-gallery">
     {% for image in site.data.prototypes %}
-        <a href="{{ image.image_path }}" data-fancybox="prototypes-gallery" data-caption="{{ image.title | escape }}">
+        <a href="/assets/images/prototypes/{{ image.filename }}" data-fancybox="prototypes-gallery" data-caption="{{ image.title | escape }}">
             <figure>
-                <img data-src="{{ image.image_path }}" alt="{{ image.title | escape }}" />
+                <img data-src="/assets/images/prototypes/thumbnails/{{ image.filename }}" alt="{{ image.title | escape }}" />
                 <figcaption>
                     {{ image.title}}
                 </figcaption>

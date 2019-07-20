@@ -1,12 +1,12 @@
-- image_path: /assets/images/games/space_surfer.png
+- filename: space_surfer.png
   title: Space Surfer
-- image_path: /assets/images/games/rpg.png
+- filename: rpg.png
   title: RPG Project
-- image_path: /assets/images/games/snake.png
+- filename: snake.png
   title: Snake
-- image_path: /assets/images/games/galaxy_madness.png
+- filename: galaxy_madness.png
   title: Galaxy Madness
-- image_path: /assets/images/games/the_pong.png
+- filename: the_pong.png
   title: The Pong
-- image_path: /assets/images/games/game_of_life.png
+- filename: game_of_life.png
   title: Game of Life

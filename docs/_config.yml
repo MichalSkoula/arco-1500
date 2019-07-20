@@ -15,8 +15,9 @@
 # in the templates via {{ site.myvariable }}.
 title: ARCO 1500
 email: info@arco1500.com
+author: Michal Škoula
 description: >- # this means to ignore newlines until "baseurl:"
-  Build your own retro gaming console based on the Arduino platform
+  Build your own 8 bit gaming console based on the Arduino platform
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 

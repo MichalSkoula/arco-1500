@@ -15,7 +15,7 @@ But I told a friend of mine (David - on the picture below!) and he created a lib
 
 <img data-src="/assets/images/blog/IMG_20181107_211021.jpg" alt="David trying out ARCO" class="image-border" />
 
-He even came up with a name - <strong>ARCO 1500</strong> is for ARduino COnsole M (1000) + D (5000).
+He even came up with a name - <strong>ARCO 1500</strong> is for ARduino COnsole M (1000) + D (500).
 
 The development went (and still goes) with major and minor problems and currently I am struggling with creating and printing another version (better!) of 3D case.
 

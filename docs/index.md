@@ -7,7 +7,7 @@ layout: default
 
 <div class="row">
     <div class="col-sm">
-        <img data-src="/assets/images/prototypes/{{ site.data.prototypes[0].filename }}" alt="{{ image.title | escape }}" class="image-border" />
+        <img data-src="/assets/images/prototypes/thumbnails/{{ site.data.prototypes.first.filename }}" alt="{{ image.title | escape }}" class="image-border" />
     </div>
     <div class="col-sm">
         <p>ARCO 1500 is an open source, 8 bit DIY gaming console - both software and hardware. It comes with:</p>

@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Hello ARCO"
+title:  "Hello Arco"
 ---
 
 So, now we have a blog! Cool.

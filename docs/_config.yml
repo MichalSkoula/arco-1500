@@ -48,3 +48,5 @@ exclude:
    - vendor/cache/
    - vendor/gems/
    - vendor/ruby/
+
+permalink: /blog/:year/:month/:day/:title:output_ext

@@ -7,7 +7,7 @@ layout: default
 
 <div class="row">
     <div class="col-sm">
-        [image]
+        <img data-src="/assets/images/prototypes/{{ site.data.prototypes[0].filename }}" alt="{{ image.title | escape }}" class="image-border" />
     </div>
     <div class="col-sm">
         <p>ARCO 1500 is an open source, 8 bit DIY gaming console - both software and hardware. It comes with:</p>
@@ -31,7 +31,7 @@ You can write your own games too! Currently {{ site.data.games | size }} games. 
     {% for image in site.data.games %}
         <a href="/assets/images/games/{{ image.filename }}" data-fancybox="games-gallery" data-caption="{{ image.title | escape }}">
             <figure>
-                <img data-src="/assets/images/games/{{ image.filename }}" alt="{{ image.title | escape }}" />
+                <img data-src="/assets/images/games/{{ image.filename }}" alt="{{ image.title | escape }}" class="image-border"/>
                 <figcaption>
                     {{ image.title}}
                 </figcaption>
@@ -48,7 +48,7 @@ Get our [original game console](/get.html) to experience the proper feeling. Als
     {% for image in site.data.prototypes %}
         <a href="/assets/images/prototypes/{{ image.filename }}" data-fancybox="prototypes-gallery" data-caption="{{ image.title | escape }}">
             <figure>
-                <img data-src="/assets/images/prototypes/thumbnails/{{ image.filename }}" alt="{{ image.title | escape }}" />
+                <img data-src="/assets/images/prototypes/thumbnails/{{ image.filename }}" alt="{{ image.title | escape }}" class="image-border"/>
                 <figcaption>
                     {{ image.title}}
                 </figcaption>

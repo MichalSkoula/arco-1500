@@ -19,7 +19,7 @@ author: Michal Škoula
 description: >- # this means to ignore newlines until "baseurl:"
   Build your own 8 bit gaming console based on the Arduino platform
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site, e.g. http://example.com
+url: "https://www.arco1500.com" # the base hostname & protocol for your site, e.g. http://example.com
 
 # urls
 github_url: https://github.com/MichalSkoula/arco-1500/

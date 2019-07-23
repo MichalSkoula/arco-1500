@@ -136,7 +136,7 @@ h1, h2, h3, h4 {
                 transition: transform .2s ease-in-out;
 
                 &:hover {
-                    transform: scale(1.025);
+                    transform: scale(1.05);
                 }
             }
 
@@ -145,6 +145,10 @@ h1, h2, h3, h4 {
             }
         }   
     }    
+}
+
+.image-border {
+    border: 1px dashed $blue;    
 }
 
 .github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}

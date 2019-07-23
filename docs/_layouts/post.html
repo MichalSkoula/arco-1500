@@ -1,0 +1,9 @@
+---
+layout: default
+---
+
+<small><a href="/blog.html">Blog</a> / {{ page.date | date: "%-d %B %Y" }} / by {{ page.author | default: site.author }}</small>
+
+<h1>{{ page.title }}</h1>
+
+{{content}}

@@ -43,10 +43,11 @@
             <section id="downloads" class="row justify-content-between">
                 <div class="col-9">
                     <a href="/" class="btn {% if page.url == '/' %} active {% endif %}"><i class="fas fa-home"></i> Home</a>
+                    <a href="/blog.html" class="btn {% if page.url contains '/blog' %} active {% endif %}"><i class="fas fa-rss"></i> Blog</a>
                     <a href="/get.html" class="btn {% if page.url == '/get.html' %} active {% endif %}"><i class="fas fa-shopping-cart"></i> Get</a>
                     <a href="/make.html" class="btn {% if page.url == '/make.html' %} active {% endif %} "><i class="fas fa-hammer"></i> Make</a>
+                    <a href="/develop.html" class="btn {% if page.url == '/develop.html' %} active {% endif %} "><i class="fas fa-code"></i> Develop</a>
                     <a href="/play.html" class="btn {% if page.url == '/play.html' %} active {% endif %}"><i class="fas fa-gamepad"></i> Play</a>
-                    <a href="/blog.html" class="btn {% if page.url contains '/blog' %} active {% endif %}"><i class="fas fa-rss"></i> Blog</a>
                 </div>
                 
                 <div class="col-3 text-right">

@@ -3,33 +3,44 @@ layout: default
 
 ---
 
-# Develop games
+# Develop your own game!
 
-Here's how you can open and run games like a pro:
+You can develop your own games with just a little knowledge of programming (C++ / Wiring). 
 
-1. Install USB driver CH341 (arduino/drivers/Arduino_USB_Drivers-master)
-2. Open bundled Arduino IDE (arduino/arduino.exe)
-3. Run some games from games directory
+## Hello Arco
 
-You can develop your own games with just a little knowledge of programming (C++ / Wiring).
+There is this game called "Hello Arco" which is an equivalent for classic "Hello World" programs. You can use it as a boilerplate for developing your game.
 
+<img data-src="{{ '/assets/images/hello_arco.png' | prepend: site.baseurl }}" class="img-responsive float-left mr-3 image-border">
 
+The game structure is simple. There must be a folder inside the "games" directory. Then, inside the folder, there must be an .ino file with the same name as folder. This file is the main and only required file. 
 
-## Premade games (currently {{ site.data.games | size }})
+You can divide your code into several .ino files, but this is just for clarity.
 
-<div class="photo-gallery">
-    {% for image in site.data.games %}
-        <a href="{{ image.image_path }}" data-fancybox="games-gallery" data-caption="{{ image.title | escape }}">
-            <figure>
-                <img data-src="{{ image.image_path }}" alt="{{ image.title | escape }}" />
-                <figcaption>
-                    {{ image.title}}
-                </figcaption>
-            </figure>
-        </a>
-    {% endfor %}
-</div>
+<div class="clearfix"></div>
 
+## Arduino IDE
 
+You load the main file "hello_arco.ino" into Arduino IDE. But wait, before uploading it to console, you must specify a port to which your console is connected.
+
+<img data-src=" {{ '/assets/images/arduino_ide_select_port.png' | prepend: site.baseurl }}" class="img-responsive image-border">
+
+<div class="clearfix"></div>
+
+## Gamelib
+
+<img data-src="{{ '/assets/images/gamelib.png' | prepend: site.baseurl }}" class="img-responsive float-left mr-3 image-border">
+
+This is our (optional to use) library which can help you create better games. 
+
+It comes with simple interfaces - drawing on display, playing sounds, dealing with user inputs and score. 
+
+You can find it in "arduino/portable/sketchbook/libraries/gamelib".
+
+<div class="clearfix"></div>
+
+## Emulator
+
+For Linux users out there, we have an emulator. You can find it in "not_emulator" folder. There is a README.md file with simple instructions on how to use it.
 
 ## [<< Make](/make.html) | Develop | [Play >>](/play.html)

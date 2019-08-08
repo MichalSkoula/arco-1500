@@ -93,6 +93,22 @@ h1, h2, h3, h4 {
     height: auto;
 }
 
+.iframe-container{
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%; 
+    height: 0;
+
+    iframe {
+        position: absolute;
+        top:0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+
 .btn {
     border-radius: 0;
     font-size: 1.1em;

@@ -5,7 +5,7 @@ layout: default
 
 # Buy ARCO 1500 Complete set
 
-You can buy a nice, complete set and start in a few minutes. Visit our <a href="{{ site.bastlime_url }}">store</a>.
+You can buy a nice, complete set and start in a few minutes. Visit our <a href="{{ site.shop_url }}">store</a>.
 
 [image]
 

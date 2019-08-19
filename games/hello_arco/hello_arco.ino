@@ -4,9 +4,6 @@
 // GID_HELLO - unique identifier - must fill in arduino/portable/sketchbook/libraries/gamelib/score.h:8
 ScoreTable<GID_HELLO> scoreTable;
 
-// player score 
-int score = 0;
-
 // stage of the game
 // 0        menu
 // 1        game

@@ -27,7 +27,7 @@ layout: default
 
 # Games
 
-You can write your own games too! Currently {{ site.data.games | size }} games. These are screenhots from the emulator.
+You can write your own games too! Currently {{ site.data.games | size }} games. These are the screenhots from the emulator.
 
 <div class="photo-gallery">
     {% for image in site.data.games %}

@@ -16,6 +16,9 @@ enum GameId {
 	GID_FLAPPY
 };
 
+// TODO move from gamelib.h to different file and remove this forward declaration
+void softReset();
+
 using score_t = uint16_t;
 
 struct Score

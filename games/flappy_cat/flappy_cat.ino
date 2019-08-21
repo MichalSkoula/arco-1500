@@ -91,7 +91,7 @@ class Player
         {
             if (buttonDown(ACTION_BUTTON)) {
                 // jump
-                y -= 6;
+                y -= 5;
                 sound.playTone(200);
             } else {
                 // fall down
@@ -106,7 +106,7 @@ class Player
             // collision - floor and ceiling
             if (y < 0 || y > game.height - height) {
                 hurt(2);
-            } else  if (game.step % 2 == 0) {
+            } else if (game.step % 2 == 0) {
                 scoreTable.addScore(1);
             }
         }
@@ -149,7 +149,8 @@ class Pipe
             if (x - width < 0) {
                 x = random(game.width, game.width * 1.5);
                 y = random(space, game.height - space);
-                space = random(space / 1.5, space);
+                // over time, space get smaller
+                space = random(space / 1.2, space);
             }
         }
 
@@ -166,7 +167,6 @@ class Pipe
                     player.getY() < game.height && player.getY() + player.getHeight() > y + space / 2
                 )
             ) {
-                
                 // up part
                 display.drawBox(x, 0, width, y - space / 2);
                 // down part
@@ -179,7 +179,7 @@ class Pipe
         int x = game.width;
         int y = game.height / 2;
         byte width = 5;
-        byte space = 40;
+        byte space = 44;
 };
 
 class PipeCollection

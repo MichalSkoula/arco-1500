@@ -87,13 +87,13 @@ public:
 				--nameIndex;
 			} else if (buttonPressed(RIGHT_BUTTON) && nameIndex < 2) {
 				++nameIndex;
-			} else if (buttonDown(DOWN_BUTTON)) {
+			} else if (buttonDown(UP_BUTTON)) {
 				switch (nameIndex) {
 					case 0: if (score.c1 > 0) --score.c1; break;
 					case 1: if (score.c2 > 0) --score.c2; break;
 					case 2: if (score.c3 > 0) --score.c3; break;
 				}
-			} else if (buttonDown(UP_BUTTON)) {
+			} else if (buttonDown(DOWN_BUTTON)) {
 				switch (nameIndex) {
 					case 0: if (score.c1 < 'Z' - 'A') ++score.c1; break;
 					case 1: if (score.c2 < 'Z' - 'A') ++score.c2; break;

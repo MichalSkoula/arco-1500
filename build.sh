@@ -2,7 +2,6 @@
 
 echo "create release folder ..."
 rm arco1500.zip
-rm -R arco1500-release
 mkdir arco1500-release
 
 echo "copying arduino ide ..."

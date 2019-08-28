@@ -1,10 +1,11 @@
 # visual studio - gameuploader
 game_uploader/.vs
-game_uploader/DIY-game-uploader/bin
-game_uploader/DIY-game-uploader/obj
-game_uploader/DIY-game-uploader/v15/*
-game_uploader/game_uploader.exe.config
-game_uploader/game_uploader.pdb
+game_uploader/bin
+game_uploader/obj
+game_uploader/obj/*
+game_uploader/v15/*
+game_uploader/ARCO1500_Uploader.csproj
+game_uploader/ARCO1500_Uploader.csproj.user
 
 # not emulator
 not_emulator/bin
@@ -13,6 +14,10 @@ not_emulator/build
 # geany and qtcreator project files
 project.geany
 arco-1500.*
+
+# release folder
+arco1500-release/
+arco1500.zip
 
 # arduino ide
 arduino/**

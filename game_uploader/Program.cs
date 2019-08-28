@@ -7,7 +7,7 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace DIY_game_uploader
+namespace ARCO1500_Uploader
 {
     class Program
     {
@@ -46,7 +46,7 @@ namespace DIY_game_uploader
                     Console.ForegroundColor = ConsoleColor.Magenta;
                 }
                 Console.Write(l);
-                Thread.Sleep(3); // sleep for 10 milliseconds   
+                Thread.Sleep(2);  
 
                 i++;
                 if (i > 50)

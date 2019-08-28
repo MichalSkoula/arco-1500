@@ -6,7 +6,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace DIY_game_uploader
+namespace ARCO1500_Uploader
 {
     class Games
     {
@@ -63,7 +63,7 @@ namespace DIY_game_uploader
         private string getGamesFolder()
         {
             // get folder with games
-            string gamesFolder = Program.debug ? "..\\..\\..\\..\\games" : "..\\games";
+            string gamesFolder = Program.debug ? "..\\..\\..\\..\\games" : "games";
             if (!Directory.Exists(gamesFolder))
             {
                 // not found...exit

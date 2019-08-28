@@ -6,18 +6,10 @@ Build your own retro gaming console based on the Arduino platform.
 
 You can find everything about ARCO1500 - how to get one, develop and play games on our [official page](https://www.arco1500.com).
 
-## Other stuff
+## Links
 
-### How to build a release (developers only)
-
-1. Put source code (without *git* stuff) somewhere into a folder.
-2. Download [Arduino IDE - ZIP](https://www.arduino.cc/en/main/software#source) and extract it into "arduino" folder.
-3. Download [USB drivers](https://github.com/himalayanelixir/Arduino_USB_Drivers) and place it into "arduino/drivers" folder.
-4. Install U8G2 library via Arduino IDE.
-5. Zip that folder from step 1. and here you go.
-
-### External Links
-
-* [Online Store](https://www.en.bastlime.eu)
+* [Official Page - www.arco1500.com](https://www.arco1500.com)
+* [Official Store - www.shop.arco1500.com](https://www.shop.arco1500.com)
 * [YouTube Channel](https://www.youtube.com/playlist?list=PLZWNQlcHslXWuSwxoAaJYrSB9fYc1FXUI)
-* [Facebook page](https://www.facebook.com/ARCO-1500-494530131084329)
+* [Facebook](https://www.facebook.com/ARCO-1500-494530131084329)
+* [Twitter](https://twitter.com/arco1500)

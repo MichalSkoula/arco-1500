@@ -5,7 +5,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace DIY_game_uploader
+namespace ARCO1500_Uploader
 {
     class COMPort
     {

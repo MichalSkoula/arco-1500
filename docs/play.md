@@ -16,7 +16,7 @@ layout: default
 This option is the fastest way to get games to your game console and play (Windows only)!
 
 1. Connect your game console to PC with USB cable
-2. Run "game_uploader/game_uploader.exe"
+2. Run "ARCO1500_Uploader.exe"
 
 <img data-src="{{ '/assets/images/arco_game_uploader.png' | prepend: site.baseurl }}" class="img-responsive image-border">
 

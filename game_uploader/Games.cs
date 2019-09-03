@@ -63,7 +63,7 @@ namespace ARCO1500_Uploader
         private string getGamesFolder()
         {
             // get folder with games
-            string gamesFolder = Program.debug ? "..\\..\\..\\..\\games" : "games";
+            string gamesFolder = Program.debug ? "..\\..\\..\\games" : "games";
             if (!Directory.Exists(gamesFolder))
             {
                 // not found...exit

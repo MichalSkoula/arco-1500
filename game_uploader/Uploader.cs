@@ -16,7 +16,7 @@ namespace ARCO1500_Uploader
 
             // upload game - start arduino ide
             var p = new System.Diagnostics.Process();
-            p.StartInfo.FileName = Program.debug ? "..\\..\\..\\..\\arduino\\arduino_debug.exe" : "arduino\\arduino_debug.exe";
+            p.StartInfo.FileName = Program.debug ? "..\\..\\..\\arduino\\arduino_debug.exe" : "arduino\\arduino_debug.exe";
             p.StartInfo.Arguments = "--board arduino:avr:uno --port COM" + comPort + " --upload " + game + "\\" + gameTitle + ".ino";
             p.StartInfo.RedirectStandardOutput = true;
             p.StartInfo.UseShellExecute = false;

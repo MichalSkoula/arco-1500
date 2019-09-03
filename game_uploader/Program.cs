@@ -46,7 +46,6 @@ namespace ARCO1500_Uploader
                     Console.ForegroundColor = ConsoleColor.Magenta;
                 }
                 Console.Write(l);
-                Thread.Sleep(2);  
 
                 i++;
                 if (i > 50)

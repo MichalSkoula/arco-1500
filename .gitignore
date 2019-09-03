@@ -4,7 +4,6 @@ game_uploader/bin
 game_uploader/obj
 game_uploader/obj/*
 game_uploader/v15/*
-game_uploader/ARCO1500_Uploader.csproj
 game_uploader/ARCO1500_Uploader.csproj.user
 
 # not emulator

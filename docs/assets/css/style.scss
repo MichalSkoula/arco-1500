@@ -177,3 +177,11 @@ h1, h2, h3, h4 {
 .fb-comments {
     background-color: $white;
 }
+
+.iframe-eshop {
+    max-width: 500px;
+    
+    iframe {
+        border: 2px dashed $blue !important;
+    }
+}

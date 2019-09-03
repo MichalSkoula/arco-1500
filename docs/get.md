@@ -5,9 +5,17 @@ layout: default
 
 # Buy ARCO 1500 Complete set
 
-You can buy a nice, complete set and start in a few minutes. Visit our <a href="{{ site.shop_url }}">store</a>.
+<div class="embed-responsive embed-responsive-1by1 iframe-eshop float-left mr-3 ">
+    <iframe class="img-responsive" src="https://www.exitshop.cz/shops/9142/iframe/112"></iframe>
+</div>
 
-[image]
+You can buy a nice, complete set to start with. 
+
+Purchasing this set will support further development or ARCO 1500.
+
+<strong>Only for 24.99€ + shipping costs.</strong>
+
+<div class="clearfix"></div>
 
 # .. or Make it with your own parts
 

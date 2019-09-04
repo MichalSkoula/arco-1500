@@ -7,7 +7,7 @@ layout: default
 
 <div class="embed-responsive embed-responsive-1by1 iframe-eshop float-left mr-3 ">
     <iframe class="img-responsive" src="https://www.exitshop.cz/shops/9142/iframe/112"></iframe>
-</div>
+</div> 
 
 You can buy a nice, complete set to start with. 
 

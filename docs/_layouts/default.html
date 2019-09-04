@@ -8,17 +8,14 @@
     <meta name="seznam-wmt" content="ye26hSdF82tgWPePxdXnRFKz6Mrpc3aB" />
 
     <!-- fancybox -->
-    <link rel="stylesheet" href="{{'/assets/css/jquery.fancybox.min.css' | prepend: site.baseurl}}">
-
-    <!-- bootstrap -->
-    <link rel="stylesheet" href="{{'/assets/css/bootstrap.min.css' | prepend: site.baseurl}}">
+    <link rel="stylesheet" href="{{'/assets/jquery/jquery.fancybox.min.css' | prepend: site.baseurl}}">
 
     <!-- fonts -->
-    <link rel="stylesheet" href="{{'/assets/css/fontawesome.all.min.css' | prepend: site.baseurl}}">
+    <link rel="stylesheet" href="{{'/assets/fontawesome/fontawesome.all.min.css' | prepend: site.baseurl}}">
     <link href="https://fonts.googleapis.com/css?family=Racing+Sans+One&amp;subset=latin-ext&amp;display=optional" rel="stylesheet"> 
 
     <!-- own -->
-    <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}">
+    <link rel="stylesheet" href="{{ '/assets/style.css?v=' | append: site.github.build_revision | relative_url }}">
 
     <!-- favicon -->
     <link rel="icon" type="image/png" href="{{ '/assets/images/favicon.png' | prepend: site.baseurl }}">
@@ -94,19 +91,19 @@
     </footer>
 
     <!-- jquery -->
-    <script src="{{'/assets/js/jquery.min.js' | prepend: site.baseurl}}"></script>
+    <script src="{{'/assets/jquery/jquery.min.js' | prepend: site.baseurl}}"></script>
 
     <!-- lazy load -->
-    <script src="{{'/assets/js/jquery.lazy.min.js' | prepend: site.baseurl}}"></script>
+    <script src="{{'/assets/jquery/jquery.lazy.min.js' | prepend: site.baseurl}}"></script>
 
     <!-- smooth scroll -->
-    <script src="{{'/assets/js/jquery.smooth-scroll.min.js' | prepend: site.baseurl}}"></script>
+    <script src="{{'/assets/jquery/jquery.smooth-scroll.min.js' | prepend: site.baseurl}}"></script>
 
     <!-- fancybox -->
-    <script src="{{'/assets/js/jquery.fancybox.min.js' | prepend: site.baseurl}}"></script>
+    <script src="{{'/assets/jquery/jquery.fancybox.min.js' | prepend: site.baseurl}}"></script>
 
     <!-- own -->
-    <script src="{{'/assets/js/main.js' | prepend: site.baseurl}}"></script>
+    <script src="{{'/assets/main.js' | prepend: site.baseurl}}"></script>
 
     <!-- facebook -->
     <div id="fb-root"></div>
@@ -117,14 +114,14 @@
 
     
     {% if site.google_analytics %}
-      <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-        ga('create', '{{ site.google_analytics }}', 'auto');
-        ga('send', 'pageview');
-      </script>
+        <script>
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+            ga('create', '{{ site.google_analytics }}', 'auto');
+            ga('send', 'pageview');
+        </script>
     {% endif %}
   </body>
 </html>

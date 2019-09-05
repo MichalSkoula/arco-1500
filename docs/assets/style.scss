@@ -1,8 +1,21 @@
 ---
 ---
 
+// override and import bootstrap
+$embed-responsive-aspect-ratios: (
+    (21 9),
+    (16 9),
+    (4 3),
+    (1 1),
+    (3 4),
+    (9 16)
+) !default;
+@import "bootstrap/scss/bootstrap";
+
+// import theme css
 @import "{{ site.theme }}";
 
+// custom styles -----------------------
 $background: #181818;
 $green: #b5e53a;
 $blue: #b0f0fd;
@@ -21,7 +34,7 @@ html {
 body {
     min-height: 100%;
     background-color: $background;
-    background-image: url("../images/background.jpg");
+    background-image: url("images/background.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -57,7 +70,7 @@ a {
 }
 
 ul li {
-    list-style-image: url("../images/bullet.png");
+    list-style-image: url("images/bullet.png");
 }
 
 h1 {

@@ -13,7 +13,7 @@ You can buy a nice, complete set to start with. <strong>By purchasing this set y
 
 Please use the form to place your order. 
 
-<strong>Only for 24.99€ + shipping costs.</strong>
+<strong>Only for {{ site.arco_price }}€ + shipping costs.</strong>
 
 Shipping EU-wide.
 

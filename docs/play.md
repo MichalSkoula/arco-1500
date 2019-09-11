@@ -7,9 +7,8 @@ layout: default
 
 ## Prerequisites
 
-1. Download latest release of ARCO software from [GitHub]({{site.github_url}}releases).
-2. Extract it somewhere.
-2. And install corresponding USB driver "arduino/drivers/Arduino_USB_Drivers-master" (Windows only).
+1. Download latest release of ARCO software from [GitHub]({{site.github_url}}releases) and extract it somewhere.
+2. Install Windows USB driver "arduino/drivers/Arduino_USB_Drivers-master/Windows".
 
 ## Use Game Uploader to smoothly upload games to console
 

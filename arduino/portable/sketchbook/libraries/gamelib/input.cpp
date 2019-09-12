@@ -11,27 +11,20 @@ byte buttonPin(byte button)
 		case DOWN_BUTTON: 	return DOWN_BUTTON_PIN;
 		case CENTER_BUTTON: return CENTER_BUTTON_PIN;
 	}
-	// TODO vracet nějaký "bezpečný" pin?
+
 	return START_BUTTON_PIN;
 }
 
-bool buttonActive(byte button, byte state)
-{
-    (void)button;
-    return state == LOW;        // everything is now INPUT_PULLUP
-}
-
+unsigned long lastDebounceTime[7] = {0, 0, 0, 0, 0, 0, 0};
 bool buttonPressed(byte button)
 {
-	// holds last states of all buttons (currently 7 total)
-	static byte lastButtonState = 0;
+	// read the state of the switch into a local variable
+	bool pressed = !digitalRead(buttonPin(button));
 
-	byte state = digitalRead(buttonPin(button));
-	bool active = buttonActive(button, state);
-	if (active && state != bitRead(lastButtonState, button)) {
-		bitWrite(lastButtonState, button, active);
+	// it delay is over, we can return the real state
+	if ((millis() - lastDebounceTime[button]) > 200 && pressed) {
+		lastDebounceTime[button] = millis();
 		return true;
-	}
-	bitWrite(lastButtonState, button, active);
+	} 
 	return false;
 }

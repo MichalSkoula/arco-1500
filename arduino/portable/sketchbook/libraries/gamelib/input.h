@@ -16,7 +16,6 @@ enum Pins {
 	BUZZER_PIN 			= 13
 };
 
-// TODO add ANY_BUTTON? START_OR_ACTION_BUTTON?
 enum Buttons {
 	START_BUTTON 	= 0,
 	ACTION_BUTTON	= 1,
@@ -28,12 +27,9 @@ enum Buttons {
 	CENTER_BUTTON	= 6
 };
 
-// read and update button state
-// return true when the button is pressed and then always false until
-// the button is released and pressed again
-// should not be called more than once per button per loop()
-// for classical buttons loop() should have at least 3 ms of delay to filter out fake release
-// TODO asi nefunguje pro joystick?
+
+
+// read button state
 bool buttonPressed(byte button);
 
 #endif	/* GAMELIB_INPUT_H */

@@ -52,13 +52,13 @@ class Player {
 
         void checkMovement()
         {
-            if (buttonDown(LEFT_BUTTON) && x - step >= 0) {
+            if (buttonPressed(LEFT_BUTTON) && x - step >= 0) {
                 moveHorizontal(-1);
-            } else if (buttonDown(RIGHT_BUTTON) && x + width + step < game.gridWidth) {
+            } else if (buttonPressed(RIGHT_BUTTON) && x + width + step < game.gridWidth) {
                 moveHorizontal(1);
-            } else if (buttonDown(UP_BUTTON) && y - step > game.gridHeight) {
+            } else if (buttonPressed(UP_BUTTON) && y - step > game.gridHeight) {
                 moveVertical(-1);
-            } else if (buttonDown(DOWN_BUTTON) && y + height + step < game.gridHeight * 2) {
+            } else if (buttonPressed(DOWN_BUTTON) && y + height + step < game.gridHeight * 2) {
                 moveVertical(1);
             } 
         }

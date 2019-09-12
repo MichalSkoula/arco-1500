@@ -26,7 +26,6 @@ drawSmallText		KEYWORD2
 # functions
 # ---------------------------------
 initGame			KEYWORD2
-buttonDown			KEYWORD2
 buttonPressed		KEYWORD2
 playTone			KEYWORD2
 

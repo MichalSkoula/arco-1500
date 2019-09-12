@@ -21,12 +21,6 @@ bool buttonActive(byte button, byte state)
     return state == LOW;        // everything is now INPUT_PULLUP
 }
 
-bool buttonDown(byte button)
-{
-	byte state = digitalRead(buttonPin(button));
-	return buttonActive(button, state);
-}
-
 bool buttonPressed(byte button)
 {
 	// holds last states of all buttons (currently 7 total)

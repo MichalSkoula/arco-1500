@@ -89,7 +89,7 @@ class Player
 
         void checkMovement()
         {
-            if (buttonDown(ACTION_BUTTON)) {
+            if (buttonPressed(ACTION_BUTTON)) {
                 // jump
                 y -= 5;
                 sound.playTone(200);

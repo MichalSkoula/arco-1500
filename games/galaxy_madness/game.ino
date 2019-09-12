@@ -1,14 +1,14 @@
 void gameLoop()
 {
   // keypad movement
-  if (buttonDown(LEFT_BUTTON) && playerX - step >= 0) {
+  if (buttonPressed(LEFT_BUTTON) && playerX - step >= 0) {
     playerX -= step;
-  } else if (buttonDown(RIGHT_BUTTON) && playerX + step < gameWidth) {
+  } else if (buttonPressed(RIGHT_BUTTON) && playerX + step < gameWidth) {
     playerX += step;
   }
 
   // action buttons - firing
-  if (buttonDown(ACTION_BUTTON) && bulletY <= 0) {
+  if (buttonPressed(ACTION_BUTTON) && bulletY <= 0) {
     bulletX = playerX + bitmapSize / 2;
     bulletY = gameHeight - bitmapSize;
     sound.playTone(400);

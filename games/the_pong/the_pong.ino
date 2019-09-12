@@ -55,9 +55,9 @@ void loop()
   } else if (stage == 1) {
 
     // player movement
-    if (buttonDown(UP_BUTTON) && playerY > 0) {
+    if (buttonPressed(UP_BUTTON) && playerY > 0) {
       playerY = playerY - playerSpeed;
-    } else if (buttonDown(DOWN_BUTTON) && playerY + paddleHeight < DISPLAY_HEIGHT) {
+    } else if (buttonPressed(DOWN_BUTTON) && playerY + paddleHeight < DISPLAY_HEIGHT) {
       playerY = playerY + playerSpeed;
     } 
 

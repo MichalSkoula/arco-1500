@@ -9,7 +9,7 @@ void fight()
 {
   if (whoseMove == 1) {
     // player move
-    if (buttonDown(ACTION_BUTTON)) {
+    if (buttonPressed(ACTION_BUTTON)) {
       whoseMove = !whoseMove;
       sound.playTone(300);
       lastAttack = playerAttack + random(-2, 3);
@@ -26,7 +26,7 @@ void fight()
     } 
   } else {
     // enemy move
-    if (random(0, 15) == 1) {
+    if (random(0, 10) == 1) {
       whoseMove = !whoseMove;
       sound.playTone(300);
       lastAttack = enemies[currentEnemy][5] + random(-2, 3);

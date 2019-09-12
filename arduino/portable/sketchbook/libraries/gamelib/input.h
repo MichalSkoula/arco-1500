@@ -28,8 +28,6 @@ enum Buttons {
 	CENTER_BUTTON	= 6
 };
 
-bool buttonDown(byte button);
-
 // read and update button state
 // return true when the button is pressed and then always false until
 // the button is released and pressed again

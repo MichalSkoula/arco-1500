@@ -16,6 +16,7 @@ byte buttonPin(byte button)
 }
 
 unsigned long lastDebounceTime[7] = {0, 0, 0, 0, 0, 0, 0};
+
 bool buttonPressed(byte button)
 {
 	// read the state of the switch into a local variable

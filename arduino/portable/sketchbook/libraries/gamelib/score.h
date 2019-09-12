@@ -204,7 +204,6 @@ private:
 		}
 	}
 
-	// TODO probably not necessary to render this too often
 	void drawTable()
 	{
 		display.drawBigText(15, 10, "HIGH SCORES");
@@ -241,7 +240,8 @@ private:
 			name[1] = scores[i].c2 + 'A';
 			name[2] = scores[i].c3 + 'A';
 			name[3] = 0;
-			display.drawSmallText(15, 25 + i * 9, name);
+			display.drawSmallText(15, 25 + i * 9, (String)(i + 1) + '.');
+			display.drawSmallText(30, 25 + i * 9, name);
 	  		display.drawText(85, 25 + i * 9, (String)scores[i].value);
 		}
 	}

@@ -18,6 +18,8 @@ struct Game {
     byte gameWidth = 128;
     byte gameHeight = 64;
 
+    bool step = true;
+
     byte speed = 2;
 
     // 0        menu
@@ -150,8 +152,14 @@ void gameLoop()
         }
     }
 
+    // score?
     if (game.stage == 1) {
-        scoreTable.addScore(1);
+        // add score only on every second loop
+        game.step = !game.step;
+        if (game.step % 2 == 0) {
+            // more up? more score for brave attitude
+            scoreTable.addScore((128 / player.y) / 1.5);    
+        }
     } else if (game.stage == 2) {
         scoreTable.update();
     }

@@ -29,7 +29,7 @@ ARCO 1500 is an **open source project**, so you can take the source and make it 
     {% endfor %}
 </ul>
 
-Get the latest release from [GitHub]({{ site.github_url }}releases). Continue to [Make page](/make.html) to get basic idea of how to make it.
+Get the latest release from [GitHub]({{ site.github_url }}releases). Continue to [Build page](/build.html) to get basic idea of how to make it.
 
 
-## Get | [Make >>](/make.html)
+## Get | [Build >>](/build.html)

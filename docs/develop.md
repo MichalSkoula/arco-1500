@@ -98,4 +98,4 @@ void softReset();
 
 For Linux users out there, we have an emulator. You can find it in "not_emulator" folder. There is a README.md file with simple instructions on how to use it.
 
-## [<< Make](/make.html) | Develop | [Play >>](/play.html)
+## [<< Build](/build.html) | Develop | [Play >>](/play.html)

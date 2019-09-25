@@ -3,7 +3,7 @@ layout: default
 
 ---
 
-# Make ARCO 1500
+# Build ARCO 1500
 
 
 Building the console is a breeze. 
@@ -21,4 +21,4 @@ switch the + and - pins (VCC and GND).
 
 
     
-## [<< Get](/get.html) | Make | [Develop >>](/develop.html)
+## [<< Get](/get.html) | Build | [Develop >>](/develop.html)

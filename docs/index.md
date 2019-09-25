@@ -12,18 +12,28 @@ layout: default
         </a>
     </div>
     <div class="col-sm">
-        <p>ARCO 1500 is an open source, 8 bit DIY gaming console - both software and hardware. It comes with:</p>
+        <p>ARCO 1500 is an open source, 8 bit DIY gaming console - both software and hardware.</p>
         <ul>
-            <li><strong><a href="#games">Games</a></strong> - currently {{ site.data.games | size }} extra funny games + 1 boilerplate (Hello Arco)</li>
+            <li><strong><a href="#games">Games</a></strong> - currently {{ site.data.games | size }} extra funny games</li>
             <li>3D printed <strong><a href="#game-console">Console case</a></strong> </li>
-            <li><strong>Arduino IDE</strong> (with U8G2 and our own Gamelib libraries) - to develop your own games</li>
-            <li><strong>Game Uploader</strong> - for easy games uploading to console (only Windows)</li>
-            <li><strong>Not Emulator</strong> - emulator for playing / testing games on PC, without console (only Linux)</li>
+            <li><strong>Arduino IDE</strong> (with our gamelib) - to develop your own games</li>
+            <li><strong>Game Uploader</strong> - for easy games uploading to console</li>
+            <li><strong>Not Emulator</strong> - emulator for playing / testing games on PC, without console</li>
         </ul>
     </div>
 </div>
-# *I am ready!* &nbsp;&nbsp; [Get ARCO 1500](/get.html).
 
+# *I am ready!* &nbsp;[Get ARCO 1500](/get.html) &nbsp;now for just {{ site.arco_price }}€!
+
+# Blog News
+<ul>
+  {% for post in site.posts limit:3 %}
+    <li>
+        {{ post.date | date: "%-d %B %Y" }} <a href="{{ post.url }}">{{ post.title }}</a>
+    </li>
+  {% endfor %}
+</ul>
+[View all posts >>](/blog.html)
 
 # Games
 

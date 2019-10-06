@@ -17,7 +17,7 @@ Please use the form to place your order.
 
 <strong>Only for {{ site.arco_price }}€ + shipping costs.</strong>
 
-Shipping EU-wide.
+Shipping EU-wide. Select your country to see the costs.
 
 <div class="clearfix"></div>
 

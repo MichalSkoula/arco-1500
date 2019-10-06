@@ -101,27 +101,6 @@ h1, h2, h3, h4 {
     color: $blue !important;
 }
 
-.img-responsive {
-    max-width: 100%;
-    height: auto;
-}
-
-.iframe-container{
-    position: relative;
-    width: 100%;
-    padding-bottom: 56.25%; 
-    height: 0;
-
-    iframe {
-        position: absolute;
-        top:0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-    }
-}
-
-
 .btn {
     border-radius: 0;
     font-size: 1.1em;
@@ -180,6 +159,28 @@ h1, h2, h3, h4 {
             }
         }   
     }    
+}
+
+.img-responsive {
+    max-width: 100%;
+    height: auto;
+}
+
+.iframe-container{
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%; 
+    height: 0;
+    margin-bottom: 1em;
+    border: 2px dashed $blue; 
+
+    iframe {
+        position: absolute;
+        top:0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
 }
 
 .image-border {

@@ -1,7 +1,7 @@
 #ifndef NOT_EMULATOR_ARDUINO_H
 #define NOT_EMULATOR_ARDUINO_H
 
-#include <stdint.h>
+#include <cstdint>
 #include <string>
 #include <SDL2/SDL.h>
 
@@ -89,6 +89,9 @@ byte digitalRead(int pin);
 void pinMode(int pin, int mode);
 
 void delay(int ms);
+
+// Arduino.h millis() returns unsigned long (4 bytes)
+uint32_t millis();
 
 void randomSeed(unsigned int seed);
 

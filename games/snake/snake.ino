@@ -155,6 +155,14 @@ void loop(void)
         if (stage != 2) {
             drawSnake();
             drawFood();
+            if (stage == 1) {     // game paused
+                display.drawBigText(50, 30, "PAUSE");
+                score_t score = scoreTable.getScore();
+                int x = 0;
+                if (score >= 100)       x = 6;
+                else if (score >= 10)   x = 3;
+                display.drawBigText(60 - x, 40, (String)score);
+            }
         } else {
             scoreTable.draw();
         }

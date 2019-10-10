@@ -22,13 +22,3 @@ void initGame(byte initFlags)
 	Serial.begin(9600);
 	randomSeed(analogRead(0));
 }
-
-// TODO better? redefine g++ -include? wrap g++ -wrap?
-void softReset()
-{
-#ifdef NOT_ARDUINO
-    exit(0);
-#else
-    asm volatile("jmp 0");
-#endif
-}

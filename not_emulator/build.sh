@@ -85,7 +85,8 @@ else
 
     # TODO probably lots of problems
     # TODO multiline /**/ comments can cause problems
-    # TODO default values (meh, arduino can't deal with them either)
+    # TODO default values (meh, arduino-builder can't deal with them either)
+    # TODO make work with flappy_cat - classes
 
     # extract structs and classes from all .ino files and add as forward declarations
     grep -oE --no-filename '^(struct|class).*?\s*\{?\s*$' "$GAME/"*.ino     | \
@@ -127,6 +128,7 @@ fi
 cd "$BUILD"
 echo "Compiling..."
 
+# TODO define NOT_ARDUINO currently not used anywhere...remove?
 g++ -std=c++17                                                  \
     -Wall -Wpedantic -pedantic-errors -Wextra                   \
     -I ".." -I "../$LIBS/gamelib"                               \
@@ -134,10 +136,11 @@ g++ -std=c++17                                                  \
     -D "WINDOW_TITLE=\"not_emulator - $1\""                     \
     -D "FONT_BIG_PATH=\"$FONT\"" -D "FONT_SMALL_PATH=\"$FONT\"" \
     -o "$1"                                                     \
-    "$MAIN" ../Arduino.cpp ../EEPROM.cpp ../U8g2lib.cpp         \
-    "../$LIBS/gamelib/"*.cpp                                    \
+    "$MAIN" "../"{Arduino,EEPROM,U8g2lib,utils}.cpp             \
+    "../$LIBS/gamelib/"{gamelib,display,input,sound}.cpp        \
 	-lSDL2 -lSDL2_ttf
 
+# TODO test existence of "$1" and exit with 1 OR test g++ return code
 mv "$1" "../bin"
 
 echo "Done."

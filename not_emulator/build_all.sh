@@ -2,6 +2,7 @@
 
 # build all games
 # stops immediately if one of the games fails to compile
+# TODO currently does not stop on error...fix and add parameter to ignore errors and continue?
 
 # TODO skip games that were not modified
 #      binary modified time is newer than game files, gamelib files and not_emulator files

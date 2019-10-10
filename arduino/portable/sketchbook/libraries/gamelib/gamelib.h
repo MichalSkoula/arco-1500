@@ -20,7 +20,4 @@ enum InitFlags {
 // called in setup() with ORed mask of desired init flags
 void initGame(byte initFlags);
 
-// soft reset
-void softReset();
-
 #endif	/* GAMELIB_H */

@@ -23,7 +23,7 @@ bool buttonPressed(byte button)
 	bool pressed = !digitalRead(buttonPin(button));
 
 	// it delay is over, we can return the real state
-	if ((millis() - lastDebounceTime[button]) > 200 && pressed) {
+	if ((millis() - lastDebounceTime[button]) > 150 && pressed) {
 		lastDebounceTime[button] = millis();
 		return true;
 	} 

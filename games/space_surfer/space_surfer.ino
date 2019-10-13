@@ -34,7 +34,7 @@ class Player {
         byte y = 54;
         byte width = 6;
         byte height = 8;
-        byte step = 6;
+        byte step = 7;
         byte health = 100;
 
         void draw()

@@ -32,6 +32,8 @@ DisplayBase::DisplayBase()
     }
     font = smallFont;
     printCursor = { 0, 0, 0, 0 };
+
+    transparentTextures = false;
 }
 
 DisplayBase::~DisplayBase()
@@ -42,6 +44,10 @@ DisplayBase::~DisplayBase()
     TTF_CloseFont(bigFont);
     TTF_Quit();
     SDL_Quit();
+}
+
+void DisplayBase::setBitmapMode(int transparent) {
+    transparentTextures = transparent;
 }
 
 void DisplayBase::firstPage()
@@ -134,9 +140,15 @@ void DisplayBase::drawDisc(int x, int y, int r, uint8_t opt)
 void DisplayBase::drawXBM(int x, int y, int w, int h, const uint8_t *data)
 {
     // TODO cache textures
-    SDL_Texture *texture = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_RGB24, SDL_TEXTUREACCESS_TARGET, w, h);
+    SDL_Texture *texture = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_RGBA32, SDL_TEXTUREACCESS_TARGET, w, h);
     SDL_SetRenderTarget(renderer, texture);
-    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+    if (transparentTextures) {
+        SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
+        SDL_SetTextureBlendMode(texture, SDL_BLENDMODE_BLEND);
+        SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
+    } else {
+        SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+    }
     SDL_RenderClear(renderer);
     SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
     int rw = static_cast<int>(ceil(w / 8.0) * 8);

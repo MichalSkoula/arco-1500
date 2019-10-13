@@ -56,10 +56,8 @@ public:
 	// dummy function
 	void begin() {}
 
-	void setBitmapMode(int)
-	{
-		// TODO impl
-	}
+    // if set to 1, textures will have transparent background
+    void setBitmapMode(int transparent);
 
 	void setContrast(int)
 	{
@@ -92,6 +90,8 @@ private:
 	TTF_Font *bigFont;
 	TTF_Font *font;
 	SDL_Rect printCursor;
+
+    bool transparentTextures;
 };
 
 

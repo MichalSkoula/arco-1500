@@ -10,9 +10,13 @@ extern const Uint8 *pressedKeys;
 extern const uint8_t *u8g2_font_5x7_tf;
 extern const uint8_t *u8g2_font_9x15_tf;
 
+#ifndef RESOLUTION_MULTIPLIER
+    #define RESOLUTION_MULTIPLIER 5
+#endif
+
 constexpr int DISPLAY_W = 128;
 constexpr int DISPLAY_H = 64;
-constexpr int RENDER_SCALE = 5;
+constexpr int RENDER_SCALE = RESOLUTION_MULTIPLIER;
 constexpr int WINDOW_W = DISPLAY_W * RENDER_SCALE;
 constexpr int WINDOW_H = DISPLAY_H * RENDER_SCALE;
 

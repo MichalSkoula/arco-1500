@@ -1,8 +1,10 @@
 #!/bin/bash
 
 # build all games
+# all arguments are propagated to build.sh script
 # stops immediately if one of the games fails to compile
 # TODO currently does not stop on error...fix and add parameter to ignore errors and continue?
+# TODO compile multiple games at a time
 
 # TODO skip games that were not modified
 #      binary modified time is newer than game files, gamelib files and not_emulator files
@@ -14,11 +16,7 @@ mkdir -p "$BIN"
 for game in $(ls ../games); do
 	echo "Building '$game'"
 	echo "---------------------------------"
-    if [ "$1" == "--no-arduino" ]; then
-        ./build.sh --no-arduino "$game"
-    else
-        ./build.sh "$game"
-    fi
+    ./build.sh "$@" "$game"
 	rc=$?
 	if [[ $rc != 0 ]]; then
 		echo

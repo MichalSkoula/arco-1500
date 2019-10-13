@@ -1,14 +1,23 @@
 #!/bin/bash
 
-# ./build.sh [--no-arduino] <game_name>
+# ./build.sh [--no-arduino] [--size <size>] <game_name>
+#
+# --size <size>     original resolution 128x64 is multiplied by <size> (must be positive integer)
 #
 # e.g. ./build.sh galaxy_madness
 
 NO_ARDUINO=0
-if [ "$#" -eq 2 ] && [ "$1" == "--no-arduino" ]; then
-    NO_ARDUINO=1
-    shift
-fi
+RESOLUTION_MULTIPLIER=5
+while [ "$#" -gt 1 ]; do
+    if [ "$1" == "--no-arduino" ]; then
+        NO_ARDUINO=1
+        shift
+    elif [ "$1" == "--size" ]; then
+        RESOLUTION_MULTIPLIER="$2"
+        shift
+        shift
+    fi
+done
 
 GAMES="../games"
 if [ "$#" -ne 1 ]; then
@@ -86,7 +95,7 @@ else
     # TODO probably lots of problems
     # TODO multiline /**/ comments can cause problems
     # TODO default values (meh, arduino-builder can't deal with them either)
-    # TODO make work with flappy_cat - classes
+    # TODO make work with flappy_cat and space_surfer - classes
 
     # extract structs and classes from all .ino files and add as forward declarations
     grep -oE --no-filename '^(struct|class).*?\s*\{?\s*$' "$GAME/"*.ino     | \
@@ -128,11 +137,10 @@ fi
 cd "$BUILD"
 echo "Compiling..."
 
-# TODO define NOT_ARDUINO currently not used anywhere...remove?
 g++ -std=c++17                                                  \
     -Wall -Wpedantic -pedantic-errors -Wextra                   \
     -I ".." -I "../$LIBS/gamelib"                               \
-    -D "NOT_ARDUINO"                                            \
+    -D "RESOLUTION_MULTIPLIER=$RESOLUTION_MULTIPLIER"           \
     -D "WINDOW_TITLE=\"not_emulator - $1\""                     \
     -D "FONT_BIG_PATH=\"$FONT\"" -D "FONT_SMALL_PATH=\"$FONT\"" \
     -o "$1"                                                     \

@@ -12,9 +12,14 @@ extern const uint8_t *u8g2_font_9x15_tf;
 
 constexpr int DISPLAY_W = 128;
 constexpr int DISPLAY_H = 64;
-constexpr int RENDER_SCALE = 3;
+constexpr int RENDER_SCALE = 5;
 constexpr int WINDOW_W = DISPLAY_W * RENDER_SCALE;
 constexpr int WINDOW_H = DISPLAY_H * RENDER_SCALE;
+
+template<typename T>
+inline constexpr T scale(T coord) {
+    return coord * RENDER_SCALE;
+}
 
 #ifndef WINDOW_TITLE
 	#define WINDOW_TITLE "not_emulator"
@@ -46,23 +51,20 @@ public:
 		SDL_Init(SDL_INIT_VIDEO);
 		TTF_Init();
 
-		//SDL_SetWindowTitle(window, title.c_str());
 		window = SDL_CreateWindow(WINDOW_TITLE,
 			SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
 			WINDOW_W, WINDOW_H, 0
 		);
 		renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_PRESENTVSYNC);
-		// TODO scale coordinates and fonts "manually"? what about bitmaps?
-		SDL_RenderSetScale(renderer, RENDER_SCALE, RENDER_SCALE);
 
-		//SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "1");		// linear filtering
-
-        smallFont = TTF_OpenFont(FONT_SMALL_PATH, 7);
+        // small font's height is approximately 6 px (4.5 pt)
+        smallFont = TTF_OpenFont(FONT_SMALL_PATH, static_cast<int>(round(scale(4.5))));
         if (!smallFont) {
             printf("Failed to open small font: %s", TTF_GetError());
             exit(1);
         }
-        bigFont = TTF_OpenFont(FONT_BIG_PATH, 15);
+        // big font's height is approximately 10 px (7.5 pt)
+        bigFont = TTF_OpenFont(FONT_BIG_PATH, static_cast<int>(round(scale(7.5))));
         if (!bigFont) {
             printf("Failed to open big font: %s", TTF_GetError());
             exit(1);
@@ -104,7 +106,7 @@ public:
 				switch (e.key.keysym.sym) {
 					case SDLK_ESCAPE:
 						exit(0);
-						break;
+
 					case SDLK_f:
 						fullscreen = !fullscreen;
 						//SDL_WINDOW_FULLSCREEN
@@ -139,33 +141,33 @@ public:
 
 	void drawPixel(int x, int y)
 	{
-		SDL_RenderDrawPoint(renderer, x, y);
+        drawBox(x, y, 1, 1);
 	}
 	
 	void drawLine(int x1, int y1, int x2, int y2)
 	{
-		SDL_RenderDrawLine(renderer, x1, y1, x2, y2);
+        SDL_RenderDrawLine(renderer, scale(x1), scale(y1), scale(x2), scale(y2));
 	}
 
 	void drawHLine(int x, int y, int w)
 	{
-		SDL_RenderDrawLine(renderer, x, y, x + w, y);
+        SDL_RenderDrawLine(renderer, scale(x), scale(y), scale(x) + scale(w), scale(y));
 	}
 
 	void drawVLine(int x, int y, int h)
 	{
-		SDL_RenderDrawLine(renderer, x, y, x, y + h);
+        SDL_RenderDrawLine(renderer, scale(x), scale(y), scale(x), scale(y) + scale(h));
 	}
 
 	void drawFrame(int x, int y, int w, int h)
 	{
-		SDL_Rect r{x, y, w, h};
+        SDL_Rect r{scale(x), scale(y), scale(w), scale(h)};
 		SDL_RenderDrawRect(renderer, &r);
 	}
 
 	void drawBox(int x, int y, int w, int h)
 	{
-		SDL_Rect r{x, y, w, h};
+        SDL_Rect r{scale(x), scale(y), scale(w), scale(h)};
 		SDL_RenderFillRect(renderer, &r);
 	}
 
@@ -176,7 +178,9 @@ public:
 		// https://en.wikipedia.org/wiki/Midpoint_circle_algorithm
 		// OR
 		// SDL_gfx OR U8g2
-		drawBox(x - r , y - r, r * 2, r * 2);
+        int sr = scale(r);
+        int sr2 = sr * 2;
+        drawBox(scale(x) - sr , scale(y) - sr, sr2, sr2);
 	}
 
 	void drawXBM(int x, int y, int w, int h, const uint8_t *data)
@@ -194,7 +198,7 @@ public:
 			}
 		}
         SDL_SetRenderTarget(renderer, nullptr);
-        SDL_Rect rect{x, y, w, h};
+        SDL_Rect rect{scale(x), scale(y), scale(w), scale(h)};
         SDL_RenderCopy(renderer, texture, nullptr, &rect);
 	}
 
@@ -213,6 +217,7 @@ public:
 		SDL_Texture *texture = SDL_CreateTextureFromSurface(renderer, surface);
 		SDL_QueryTexture(texture, nullptr, nullptr, &(printCursor.w), &(printCursor.h));
 		printCursor.y -= printCursor.h;		// setCursor sets position of bottom left corner
+        // TODO adjust x by width - original U8g2lib font has different width
 		SDL_RenderCopy(renderer, texture, nullptr, &printCursor);
 		// TODO probably inaccurate, but print is never called directly - always with setCursor()
 		printCursor.x += printCursor.w;
@@ -223,8 +228,8 @@ public:
 
 	void setCursor(int x, int y)
 	{
-		printCursor.x = x;
-		printCursor.y = y;
+        printCursor.x = scale(x);
+        printCursor.y = scale(y);
 	}
 
 private:

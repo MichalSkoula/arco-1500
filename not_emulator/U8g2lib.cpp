@@ -132,9 +132,7 @@ void DisplayBase::drawDisc(int x, int y, int r, uint8_t opt)
     // https://en.wikipedia.org/wiki/Midpoint_circle_algorithm
     // OR
     // SDL_gfx OR U8g2
-    int sr = scale(r);
-    int sr2 = sr * 2;
-    drawBox(scale(x) - sr , scale(y) - sr, sr2, sr2);
+    drawBox(x - r , y - r, r * 2, r * 2);
 }
 
 void DisplayBase::drawXBM(int x, int y, int w, int h, const uint8_t *data)

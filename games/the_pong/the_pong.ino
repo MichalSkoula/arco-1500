@@ -13,7 +13,7 @@ int playerY = 24;
 int aiY = 24;
 
 byte aiSpeed = 3;
-byte playerSpeed = 2;
+byte playerSpeed = 4;
 
 int ballX = DISPLAY_WIDTH / 2;
 int ballY = DISPLAY_HEIGHT / 2;

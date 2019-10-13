@@ -91,7 +91,7 @@ class Player
         {
             if (buttonPressed(ACTION_BUTTON)) {
                 // jump
-                y -= 5;
+                y -= 7;
                 sound.playTone(200);
             } else {
                 // fall down
@@ -105,7 +105,7 @@ class Player
 
             // collision - floor and ceiling
             if (y < 0 || y > game.height - height) {
-                hurt(2);
+                hurt(3);
             } else if (game.step % 2 == 0) {
                 scoreTable.addScore(1);
             }

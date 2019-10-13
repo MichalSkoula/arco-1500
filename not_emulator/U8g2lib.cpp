@@ -139,9 +139,10 @@ void DisplayBase::drawXBM(int x, int y, int w, int h, const uint8_t *data)
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
     SDL_RenderClear(renderer);
     SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+    int rw = static_cast<int>(ceil(w / 8.0) * 8);
     for (int i = 0; i < h; ++i) {
         for (int j = 0; j < w; ++j) {
-            if (data[(i * w) / 8 + j / 8] & (1 << (j % 8)))
+            if (data[(i * rw) / 8 + j / 8] & (1 << (j % 8)))
                 SDL_RenderDrawPoint(renderer, j, i);
         }
     }

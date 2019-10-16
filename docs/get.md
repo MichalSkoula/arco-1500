@@ -2,6 +2,8 @@
 layout: default
 
 ---
+<small><a href="/">Home</a> / Get</small>
+
 
 # Buy ARCO 1500 Complete set 
 # !! Coming soon !!

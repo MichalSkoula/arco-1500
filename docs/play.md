@@ -2,6 +2,7 @@
 layout: default
 
 ---
+<small><a href="/">Home</a> / Play</small>
 
 # How to upload games and play
 

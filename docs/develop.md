@@ -2,6 +2,7 @@
 layout: default
 
 ---
+<small><a href="/">Home</a> / Develop</small>
 
 # Develop your own game!
 

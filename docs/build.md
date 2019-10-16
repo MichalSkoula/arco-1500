@@ -2,6 +2,7 @@
 layout: default
 
 ---
+<small><a href="/">Home</a> / Build</small>
 
 # Build ARCO 1500
 

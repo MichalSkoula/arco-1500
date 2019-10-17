@@ -6,7 +6,7 @@ layout: default
 
 # Games
 
-Currently {{ site.data.games | size }} games. These are the screenhots from the emulator.
+Currently {{ site.data.games | size }} games. These are screenshots from the emulator.
 
 <div class="photo-gallery">
     {% for image in site.data.games %}
@@ -20,5 +20,9 @@ Currently {{ site.data.games | size }} games. These are the screenhots from the 
         </a>
     {% endfor %}
 </div>
+
+## Your own game?
+
+Learn how to develop your own game on [Develop](/develop.html) page.
 
 Made your own game? Send it to us: <a href="mailto:{{ site.email }}">{{ site.email }}</a> and we will publish it here!

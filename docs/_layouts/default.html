@@ -37,22 +37,26 @@
                 </h1>
                 <h2>{{ site.description | default: site.github.project_tagline }}</h2>
 
-                <section id="downloads" class="row justify-content-between">
-                    <div class="col-9">
+                <section id="menu" class="justify-content-between">
+                    <div class="menu-main">
                         <a href="/" class="btn {% if page.url == '/' %} active {% endif %} menu-highlight-1"><i class="fas fa-home"></i> Home</a>
                         <a href="/games.html" class="btn {% if page.url == '/games.html' %} active {% endif %} menu-highlight-1"><i class="fas fa-gamepad"></i> Games</a>
+                    </div>
+                    <div class="menu-process">
                         <a href="/get.html" class="btn {% if page.url == '/get.html' %} active {% endif %} menu-highlight-2"><i class="fas fa-shopping-cart"></i> Get</a>
                         <a href="/build.html" class="btn {% if page.url == '/build.html' %} active {% endif %} menu-highlight-2"><i class="fas fa-hammer"></i> Build</a>
                         <a href="/develop.html" class="btn {% if page.url == '/develop.html' %} active {% endif %} menu-highlight-2"><i class="fas fa-code"></i> Develop</a>
                         <a href="/play.html" class="btn {% if page.url == '/play.html' %} active {% endif %} menu-highlight-2"><i class="fas fa-play"></i> Play</a>
                     </div>
                     
-                    <div class="col-3 text-right">
+                    <div class="float-right">
                         <a href="/blog.html" class="white fa-2x"><i class="fas fa-rss"></i></a>
                         <a href="{{ site.facebook_url }}" class="white fa-2x" target="_blank"><i class="fab fa-facebook"></i></a>
                         <a href="{{ site.youtube_url }}" class="white fa-2x" target="_blank"><i class="fab fa-youtube"></i></a>
+                        <a href="{{ site.github_url }}" class="white fa-2x" target="_blank"><i class="fab fa-github"></i></a>
                     </div>
                 </section>
+                <hr>
             </div>
         </header>
 
@@ -73,6 +77,7 @@
 
                         <br>
 
+                        <a href="/blog.html" class="white fa-2x"><i class="fas fa-rss"></i></a>
                         <a href="{{ site.facebook_url }}" class="white fa-2x" target="_blank"><i class="fab fa-facebook"></i></a>
                         <a href="{{ site.youtube_url }}" class="white fa-2x" target="_blank"><i class="fab fa-youtube"></i></a>
                         <a href="{{ site.github_url }}" class="white fa-2x" target="_blank"><i class="fab fa-github"></i></a>

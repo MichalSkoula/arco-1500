@@ -59,6 +59,12 @@ footer {
 hr {
     border-bottom: 2px solid $blue;
     box-shadow: 0px 5px 5px 0px rgba(176,240,253,0.2);
+    margin-top: 0em;
+    clear: both;
+
+    footer & {
+        margin-top: 1em;
+    }
 }
 
 a {
@@ -100,44 +106,6 @@ h3 {
 h1, h2, h3, h4 {
     text-transform: capitalize;
     color: $blue !important;
-}
-
-.btn {
-    border-radius: 0;
-    border: 0px;
-    font-size: 1.2em;
-    padding: 5px 10px;
-    color: $white;
-    margin: 3px !important;
-    background: none;
-    box-shadow: none;
-
-    @media screen and (max-width: $break-small) {
-        font-size: 0.9em;
-    }
-
-    &:hover {
-        background: none;
-    }
-
-    &.menu-highlight-1 {
-        border-bottom: 2px solid $purple !important;
-        border-top: 2px solid transparent !important;
-
-        &:hover, &.active {
-            color: $purple;
-            border-top: 2px solid $purple !important;
-        }
-    }
-    &.menu-highlight-2 {
-        border-bottom: 2px solid $blue !important;
-        border-top: 2px solid transparent !important;
-
-        &:hover, &.active {
-            color: $blue;
-            border-top: 2px solid $blue !important;
-        }
-    }
 }
 
 .white {
@@ -217,4 +185,55 @@ h1, h2, h3, h4 {
 
 #all-prototypes {
     display: none;
+}
+
+#menu {
+    margin-bottom: 0em;
+
+    .menu-process {
+        background-color: $grey;
+        display: inline-block;
+    }
+    .menu-main {
+        display: inline-block;
+    }
+
+    .fa-2x {
+        font-size: 1.7em;
+    }
+
+    .btn {
+        border-radius: 0;
+        border: 0px;
+        font-size: 1.2em;
+        padding: 5px 10px;
+        color: $white;
+        background: none;
+        box-shadow: none;
+
+        @media screen and (max-width: $break-small) {
+            font-size: 0.8em;
+        }
+
+        &:hover {
+            background: none;
+        }
+
+        &.menu-highlight-1 {
+            border-top: 2px solid transparent !important;
+
+            &:hover, &.active {
+                color: $purple;
+                border-top: 2px solid $purple !important;
+            }
+        }
+        &.menu-highlight-2 {
+            border-top: 2px solid transparent !important;
+
+            &:hover, &.active {
+                color: $blue;
+                border-top: 2px solid $blue !important;
+            }
+        }
+    }
 }

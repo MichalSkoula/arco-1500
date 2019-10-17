@@ -97,6 +97,6 @@ void softReset();
 
 ## Emulator
 
-For Linux users out there, we have an emulator. You can find it in "not_emulator" folder. There is a README.md file with simple instructions on how to use it.
+For Linux users out there, we have an emulator for testing games without real console. You can find it in "not_emulator" folder. There is a README.md file with simple instructions on how to use it.
 
 ## [<< Build](/build.html) | Develop | [Play >>](/play.html)

@@ -31,14 +31,14 @@ Currently {{ site.data.games | size }} games.
 
 <div class="photo-gallery">
     {% for image in site.data.games limit:4 %}
-        <a href="/assets/images/games/{{ image.filename }}" data-fancybox="games-gallery" data-caption="{{ image.title | escape }}">
-            <figure>
-                <img data-src="/assets/images/games/{{ image.filename }}" alt="{{ image.title | escape }}" class="image-border"/>
-                <figcaption>
-                    {{ image.title}}
-                </figcaption>
-            </figure>
-        </a>
+        <figure>
+            <a href="/assets/images/games/{{ image.filename }}.png" data-fancybox="games-gallery" data-caption="{{ image.title | escape }}">
+                <img data-src="/assets/images/games/{{ image.filename }}.png" alt="{{ image.title | escape }}" class="image-border"/>
+            </a>
+            <figcaption>
+                {{ image.title}}
+            </figcaption>
+        </figure>
     {% endfor %}
 
     <a href="/games.html">Show all games >></a>
@@ -50,27 +50,27 @@ ARCO1500 is still in development stage. Here are some moments captured for your 
 
 <div class="photo-gallery">
     {% for image in site.data.prototypes limit:4 %}
-        <a href="/assets/images/prototypes/{{ image.filename }}" data-fancybox="prototypes-gallery" data-caption="{{ image.title | escape }}">
-            <figure>
+        <figure>
+            <a href="/assets/images/prototypes/{{ image.filename }}" data-fancybox="prototypes-gallery" data-caption="{{ image.title | escape }}">
                 <img data-src="/assets/images/prototypes/thumbnails/{{ image.filename }}" alt="{{ image.title | escape }}" class="image-border"/>
-                <figcaption>
-                    {{ image.title}}
-                </figcaption>
-            </figure>
-        </a>
+            </a>
+            <figcaption>
+                {{ image.title}}
+            </figcaption>
+        </figure>
     {% endfor %}
 </div>
 <a href="#all-prototypes" id="show-all-prototypes">Show all prototypes >></a>
 <div class="photo-gallery" id="all-prototypes">
     {% for image in site.data.prototypes offset:4 %}
-        <a href="/assets/images/prototypes/{{ image.filename }}" data-fancybox="prototypes-gallery" data-caption="{{ image.title | escape }}">
-            <figure>
+        <figure>
+            <a href="/assets/images/prototypes/{{ image.filename }}" data-fancybox="prototypes-gallery" data-caption="{{ image.title | escape }}">
                 <img data-src="/assets/images/prototypes/thumbnails/{{ image.filename }}" alt="{{ image.title | escape }}" class="image-border"/>
-                <figcaption>
-                    {{ image.title}}
-                </figcaption>
-            </figure>
-        </a>
+            </a>
+            <figcaption>
+                {{ image.title}}
+            </figcaption>
+        </figure>
     {% endfor %}
 </div>
 

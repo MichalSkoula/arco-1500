@@ -116,7 +116,7 @@ h1, h2, h3, h4 {
     display: flex;
     flex-wrap: wrap;
 
-    a {
+    figure {
         width: calc(25% - 8px);
         margin: 0;
         overflow: hidden;
@@ -127,24 +127,20 @@ h1, h2, h3, h4 {
             width: calc(100% - 6px)
         }
 
-        figure {
-            margin: 0px;
-            
-            img {
-                max-width:100%;
-                height: auto;
-                display: block;
-                transition: transform .2s ease-in-out;
+        img {
+            max-width:100%;
+            height: auto;
+            display: block;
+            transition: transform .2s ease-in-out;
 
-                &:hover {
-                    transform: scale(1.05);
-                }
+            &:hover {
+                transform: scale(1.05);
             }
+        }
 
-            figcaption {
-                margin-top: 10px;
-            }
-        }   
+        figcaption {
+            margin-top: 10px;
+        }
     }    
 }
 

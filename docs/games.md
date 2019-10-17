@@ -10,14 +10,14 @@ Currently {{ site.data.games | size }} games. These are screenshots from the emu
 
 <div class="photo-gallery">
     {% for image in site.data.games %}
-        <a href="/assets/images/games/{{ image.filename }}" data-fancybox="games-gallery" data-caption="{{ image.title | escape }}">
-            <figure>
-                <img data-src="/assets/images/games/{{ image.filename }}" alt="{{ image.title | escape }}" class="image-border"/>
-                <figcaption>
-                    {{ image.title}}
-                </figcaption>
-            </figure>
-        </a>
+        <figure>
+            <a href="/assets/images/games/{{ image.filename }}.png" data-fancybox="games-gallery" data-caption="{{ image.title | escape }}">
+                <img data-src="/assets/images/games/{{ image.filename }}.png" alt="{{ image.title | escape }}" class="image-border"/>
+            </a>
+            <figcaption>
+                {{ image.title}} <a href="/assets/games/{{ image.filename }}.zip">Download</a>
+            </figcaption> 
+        </figure>
     {% endfor %}
 </div>
 

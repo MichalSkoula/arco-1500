@@ -22,7 +22,7 @@ using score_t = uint16_t;
 struct Score
 {
 	// 3 characters A-Z (26 letters, 5 bits each, 1 bit unused)
-    unsigned int c1 : 5, c2 : 5, c3 : 5, : 1;
+    uint16_t c1 : 5, c2 : 5, c3 : 5, : 1;
 	score_t value;
 };
 

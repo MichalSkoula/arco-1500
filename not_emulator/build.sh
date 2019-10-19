@@ -21,28 +21,30 @@ done
 
 GAMES="../games"
 if [ "$#" -ne 1 ]; then
-    echo "Usage: build.sh [--no-arduino] <game_name>"
+    echo "Usage: build.sh [--no-arduino] [--size <size>] <game_name>"
     echo -e "\nAvailable games:"
     ls "$GAMES"
     echo
-	exit
+    exit 1
 fi
 
-GAME="$GAMES/$1"
-BUILD="build"
-MAIN="main.cpp"
+GAME="$1"
+GAMEDIR="$GAMES/$GAME"
+BUILD="build/$GAME"
+MAIN="main_$GAME.cpp"
 LIBS="../arduino/portable/sketchbook/libraries"
 
-SKETCH="$GAME/$1.ino"
+SKETCH="$GAMEDIR/$GAME.ino"
 if [ ! -f "$SKETCH" ]; then
 	echo "Sketch with path '$SKETCH' does not exist"
-	exit
+    exit 1
 fi
 
-if [ -d "$BUILD" ]; then
-	rm -r "$BUILD"
-fi
-mkdir "$BUILD"
+# TODO only when --rebuild param specified?
+#if [ -d "$BUILD" ]; then
+#	rm -r "$BUILD"
+#fi
+mkdir -p "$BUILD"
 
 ARDUINO_PORT="../arduino"
 ARDUINO_SYS="/usr/share/arduino"
@@ -78,8 +80,9 @@ if [ "$NO_ARDUINO" -eq 0 ] && \
         # copy gamelib to default Arduino IDE Sketchbook location
         # TODO read location from ~/.arduino15/preferences.txt sketchbook.path=?
         mkdir -p "$HOME/Arduino/libraries/gamelib"
-        cp "$LIBS/gamelib/"* "$HOME/Arduino/libraries/gamelib"
+        cp -u "$LIBS/gamelib/"* "$HOME/Arduino/libraries/gamelib"
 
+        # TODO add some parameters from portable version
         "$ARDUINO/arduino-builder"                      \
             -preprocess 								\
             -hardware "$ARDUINO/hardware"       		\
@@ -90,7 +93,7 @@ if [ "$NO_ARDUINO" -eq 0 ] && \
             "$SKETCH"									> /dev/null
     fi
 
-    cp "$PREP/sketch/$1.ino.cpp" "$BUILD/main.cpp"
+    cp "$PREP/sketch/$GAME.ino.cpp" "$BUILD/$MAIN"
 else
     echo "Concatenating game .ino files (no arduino)..."
     # --------------------------------------------------
@@ -104,29 +107,29 @@ else
     # TODO make work with flappy_cat and space_surfer - classes
 
     # extract structs and classes from all .ino files and add as forward declarations
-    grep -oE --no-filename '^(struct|class).*?\s*\{?\s*$' "$GAME/"*.ino     | \
-        sed 's/{//g' | sed 's/$/;/g'                                        >> "$BUILD/$MAIN"
+    grep -oE --no-filename '^(struct|class).*?\s*\{?\s*$' "$GAMEDIR/"*.ino      | \
+        sed 's/{//g' | sed 's/$/;/g'                                            >> "$BUILD/$MAIN"
 
     # extract function headers from all .ino files and add as forward declarations
     #   match everything that resembles function header
     #   filter out lines starting if/else/for/...
     #   remove { and add semicolon ; at the end of every line
-    grep -oE --no-filename '^([^/\*\}])*\(.*?\)\s*\{?\s*$' "$GAME/"*.ino    | \
-        grep -E --invert-match '\s*(if|else|else if|switch|for|while|do)'   | \
-        sed 's/{//g' | sed 's/$/;/g'                                        >> "$BUILD/$MAIN"
+    grep -oE --no-filename '^([^/\*\}])*\(.*?\)\s*\{?\s*$' "$GAMEDIR/"*.ino     | \
+        grep -E --invert-match '\s*(if|else|else if|switch|for|while|do)'       | \
+        sed 's/{//g' | sed 's/$/;/g'                                            >> "$BUILD/$MAIN"
 
     cat "$SKETCH" >> "$BUILD/$MAIN"
 
-    for file in "$GAME/"*.ino; do
+    for file in "$GAMEDIR/"*.ino; do
         if [ "$file" != "$SKETCH" ]; then
             cat "$file" >> "$BUILD/$MAIN"
         fi
     done
 fi
 
-cat "$MAIN" >> "$BUILD/$MAIN"
+cat "main.cpp" >> "$BUILD/$MAIN"
 
-# TODO better fonts
+# TODO better fonts?
 # font path in Fedora
 FONT="/usr/share/fonts/dejavu/DejaVuSansMono.ttf"
 if [ ! -f "$FONT" ]; then
@@ -134,7 +137,7 @@ if [ ! -f "$FONT" ]; then
     FONT="/usr/share/fonts/truetype/dejavu/DejaVuSansMono.ttf"
     if [ ! -f "$FONT" ]; then
         echo "Cannot find DejaVuSansMono.ttf font"
-        exit
+        exit 1
     fi
 fi
 
@@ -143,18 +146,24 @@ fi
 cd "$BUILD"
 echo "Compiling..."
 
+# relative to $BUILD
+REL="../.."
+
 g++ -std=c++17                                                  \
     -Wall -Wpedantic -pedantic-errors -Wextra                   \
-    -I ".." -I "../$LIBS/gamelib"                               \
+    -I "$REL" -I "$REL/$LIBS/gamelib"                           \
     -D "RESOLUTION_MULTIPLIER=$RESOLUTION_MULTIPLIER"           \
-    -D "WINDOW_TITLE=\"not_emulator - $1\""                     \
+    -D "WINDOW_TITLE=\"not_emulator - $GAME\""                  \
     -D "FONT_BIG_PATH=\"$FONT\"" -D "FONT_SMALL_PATH=\"$FONT\"" \
-    -o "$1"                                                     \
-    "$MAIN" "../"{Arduino,EEPROM,U8g2lib,utils}.cpp             \
-    "../$LIBS/gamelib/"{gamelib,display,input,sound}.cpp        \
+    -o "$GAME"                                                  \
+    "$MAIN" "$REL/"{Arduino,EEPROM,U8g2lib,utils}.cpp           \
+    "$REL/$LIBS/gamelib/"{gamelib,display,input,sound}.cpp      \
 	-lSDL2 -lSDL2_ttf
 
-# TODO test existence of "$1" and exit with 1 OR test g++ return code
-mv "$1" "../bin"
+if [ ! -f "$GAME" ]; then
+    echo "Failed to compile '$GAME'"
+    exit 1
+fi
+mv "$GAME" "$REL/bin"
 
 echo "Done."

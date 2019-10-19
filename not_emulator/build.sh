@@ -54,6 +54,11 @@ if [ "$NO_ARDUINO" -eq 0 ] && \
 
     ARDUINO="$ARDUINO_PORT"
     if [ -f "$ARDUINO/arduino-builder" ]; then
+        # absolute path
+        cd "$(dirname "$ARDUINO")"
+        ARDUINO="$(pwd)/$(basename "$ARDUINO")"
+        cd "$OLDPWD"
+
         echo "Running arduino-builder (portable) in '$ARDUINO'"
 
         "$ARDUINO/arduino-builder"                      \
@@ -61,6 +66,7 @@ if [ "$NO_ARDUINO" -eq 0 ] && \
             -hardware "$ARDUINO/hardware"       		\
             -tools "$ARDUINO/tools-builder"     		\
             -tools "$ARDUINO/hardware/tools/avr"   		\
+            -built-in-libraries "$ARDUINO/libraries"    \
             -libraries "$LIBS"                  		\
             -fqbn=arduino:avr:nano:cpu=atmega328		\
             -build-path "$PREP"							\

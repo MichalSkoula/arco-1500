@@ -158,7 +158,7 @@ g++ -std=c++17                                                  \
     -o "$GAME"                                                  \
     "$MAIN" "$REL/"{Arduino,EEPROM,U8g2lib,utils}.cpp           \
     "$REL/$LIBS/gamelib/"{gamelib,display,input,sound}.cpp      \
-	-lSDL2 -lSDL2_ttf
+	-lSDL2 -lSDL2_ttf -D SDL_MAIN_HANDLED
 
 if [ ! -f "$GAME" ]; then
     echo "Failed to compile '$GAME'"

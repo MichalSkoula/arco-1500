@@ -7,8 +7,9 @@ game_uploader/v15/*
 game_uploader/ARCO1500_Uploader.csproj.user
 
 # not emulator
-not_emulator/bin
+not_emulator/bin/*
 not_emulator/build
+not_emulator/bin.exe
 
 # geany and qtcreator project files
 project.geany

@@ -34,7 +34,6 @@ static_assert(sizeof(Score) == 4, "Score struct size should be 4 bytes");
 // when game ends call scoreTable.gameOver(finalScore)
 // and in loop call scoreTable.update() and scoreTable.draw()
 //
-// TODO Inner state size
 //
 // Format:
 // Saved to EEPROM (max 512 bytes of memory)
@@ -81,21 +80,21 @@ public:
 
 	void update()
 	{
-		if (stage == 0 && buttonPressed(START_BUTTON)) {
-            stage = isHighScore() ? 1 : 2;
-		} else if (stage == 1) {
-			if (buttonPressed(LEFT_BUTTON) && nameIndex > 0) {
-				--nameIndex;
-			} else if (buttonPressed(RIGHT_BUTTON) && nameIndex < 2) {
-				++nameIndex;
+        if (state.stage == 0 && buttonPressed(START_BUTTON)) {
+            state.stage = isHighScore() ? 1 : 2;
+        } else if (state.stage == 1) {
+            if (buttonPressed(LEFT_BUTTON) && state.selection > 0) {
+                --state.selection;
+            } else if (buttonPressed(RIGHT_BUTTON) && state.selection < 2) {
+                ++state.selection;
 			} else if (buttonPressed(UP_BUTTON)) {
-				switch (nameIndex) {
+                switch (state.selection) {
 					case 0: if (score.c1 > 0) --score.c1; break;
 					case 1: if (score.c2 > 0) --score.c2; break;
 					case 2: if (score.c3 > 0) --score.c3; break;
 				}
 			} else if (buttonPressed(DOWN_BUTTON)) {
-				switch (nameIndex) {
+                switch (state.selection) {
 					case 0: if (score.c1 < 'Z' - 'A') ++score.c1; break;
 					case 1: if (score.c2 < 'Z' - 'A') ++score.c2; break;
 					case 2: if (score.c3 < 'Z' - 'A') ++score.c3; break;
@@ -103,12 +102,10 @@ public:
 			} else if (buttonPressed(START_BUTTON)) {
 				byte i = findLowestScore();
 				EEPROM.put(gameId * Size + 1 + i * sizeof(Score), score);
-				stage = 2;
+                state.stage = 2;
 			}
-		} else if (stage == 2 && buttonPressed(START_BUTTON)) {
-            stage = 0;
-            nameIndex = 0;
-            highScore = -1;
+        } else if (state.stage == 2 && buttonPressed(START_BUTTON)) {
+            state = { 0, 0, 0, 0 };
             score.value = 0;
             softReset();
 		}
@@ -116,29 +113,34 @@ public:
 
 	void draw()
 	{
-		if (stage == 0) {
+        if (state.stage == 0) {
 			drawGameOver();
-		} else if (stage == 1) {
+        } else if (state.stage == 1) {
 			drawNameInput();
-		} else if (stage == 2) {
+        } else if (state.stage == 2) {
 			drawTable();
 		}
 	}
 
 private:
-	// TODO smaller inner state
-	//		stage, nameIndex and isHighScore flag in one byte
-	// 0		Game Over/New High Score Screen		// TODO different stages?
+    // stage
+    // 0		Game Over/New High Score Screen
 	// 1		Name Input Screen
 	// 2		High Score Table
-    byte stage = 0;
-	byte nameIndex = 0;
-    char highScore = -1;    // not set
+    struct {
+        byte
+            stage : 3,
+            selection : 3,
+            highScore : 1,
+            highScoreSet : 1;
+    } state;
+
 	Score score;
 
     // TODO better - currently ScoreTable is at offset gameId * Size
 	void init()
 	{
+        state = { 0, 0, 0, 0 };
 		score = { 0, 0, 0, 0 };
 		byte id;
 		if (EEPROM.get(gameId * Size, id) != gameId) {
@@ -177,9 +179,11 @@ private:
 	}
 
     bool isHighScore() {
-        if (highScore < 0)
-            highScore = _isHighScore() ? 1 : 0;
-        return highScore;
+        if (!state.highScoreSet) {
+            state.highScoreSet = 1;
+            state.highScore = _isHighScore() ? 1 : 0;
+        }
+        return state.highScore;
     }
 
     bool sameScore(const Score& other) const
@@ -195,10 +199,10 @@ private:
         if (isHighScore()) {
 			display.drawBigText(15, 10, "GAME OVER");
 			// TODO
-			display.drawSmallText(15, 35, "New High Score: " + (String)score.value);
+            display.drawSmallText(15, 35, "New High Score: " + String(score.value));
 		} else {
 			display.drawBigText(15, 10, "GAME OVER");
-			display.drawSmallText(15, 35, "Score: " + (String)score.value);
+            display.drawSmallText(15, 35, "Score: " + String(score.value));
 		}
 	}
 
@@ -206,11 +210,11 @@ private:
 	{
 		display.drawBigText(15, 10, "YOUR NICK");
 
-		display.drawBigText(20 + 0 * 20, 40, (String)static_cast<char>(score.c1 + 'A'));
-		display.drawBigText(20 + 1 * 20, 40, (String)static_cast<char>(score.c2 + 'A'));
-		display.drawBigText(20 + 2 * 20, 40, (String)static_cast<char>(score.c3 + 'A'));
+        display.drawBigText(20 + 0 * 20, 40, String(static_cast<char>(score.c1 + 'A')));
+        display.drawBigText(20 + 1 * 20, 40, String(static_cast<char>(score.c2 + 'A')));
+        display.drawBigText(20 + 2 * 20, 40, String(static_cast<char>(score.c3 + 'A')));
 		for (byte i = 0; i < 3; ++i) {
-			if (i == nameIndex) {
+            if (i == state.selection) {
 				display.drawFrame(18 + i * 20, 26, 13, 20);
 			} else {
 				display.drawBigText(20 + i * 20, 46, "_");
@@ -260,9 +264,9 @@ private:
                 highlight = false;
                 display.drawSmallText(10, 25 + i * 9, ">");
             }
-			display.drawSmallText(15, 25 + i * 9, (String)(i + 1) + '.');
+            display.drawSmallText(15, 25 + i * 9, String(i + 1) + '.');
 			display.drawSmallText(30, 25 + i * 9, name);
-	  		display.drawText(85, 25 + i * 9, (String)scores[i].value);
+            display.drawText(85, 25 + i * 9, String(scores[i].value));
 		}
 	}
 };

@@ -9,14 +9,29 @@ const uint8_t *u8g2_font_9x15_tf = reinterpret_cast<const uint8_t *>(2);
 
 DisplayBase::DisplayBase()
 {
-    SDL_Init(SDL_INIT_VIDEO);
-    TTF_Init();
+    if (SDL_Init(SDL_INIT_VIDEO) != 0) {
+        printf("Failed to initialize SDL: %s", SDL_GetError());
+        exit(1);
+    }
+    if (TTF_Init() != 0) {
+        printf("Failed to initialize SDL_ttf: %s", SDL_GetError());
+        exit(1);
+    }
 
     window = SDL_CreateWindow(WINDOW_TITLE,
         SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
         WINDOW_W, WINDOW_H, 0
     );
+    if (!window) {
+        printf("Failed to create window: %s", SDL_GetError());
+        exit(1);
+    }
+
     renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_PRESENTVSYNC);
+    if (!renderer) {
+        printf("Failed to create rendere: %s", SDL_GetError());
+        exit(1);
+    }
 
     // small font's height is approximately 6 px (4.5 pt)
     smallFont = TTF_OpenFont(FONT_SMALL_PATH, static_cast<int>(round(scale(4.5))));

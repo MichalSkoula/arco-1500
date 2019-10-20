@@ -9,6 +9,7 @@
   * Start MSYS2 MinGW and use it as terminal for following:
   * Update: pacman -Syu
   * Install SDL2 stuff: pacman -S git mingw-w64-x86_64-toolchain mingw64/mingw-w64-x86_64-SDL2 mingw64/mingw-w64-x86_64-SDL2_mixer mingw64/mingw-w64-x86_64-SDL2_image mingw64/mingw-w64-x86_64-SDL2_ttf mingw64/mingw-w64-x86_64-SDL2_net mingw64/mingw-w64-x86_64-cmake make
+  * Download [Dejavu font](https://www.fontsquirrel.com/fonts/dejavu-sans-mono) and put it in MSYS2 fonts directory, eg. C:\msys64\usr\share\fonts\truetype\dejavu\DejaVuSansMono.ttf
 
 ## Optional
 * Arduino IDE (preferable portable) in /arduino folder with gamelib (ours) and U8G2 libraries

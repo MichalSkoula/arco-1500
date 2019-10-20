@@ -82,7 +82,7 @@ public:
 	void update()
 	{
 		if (stage == 0 && buttonPressed(START_BUTTON)) {
-			stage = isHighScore() ? 1 : 2;
+            stage = isHighScore() ? 1 : 2;
 		} else if (stage == 1) {
 			if (buttonPressed(LEFT_BUTTON) && nameIndex > 0) {
 				--nameIndex;
@@ -103,10 +103,13 @@ public:
 			} else if (buttonPressed(START_BUTTON)) {
 				byte i = findLowestScore();
 				EEPROM.put(gameId * Size + 1 + i * sizeof(Score), score);
-				score.value = 0;
 				stage = 2;
 			}
 		} else if (stage == 2 && buttonPressed(START_BUTTON)) {
+            stage = 0;
+            nameIndex = 0;
+            highScore = -1;
+            score.value = 0;
             softReset();
 		}
 	}
@@ -128,8 +131,9 @@ private:
 	// 0		Game Over/New High Score Screen		// TODO different stages?
 	// 1		Name Input Screen
 	// 2		High Score Table
-	byte stage = 0;
+    byte stage = 0;
 	byte nameIndex = 0;
+    char highScore = -1;    // not set
 	Score score;
 
     // TODO better - currently ScoreTable is at offset gameId * Size
@@ -146,7 +150,7 @@ private:
 		}
 	}
 
-	byte findLowestScore()
+    byte findLowestScore() const
 	{
         score_t low = static_cast<score_t>(-1);     // max score_t value
 		score_t s;
@@ -161,9 +165,7 @@ private:
 		return lowIndex;
 	}
 
-	// TODO cache? it's just one bit (+ 1 bit for dirty cache? or determine by stage?)
-	// 		or cache index of the lowest score?
-	bool isHighScore()
+    bool _isHighScore() const
 	{
 		byte i = findLowestScore();
         if (i < Count) {
@@ -174,9 +176,23 @@ private:
         return false;
 	}
 
+    bool isHighScore() {
+        if (highScore < 0)
+            highScore = _isHighScore() ? 1 : 0;
+        return highScore;
+    }
+
+    bool sameScore(const Score& other) const
+    {
+        return score.value == other.value
+            && score.c1 == other.c1
+            && score.c2 == other.c2
+            && score.c3 == other.c3;
+    }
+
 	void drawGameOver()
 	{
-		if (isHighScore()) {
+        if (isHighScore()) {
 			display.drawBigText(15, 10, "GAME OVER");
 			// TODO
 			display.drawSmallText(15, 35, "New High Score: " + (String)score.value);
@@ -232,12 +248,18 @@ private:
 		}
 
 		// draw them
+        bool highlight = isHighScore();
 		for (byte i = 0; i < Count; ++i) {
 			char name[4];
 			name[0] = scores[i].c1 + 'A';
 			name[1] = scores[i].c2 + 'A';
 			name[2] = scores[i].c3 + 'A';
 			name[3] = 0;
+            // highlight new high score
+            if (highlight && sameScore(scores[i])) {
+                highlight = false;
+                display.drawSmallText(10, 25 + i * 9, ">");
+            }
 			display.drawSmallText(15, 25 + i * 9, (String)(i + 1) + '.');
 			display.drawSmallText(30, 25 + i * 9, name);
 	  		display.drawText(85, 25 + i * 9, (String)scores[i].value);

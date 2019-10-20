@@ -225,7 +225,7 @@ private:
 	void drawTable()
 	{
 		display.drawBigText(15, 10, "HIGH SCORES");
-		display.drawSmallText(15, 18, "--------------------");
+        display.drawLine(0, 12, 128, 12);
 
 		// TODO could probably be optimized to use less memory
 		// read scores from memory

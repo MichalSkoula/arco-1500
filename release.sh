@@ -25,9 +25,6 @@ cp -R not_emulator arco1500-release/not_emulator
 printf "\ncopying games ..."
 cp -R games arco1500-release/games
 
-printf "\ncopying url shortcut ..."
-cp "How To Build It.url" arco1500-release/"How To Build It.url"
-
 printf "\nzipping ..."
 7z a -tzip arco1500.zip arco1500-release > 7zlog
 rm -Rf arco1500-release

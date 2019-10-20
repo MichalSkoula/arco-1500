@@ -11,7 +11,7 @@ You can develop your own games with just a little knowledge of programming (C++ 
 ## Prerequisites
 
 1. Download latest release of ARCO software from [GitHub]({{site.github_url}}releases) and extract it somewhere.
-2. Install Windows USB driver "arduino/drivers/Arduino_USB_Drivers-master/Windows".
+2. (Windows only) Install USB driver "arduino/drivers/Arduino_USB_Drivers-master/Windows".
 
 ## Hello Arco
 

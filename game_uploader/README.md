@@ -5,4 +5,4 @@
 
 ## Usage
 * Connect your ARCO1500 console to PC via USB cable
-* Run game_uploader.exe and follow instructons
+* Run ARCO1500_Uploader.exe and follow instructons

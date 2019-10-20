@@ -175,6 +175,7 @@ void DisplayBase::drawXBM(int x, int y, int w, int h, const uint8_t *data)
     SDL_Rect rect{scale(x), scale(y), scale(w), scale(h)};
     SDL_RenderCopy(renderer, texture, nullptr, &rect);
     SDL_DestroyTexture(texture);
+    SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_NONE);
 }
 
 void DisplayBase::setFont(const uint8_t *font)

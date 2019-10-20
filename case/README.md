@@ -1,6 +1,8 @@
 # ARCO 1500 case 
 
-These open source parts are used:
+Beside these STL files, here is a Tincercad version - https://www.tinkercad.com/search?category=tinkercad&q=arco1500
+
+These open source parts were used:
 
 ## OLED holder 
 - https://www.thingiverse.com/thing:2176764

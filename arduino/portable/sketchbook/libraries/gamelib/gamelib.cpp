@@ -18,7 +18,7 @@ void initGame(byte initFlags)
 	}
 	
 	display.begin();
-	display.setBitmapMode(1);
+	display.setBitmapMode(0);
 	Serial.begin(9600);
 	randomSeed(analogRead(0));
 }

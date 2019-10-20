@@ -13,7 +13,7 @@ great [U8G2 library](https://github.com/olikraus/u8g2)
 
 But I told a friend of mine (David - on the picture below!) and he created a library (simply called Gamelib), some silly games and even an emulator (simply called Not Emulator).
 
-<img data-src="/assets/images/blog/IMG_20181107_211021.jpg" alt="David trying out ARCO" class="image-border img-responsive" />
+<img data-src="/assets/images/blog/IMG_20181107_211021.jpg" alt="David trying out ARCO1500" class="image-border img-responsive" />
 
 He even came up with a name - <strong>ARCO 1500</strong> is for ARduino COnsole M (1000) + D (500).
 

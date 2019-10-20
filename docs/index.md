@@ -16,9 +16,9 @@ layout: default
         <ul>
             <li><strong><a href="/games.html">Games</a></strong> - currently {{ site.data.games | size }} extra funny games</li>
             <li>3D printed <strong><a href="#game-console">Console case</a></strong> </li>
-            <li><strong>Arduino IDE</strong> (with our gamelib) - to develop your own games</li>
+            <li><strong>Arduino IDE</strong> (with libraries) - to develop your own games</li>
             <li><strong>Game Uploader</strong> - so you can upload games easily to the console (Windows)</li>
-            <li><strong>Not Emulator</strong> - emulator for testing games on PC (Linux), without console</li>
+            <li><strong>Not Emulator</strong> - emulator for testing games on PC (Windows, Linux), without console</li>
         </ul>
     </div>
 </div>

@@ -1,7 +1,7 @@
 #!/bin/sh
 
 printf "\nzip games and copy them to docs folder ..."
-rm -R docs/assets/games/*
+rm -Rf docs/assets/games/*
 for d in games/*; do
     7z a -tzip docs/assets/${d}.zip $d > 7zlog
 done
@@ -12,9 +12,9 @@ mkdir arco1500-release
 
 printf "\ncopying arduino ide ..."
 cp -R arduino arco1500-release/arduino
-rm -R arco1500-release/arduino/portable/staging
-rm -R arco1500-release/arduino/portable/*json*
-rm -R arco1500-release/arduino/portable/preferences.txt
+rm -Rf arco1500-release/arduino/portable/staging
+rm -Rf arco1500-release/arduino/portable/*json*
+rm -Rf arco1500-release/arduino/portable/preferences.txt
 
 printf "\ncopying game uploader exe ..."
 cp game_uploader/bin/Release/ARCO1500_Uploader.exe arco1500-release/ARCO1500_Uploader.exe
@@ -26,9 +26,9 @@ printf "\ncopying games ..."
 cp -R games arco1500-release/games
 
 printf "\ncopying url shortcut ..."
-cp www.arco1500.com.url arco1500-release/www.arco1500.com.url
+cp "How To Build It.url" arco1500-release/"How To Build It.url"
 
 printf "\nzipping ..."
 7z a -tzip arco1500.zip arco1500-release > 7zlog
-rm -R arco1500-release
+rm -Rf arco1500-release
 rm 7zlog

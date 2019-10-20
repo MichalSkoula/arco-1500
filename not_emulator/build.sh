@@ -152,13 +152,13 @@ REL="../.."
 g++ -std=c++17                                                  \
     -Wall -Wpedantic -pedantic-errors -Wextra                   \
     -I "$REL" -I "$REL/$LIBS/gamelib"                           \
-    -D "RESOLUTION_MULTIPLIER=$RESOLUTION_MULTIPLIER"           \
+    -D "RESOLUTION_MULTIPLIER=1"           \
     -D "WINDOW_TITLE=\"not_emulator - $GAME\""                  \
     -D "FONT_BIG_PATH=\"$FONT\"" -D "FONT_SMALL_PATH=\"$FONT\"" \
     -o "$GAME"                                                  \
     "$MAIN" "$REL/"{Arduino,EEPROM,U8g2lib,utils}.cpp           \
     "$REL/$LIBS/gamelib/"{gamelib,display,input,sound}.cpp      \
-	-lSDL2 -lSDL2_ttf -D SDL_MAIN_HANDLED
+	 `sdl2-config --cflags --libs` -lSDL2_ttf
 
 if [ ! -f "$GAME" ]; then
     echo "Failed to compile '$GAME'"

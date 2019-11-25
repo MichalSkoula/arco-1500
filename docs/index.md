@@ -73,13 +73,3 @@ ARCO1500 is still in development stage. Here are some moments captured for your 
         </figure>
     {% endfor %}
 </div>
-
-# Blog News
-<ul>
-  {% for post in site.posts limit:5 %}
-    <li>
-        {{ post.date | date: "%-d %B %Y" }} <a href="{{ post.url }}">{{ post.title }}</a>
-    </li>
-  {% endfor %}
-</ul>
-[View all posts >>](/blog.html)

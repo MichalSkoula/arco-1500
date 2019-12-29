@@ -1,11 +1,5 @@
 #!/bin/sh
 
-printf "\nzip games and copy them to docs folder ..."
-rm -Rf docs/assets/games/*
-for d in games/*; do
-    7z a -tzip docs/assets/${d}.zip $d > 7zlog
-done
-
 printf "\ncreate release folder ..."
 rm arco1500.zip
 mkdir arco1500-release

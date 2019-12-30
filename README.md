@@ -2,7 +2,7 @@
 
 Build your own 8 bit gaming console based on the Arduino platform
 
-![](https://github.com/MichalSkoula/arco-1500/blob/master/assets/arco_rectangle.jpg)
+![](https://github.com/MichalSkoula/arco-1500/blob/master/assets/product.jpg)
 
 ## Links
 * **[Docs](https://github.com/MichalSkoula/arco-1500/wiki)**

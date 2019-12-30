@@ -1,0 +1,4 @@
+#define tank_up_width 6
+#define tank_up_height 6
+static unsigned char tank_up_bits[] = {
+   0x0c, 0x2d, 0x1e, 0x3f, 0x1e, 0x21 };

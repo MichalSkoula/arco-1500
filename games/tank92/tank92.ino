@@ -90,6 +90,7 @@ class Bullet {
                 direction = dir;
                 x = posX;
                 y = posY;
+                sound.playTone(300, 5);
             }
         }
 };

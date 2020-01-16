@@ -14,7 +14,8 @@ enum GameId {
 	GID_SNAKE,
 	GID_SURFER,
 	GID_HELLO,
-	GID_FLAPPY
+	GID_FLAPPY,
+    GID_TANK
 };
 
 using score_t = uint16_t;

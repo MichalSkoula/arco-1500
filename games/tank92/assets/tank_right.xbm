@@ -1,0 +1,4 @@
+#define tank_right_width 6
+#define tank_right_height 6
+static unsigned char tank_right_bits[] = {
+   0x15, 0x0e, 0x3e, 0x3e, 0x0e, 0x15 };

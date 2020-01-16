@@ -1,6 +1,9 @@
 # ARCO 1500 case 
 
-Beside these STL files, here is an updated Tincercad version - https://www.tinkercad.com/search?category=tinkercad&q=arco1500
+Beside these STL files, here is:
+
+- Tincercad version - https://www.tinkercad.com/search?category=tinkercad&q=arco1500
+- Thingiverse version - https://www.thingiverse.com/thing:4106520
 
 These open source parts were used:
 

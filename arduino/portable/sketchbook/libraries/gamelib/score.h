@@ -15,7 +15,9 @@ enum GameId {
 	GID_SURFER,
 	GID_HELLO,
 	GID_FLAPPY,
-    GID_TANK
+    GID_TANK,
+
+    GID_NONE = 255
 };
 
 using score_t = uint16_t;
@@ -81,14 +83,14 @@ public:
 
 	void update()
 	{
-        if (state.stage == 0 && buttonPressed(START_BUTTON)) {
-            state.stage = isHighScore() ? 1 : 2;
-        } else if (state.stage == 1) {
+        if (state.stage == STAGE_GAME_OVER && buttonPressed(START_BUTTON)) {
+            state.stage = isHighScore() ? STAGE_NAME_INPUT : STAGE_SCORE_TABLE;
+        } else if (state.stage == STAGE_NAME_INPUT) {
             if (buttonPressed(LEFT_BUTTON) && state.selection > 0) {
                 --state.selection;
             } else if (buttonPressed(RIGHT_BUTTON) && state.selection < 2) {
                 ++state.selection;
-			} else if (buttonPressed(UP_BUTTON)) {
+            } else if (buttonPressed(UP_BUTTON)) {      // TODO swap UP/DOWN?
                 switch (state.selection) {
 					case 0: if (score.c1 > 0) --score.c1; break;
 					case 1: if (score.c2 > 0) --score.c2; break;
@@ -103,31 +105,59 @@ public:
 			} else if (buttonPressed(START_BUTTON)) {
 				byte i = findLowestScore();
 				EEPROM.put(gameId * Size + 1 + i * sizeof(Score), score);
-                state.stage = 2;
+                state.stage = STAGE_SCORE_TABLE;
+                state.selection = 0;
 			}
-        } else if (state.stage == 2 && buttonPressed(START_BUTTON)) {
-            state = { 0, 0, 0, 0 };
-            score.value = 0;
-            softReset();
-		}
+        } else if (state.stage == STAGE_SCORE_TABLE) {
+            if (buttonPressed(START_BUTTON)) {
+                state = { 0, 0, 0, 0 };
+                score.value = 0;
+                softReset();
+            } else if (buttonPressed(ACTION_BUTTON, 3000)) {
+                // TODO give feedback to user - flash some text or something?
+                state.stage = STAGE_CONFIRM_ERASE;
+            }
+        } else if (state.stage == STAGE_CONFIRM_ERASE) {
+            if (buttonPressed(START_BUTTON)) {
+                // cancel score erase and return back to score table
+                buttonPressed(ACTION_BUTTON, 0);
+                state.stage = STAGE_SCORE_TABLE;
+            } else if (buttonPressed(ACTION_BUTTON, 3000)) {
+                // init() expects at this position in EEPROM memory gameId,
+                // if any other number is found the game's score table is zeroed out
+                EEPROM.put(gameId * Size, GID_NONE);
+                init();
+                state.stage = STAGE_SCORE_TABLE;
+            }
+        }
 	}
 
 	void draw()
 	{
-        if (state.stage == 0) {
+        if (state.stage == STAGE_GAME_OVER) {
 			drawGameOver();
-        } else if (state.stage == 1) {
+        } else if (state.stage == STAGE_NAME_INPUT) {
 			drawNameInput();
-        } else if (state.stage == 2) {
+        } else if (state.stage == STAGE_SCORE_TABLE) {
 			drawTable();
-		}
+        } else if (state.stage == STAGE_CONFIRM_ERASE) {
+            drawConfirmErase();
+        }
 	}
 
 private:
-    // stage
-    // 0		Game Over/New High Score Screen
-	// 1		Name Input Screen
-	// 2		High Score Table
+    enum {
+        STAGE_GAME_OVER,        // final score screen
+        STAGE_NAME_INPUT,       // name input screen for new high score
+        STAGE_SCORE_TABLE,      // high score table screen
+        STAGE_CONFIRM_ERASE     // confirmation screen to erase high score table
+    };
+
+    // the meaning of state.selection depends on the current stage
+    // STAGE_GAME_OVER          not used
+    // STAGE_NAME_INPUT         name input cursor position
+    // STAGE_SCORE_TABLE        not used
+    // STAGE_CONFIRM_ERASE      not used
     struct {
         byte
             stage : 3,
@@ -270,6 +300,13 @@ private:
             display.drawText(85, 25 + i * 9, String(scores[i].value));
 		}
 	}
+
+    void drawConfirmErase()
+    {
+        display.drawSmallText(5, 20, "Do you really want to erase High Scores?");
+        display.drawSmallText(20, 30, "(it will affect only this game)");
+        display.drawSmallText(15, 50, "Confirm by holding action button...");
+    }
 };
 
 #endif	/* GAMELIB_SCORE_H */

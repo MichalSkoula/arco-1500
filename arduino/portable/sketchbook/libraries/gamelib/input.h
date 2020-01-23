@@ -27,9 +27,13 @@ enum Buttons {
 	CENTER_BUTTON	= 6
 };
 
-
-
 // read button state
 bool buttonPressed(byte button);
+
+// returns true when the button has been pressed for more than ms milliseconds
+// then returns false until the button is released
+// CAN ONLY BE CALLED FOR ONE BUTTON AT A TIME
+// to reset call with 0 ms
+bool buttonPressed(byte button, uint32_t ms);
 
 #endif	/* GAMELIB_INPUT_H */

@@ -227,19 +227,17 @@ private:
 
 	void drawGameOver()
 	{
+        display.drawBigText(15, 10, F("GAME OVER"));
         if (isHighScore()) {
-			display.drawBigText(15, 10, "GAME OVER");
-			// TODO
-            display.drawSmallText(15, 35, "New High Score: " + String(score.value));
+            display.drawSmallText(15, 35, String(F("New High Score: ")) + String(score.value));
 		} else {
-			display.drawBigText(15, 10, "GAME OVER");
-            display.drawSmallText(15, 35, "Score: " + String(score.value));
+            display.drawSmallText(15, 35, String(F("Score: ")) + String(score.value));
 		}
 	}
 
 	void drawNameInput()
 	{
-		display.drawBigText(15, 10, "YOUR NICK");
+        display.drawBigText(15, 10, F("YOUR NICK"));
 
         display.drawBigText(20 + 0 * 20, 40, String(static_cast<char>(score.c1 + 'A')));
         display.drawBigText(20 + 1 * 20, 40, String(static_cast<char>(score.c2 + 'A')));
@@ -248,14 +246,14 @@ private:
             if (i == state.selection) {
 				display.drawFrame(18 + i * 20, 26, 13, 20);
 			} else {
-				display.drawBigText(20 + i * 20, 46, "_");
+                display.drawBigText(20 + i * 20, 46, F("_"));
 			}
 		}
 	}
 
 	void drawTable()
 	{
-		display.drawBigText(15, 10, "HIGH SCORES");
+        display.drawBigText(15, 10, F("HIGH SCORES"));
         display.drawLine(0, 12, 128, 12);
 
 		// TODO could probably be optimized to use less memory
@@ -293,7 +291,7 @@ private:
             // highlight new high score
             if (highlight && sameScore(scores[i])) {
                 highlight = false;
-                display.drawSmallText(10, 25 + i * 9, ">");
+                display.drawSmallText(10, 25 + i * 9, F(">"));
             }
             display.drawSmallText(15, 25 + i * 9, String(i + 1) + '.');
 			display.drawSmallText(30, 25 + i * 9, name);
@@ -303,9 +301,9 @@ private:
 
     void drawConfirmErase()
     {
-        display.drawSmallText(5, 20, "Do you really want to erase High Scores?");
-        display.drawSmallText(20, 30, "(it will affect only this game)");
-        display.drawSmallText(15, 50, "Confirm by holding action button...");
+        display.drawSmallText(5, 20, F("Do you really want to erase High Scores?"));
+        display.drawSmallText(20, 30, F("(it will affect only this game)"));
+        display.drawSmallText(15, 50, F("Confirm by holding action button..."));
     }
 };
 

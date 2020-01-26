@@ -36,6 +36,9 @@ public:
 
 extern SerialPort Serial;
 
+// this macro automatically places strings to PROGMEM
+#define F(x) x
+
 class String
 {
 private:

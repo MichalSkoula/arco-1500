@@ -306,8 +306,8 @@ private:
     {
         display.drawSmallText(2, 10, F("Erase High Scores"));
         display.drawSmallText(2, 20, F("for this game?"));
-        display.drawSmallText(2, 50, F("Action - confirm"));
-        display.drawSmallText(2, 60, F("Start - cancel"));
+        display.drawSmallText(2, 50, F("Hold Action - confirm"));
+        display.drawSmallText(2, 60, F("Press Start - cancel"));
     }
 };
 

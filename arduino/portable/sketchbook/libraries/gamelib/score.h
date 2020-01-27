@@ -253,8 +253,8 @@ private:
 
 	void drawTable()
 	{
-        display.drawBigText(15, 10, F("HIGH SCORES"));
-        display.drawLine(0, 12, 128, 12);
+        display.drawBigText(10, 10, F("HIGH SCORES"));
+        //display.drawLine(0, 12, 128, 12);
 
 		// TODO could probably be optimized to use less memory
 		// read scores from memory
@@ -291,19 +291,23 @@ private:
             // highlight new high score
             if (highlight && sameScore(scores[i])) {
                 highlight = false;
-                display.drawSmallText(10, 25 + i * 9, F(">"));
+                display.drawSmallText(5, 21 + i * 8, F(">"));
             }
-            display.drawSmallText(15, 25 + i * 9, String(i + 1) + '.');
-			display.drawSmallText(30, 25 + i * 9, name);
-            display.drawText(85, 25 + i * 9, String(scores[i].value));
+            // draw it
+            display.drawSmallText(10, 21 + i * 8, String(i + 1) + '.');
+			display.drawSmallText(20, 21 + i * 8, name);
+            display.drawText(80, 21 + i * 8, String(scores[i].value));
+            // draw erase line 
+            display.drawSmallText(10, 61, F("Hold Action to erase"));
 		}
 	}
 
     void drawConfirmErase()
     {
-        display.drawSmallText(5, 20, F("Do you really want to erase High Scores?"));
-        display.drawSmallText(20, 30, F("(it will affect only this game)"));
-        display.drawSmallText(15, 50, F("Confirm by holding action button..."));
+        display.drawSmallText(2, 10, F("Erase High Scores"));
+        display.drawSmallText(2, 20, F("for this game?"));
+        display.drawSmallText(2, 50, F("Action - confirm"));
+        display.drawSmallText(2, 60, F("Start - cancel"));
     }
 };
 

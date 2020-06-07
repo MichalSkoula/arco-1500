@@ -1,7 +1,7 @@
 #!/bin/sh
 
 printf "\ncreate release folder ..."
-rm arco1500.zip
+[ ! -e arco1500.zip ] || rm arco1500.zip
 mkdir arco1500-release
 
 printf "\ncopying arduino ide ..."

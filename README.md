@@ -16,7 +16,7 @@ Here is a video about how to do it: http://www.youtube.com/watch?v=pl3g7Zw-S20
 
 ### Complete set 
 
-The whole set looks like this. You can buy it [here](https://www.bastlime.eu/c/36616-sady) (Czechia and Slovakia) or [here](https://www.shop.arco1500.com/) (EU-wide).
+The whole set looks like this. You can buy it [here](https://www.bastlime.eu/c/36616-sady) (Czechia, Slovakia, Poland, Hungary).
 
 ![](https://github.com/MichalSkoula/arco-1500/blob/master/assets/arco1500-set.jpg)
 
